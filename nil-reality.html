@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The NIL Reality | The 99 Sports</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg-dark: #0d1117;
+            --bg-darker: #010409;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --neon-blue: #53a8f6;
+            --neon-cyan: #35cbd6;
+            --white: #ffffff;
+            --gray: #8b949e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-darker);
+            color: var(--white);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease, width 0.3s, height 0.3s, border-color 0.3s;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10001;
+        }
+
+        .cursor.hover {
+            width: 50px;
+            height: 50px;
+            border-color: var(--neon-cyan);
+        }
+
+        /* Scroll Sections */
+        .scroll-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            scroll-snap-align: start;
+            overflow: hidden;
+        }
+
+        /* Canvas Background */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Section 1: Opening */
+        .section-intro {
+            background: radial-gradient(ellipse at center, #0d1117 0%, #010409 100%);
+        }
+
+        .intro-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .glitch-text {
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 700;
+            position: relative;
+            color: var(--white);
+            text-shadow: 0 0 80px rgba(212, 175, 55, 0.5);
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch-text::before {
+            color: var(--neon-cyan);
+            animation: glitch-1 2s infinite linear alternate-reverse;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+        }
+
+        .glitch-text::after {
+            color: var(--gold);
+            animation: glitch-2 3s infinite linear alternate-reverse;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(3px, -3px); }
+            60% { transform: translate(-3px, -3px); }
+            80% { transform: translate(3px, 3px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(3px, -3px); }
+            40% { transform: translate(-3px, 3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(-3px, -3px); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-hint svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Section 2: The Problem */
+        .section-problem {
+            background: var(--bg-dark);
+        }
+
+        .stat-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .mega-stat {
+            font-size: clamp(8rem, 25vw, 20rem);
+            font-weight: 700;
+            line-height: 0.9;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .mega-stat .percent {
+            font-size: 0.4em;
+            vertical-align: top;
+        }
+
+        .stat-label {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-top: 20px;
+            max-width: 400px;
+            line-height: 1.4;
+        }
+
+        .stat-label span {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Section 3: Bar Chart Race */
+        .section-race {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+        }
+
+        .race-container {
+            width: 100%;
+            max-width: 900px;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .race-title {
+            font-size: 1rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .race-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .race-bar {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .race-bar-label {
+            width: 100px;
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .race-bar-track {
+            flex: 1;
+            height: 50px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .race-bar-fill {
+            height: 100%;
+            border-radius: 8px;
+            position: relative;
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 16px;
+        }
+
+        .race-bar-fill.gold {
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .race-bar-fill.gray {
+            background: linear-gradient(90deg, #2d333b 0%, #444c56 100%);
+        }
+
+        .race-bar-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--bg-darker);
+        }
+
+        .race-bar-fill.gray .race-bar-value {
+            color: var(--white);
+        }
+
+        /* Section 4: 3D Ring */
+        .section-ring {
+            background: var(--bg-darker);
+            perspective: 1000px;
+        }
+
+        .ring-3d-container {
+            position: relative;
+            z-index: 2;
+            transform-style: preserve-3d;
+        }
+
+        .ring-wrapper {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            animation: float3d 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes float3d {
+            0%, 100% { transform: rotateX(15deg) rotateY(0deg); }
+            25% { transform: rotateX(10deg) rotateY(10deg); }
+            50% { transform: rotateX(15deg) rotateY(0deg); }
+            75% { transform: rotateX(10deg) rotateY(-10deg); }
+        }
+
+        .ring-svg-3d {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 60px rgba(212, 175, 55, 0.5));
+        }
+
+        .ring-track-3d {
+            fill: none;
+            stroke: rgba(255,255,255,0.1);
+            stroke-width: 20;
+        }
+
+        .ring-progress-3d {
+            fill: none;
+            stroke: url(#ringGradient);
+            stroke-width: 20;
+            stroke-linecap: round;
+            stroke-dasharray: 0 1000;
+            transform-origin: center;
+            transition: stroke-dasharray 3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ring-progress-3d.animated {
+            stroke-dasharray: 879 1000;
+        }
+
+        .ring-center-3d {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(50px);
+            text-align: center;
+        }
+
+        .ring-value-3d {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+        }
+
+        .ring-detail-3d {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-top: 8px;
+        }
+
+        /* Section 5: People Visualization */
+        .section-people {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f1318 100%);
+        }
+
+        .people-viz {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .people-grid-3d {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 12px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            perspective: 500px;
+        }
+
+        .person-3d {
+            width: 40px;
+            height: 60px;
+            position: relative;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .person-3d:hover {
+            transform: translateY(-10px) rotateY(180deg) scale(1.2);
+        }
+
+        .person-3d svg {
+            width: 100%;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .person-3d.gold svg {
+            fill: var(--gold);
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+        }
+
+        .person-3d.gray svg {
+            fill: #2d333b;
+        }
+
+        .person-3d.gray:hover svg {
+            fill: #444c56;
+        }
+
+        .people-stat {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .people-label {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-top: 8px;
+        }
+
+        /* Section 6: Market */
+        .section-market {
+            background: radial-gradient(ellipse at bottom, #0d1117 0%, var(--bg-darker) 100%);
+        }
+
+        .market-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .market-value {
+            font-size: clamp(5rem, 15vw, 12rem);
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--gold);
+            position: relative;
+        }
+
+        .market-value::after {
+            content: '$2.5B';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            clip-path: inset(0 100% 0 0);
+            animation: reveal 2s ease forwards;
+            animation-play-state: paused;
+        }
+
+        .section-market.active .market-value::after {
+            animation-play-state: running;
+        }
+
+        @keyframes reveal {
+            to { clip-path: inset(0 0 0 0); }
+        }
+
+        .market-label {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .market-breakdown {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .market-item {
+            text-align: center;
+        }
+
+        .market-item-value {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .market-item-value.gold {
+            color: var(--gold);
+        }
+
+        .market-item-value.gray {
+            color: var(--gray);
+        }
+
+        .market-item-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 8px;
+        }
+
+        /* Section 7: CTA */
+        .section-cta {
+            background: linear-gradient(180deg, var(--bg-darker) 0%, #1a1510 100%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .cta-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .cta-title span {
+            color: var(--gold);
+        }
+
+        .cta-desc {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 48px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--bg-darker);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 60px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Progress Indicator */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--neon-cyan));
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Section Indicators */
+        .section-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .section-dot {
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--gray);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .section-dot:hover,
+        .section-dot.active {
+            border-color: var(--gold);
+            background: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .cursor, .cursor-dot { display: none; }
+            body { cursor: auto; }
+
+            .section-nav { display: none; }
+
+            .mega-stat { font-size: 6rem; }
+
+            .race-bar-label { width: 60px; font-size: 0.7rem; }
+            .race-bar-track { height: 40px; }
+
+            .ring-wrapper { width: 280px; height: 280px; }
+            .ring-value-3d { font-size: 3rem; }
+
+            .people-grid-3d {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 8px;
+            }
+            .person-3d { width: 30px; height: 45px; }
+
+            .market-breakdown {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Section Navigation -->
+    <nav class="section-nav">
+        <div class="section-dot active" data-section="0"></div>
+        <div class="section-dot" data-section="1"></div>
+        <div class="section-dot" data-section="2"></div>
+        <div class="section-dot" data-section="3"></div>
+        <div class="section-dot" data-section="4"></div>
+        <div class="section-dot" data-section="5"></div>
+        <div class="section-dot" data-section="6"></div>
+    </nav>
+
+    <!-- Particle Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Section 1: Intro -->
+    <section class="scroll-section section-intro">
+        <div class="intro-content">
+            <h1 class="glitch-text" data-text="THE 99%">THE 99%</h1>
+            <p class="subtitle">The untold story of NIL inequality in college sports</p>
+        </div>
+        <div class="scroll-hint">
+            <span>Scroll to explore</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Section 2: The Problem -->
+    <section class="scroll-section section-problem">
+        <div class="stat-container">
+            <div class="mega-stat">
+                <span class="counter" data-target="99">0</span><span class="percent">%</span>
+            </div>
+            <p class="stat-label">of college athletes are competing for just <span>5%</span> of all NIL money</p>
+        </div>
+    </section>
+
+    <!-- Section 3: Bar Chart Race -->
+    <section class="scroll-section section-race">
+        <div class="race-container">
+            <h2 class="race-title">Where the money actually goes</h2>
+            <div class="race-bars">
+                <div class="race-bar">
+                    <div class="race-bar-label">Top 1%</div>
+                    <div class="race-bar-track">
+                        <div class="race-bar-fill gold" data-width="95">
+                            <span class="race-bar-value">$2.375B</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="race-bar">
+                    <div class="race-bar-label">Next 4%</div>
+                    <div class="race-bar-track">
+                        <div class="race-bar-fill gray" data-width="3">
+                            <span class="race-bar-value">$75M</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="race-bar">
+                    <div class="race-bar-label">Next 5%</div>
+                    <div class="race-bar-track">
+                        <div class="race-bar-fill gray" data-width="1.5">
+                            <span class="race-bar-value">$37.5M</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="race-bar">
+                    <div class="race-bar-label">Bottom 90%</div>
+                    <div class="race-bar-track">
+                        <div class="race-bar-fill gray" data-width="0.5">
+                            <span class="race-bar-value">$12.5M</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: 3D Ring -->
+    <section class="scroll-section section-ring">
+        <div class="ring-3d-container">
+            <div class="ring-wrapper">
+                <svg class="ring-svg-3d" viewBox="0 0 400 400">
+                    <defs>
+                        <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#D4AF37"/>
+                            <stop offset="50%" style="stop-color:#F4D03F"/>
+                            <stop offset="100%" style="stop-color:#D4AF37"/>
+                        </linearGradient>
+                    </defs>
+                    <circle class="ring-track-3d" cx="200" cy="200" r="160" transform="rotate(-90 200 200)"/>
+                    <circle class="ring-progress-3d" cx="200" cy="200" r="160" transform="rotate(-90 200 200)"/>
+                </svg>
+                <div class="ring-center-3d">
+                    <div class="ring-value-3d">1%</div>
+                    <div class="ring-detail-3d">takes 95% of all NIL money</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: People -->
+    <section class="scroll-section section-people">
+        <div class="people-viz">
+            <div class="people-grid-3d" id="people-grid">
+                <!-- Generated by JS -->
+            </div>
+            <div class="people-stat">&lt;10%</div>
+            <div class="people-label">of NCAA athletes have consistent NIL deals</div>
+        </div>
+    </section>
+
+    <!-- Section 6: Market -->
+    <section class="scroll-section section-market">
+        <div class="market-content">
+            <div class="market-value">$2.5B</div>
+            <div class="market-label">Total NIL Market</div>
+            <div class="market-breakdown">
+                <div class="market-item">
+                    <div class="market-item-value gold">$2.375B</div>
+                    <div class="market-item-label">Goes to the 1%</div>
+                </div>
+                <div class="market-item">
+                    <div class="market-item-value gray">$125M</div>
+                    <div class="market-item-label">Left for 500,000+ athletes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: CTA -->
+    <section class="scroll-section section-cta">
+        <div class="cta-content">
+            <h2 class="cta-title">We're here to change <span>everything.</span></h2>
+            <p class="cta-desc">The 99 helps every athlete—from any school, any sport, any following—build their brand and unlock real opportunities.</p>
+            <a href="index.html" class="cta-btn">
+                Join The Movement
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+            cursorDot.style.left = e.clientX - 3 + 'px';
+            cursorDot.style.top = e.clientY - 3 + 'px';
+        });
+
+        document.querySelectorAll('a, button, .section-dot, .person-3d').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Particle System
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.1;
+                this.color = Math.random() > 0.8 ? '#D4AF37' : '#53a8f6';
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        for (let i = 0; i < 100; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(212, 175, 55, ${0.1 * (1 - dist / 150)})`;
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Generate People Grid
+        const peopleGrid = document.getElementById('people-grid');
+        for (let i = 0; i < 100; i++) {
+            const person = document.createElement('div');
+            person.className = `person-3d ${i < 1 ? 'gold' : 'gray'}`;
+            person.innerHTML = `<svg viewBox="0 0 24 32"><circle cx="12" cy="8" r="6"/><path d="M12 16c-6 0-12 3-12 8v4h24v-4c0-5-6-8-12-8z"/></svg>`;
+            person.style.animationDelay = `${i * 0.02}s`;
+            peopleGrid.appendChild(person);
+        }
+
+        // Scroll Progress
+        const progressBar = document.querySelector('.progress-bar');
+        const sections = document.querySelectorAll('.scroll-section');
+        const sectionDots = document.querySelectorAll('.section-dot');
+
+        // Intersection Observer for animations
+        const observerOptions = { threshold: 0.5 };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+                    const index = Array.from(sections).indexOf(section);
+
+                    // Update dots
+                    sectionDots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+
+                    // Trigger section-specific animations
+                    if (section.classList.contains('section-problem')) {
+                        animateCounter(section.querySelector('.counter'));
+                    }
+
+                    if (section.classList.contains('section-race')) {
+                        section.querySelectorAll('.race-bar-fill').forEach((bar, i) => {
+                            setTimeout(() => {
+                                bar.style.width = bar.dataset.width + '%';
+                            }, i * 300);
+                        });
+                    }
+
+                    if (section.classList.contains('section-ring')) {
+                        section.querySelector('.ring-progress-3d').classList.add('animated');
+                    }
+
+                    if (section.classList.contains('section-market')) {
+                        section.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // Counter Animation
+        function animateCounter(element) {
+            if (element.dataset.animated) return;
+            element.dataset.animated = true;
+
+            const target = parseInt(element.dataset.target);
+            const duration = 2000;
+            const start = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                element.textContent = Math.floor(target * easeOut);
+
+                if (progress < 1) requestAnimationFrame(update);
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Scroll progress update
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // Section navigation click
+        sectionDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.dataset.section);
+                sections[index].scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Mouse parallax effect on intro
+        const introSection = document.querySelector('.section-intro');
+        const glitchText = document.querySelector('.glitch-text');
+
+        introSection.addEventListener('mousemove', (e) => {
+            const rect = introSection.getBoundingClientRect();
+            const x = (e.clientX - rect.left - rect.width / 2) / 50;
+            const y = (e.clientY - rect.top - rect.height / 2) / 50;
+            glitchText.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body>
+</html>

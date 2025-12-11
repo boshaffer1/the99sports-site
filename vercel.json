@@ -1,0 +1,12 @@
+{
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/athletes", "destination": "/athletes.html" },
+    { "source": "/brands", "destination": "/brands.html" },
+    { "source": "/universities", "destination": "/universities.html" },
+    { "source": "/contact", "destination": "/contact.html" }
+  ]
+}

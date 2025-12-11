@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Preview - The 99</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0A0A0A;
+            color: #fff;
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2rem;
+            color: #D4AF37;
+        }
+        .logo-comparison {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo-option {
+            background: #1A1A1A;
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        .logo-option h2 {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #888;
+        }
+        .logo-display {
+            background: #0A0A0A;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-display img {
+            max-width: 100%;
+            max-height: 150px;
+            height: auto;
+        }
+        .logo-display.dark { background: #0A0A0A; }
+        .logo-display.light { background: #f5f5f5; }
+        .label {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 16px;
+        }
+        /* Navbar preview */
+        .navbar-preview {
+            margin-top: 80px;
+            text-align: center;
+        }
+        .navbar-preview h2 {
+            margin-bottom: 40px;
+            color: #D4AF37;
+        }
+        .fake-navbar {
+            display: inline-flex;
+            align-items: center;
+            gap: 24px;
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 100px;
+            padding: 12px 24px;
+            margin-bottom: 40px;
+        }
+        .fake-navbar img {
+            height: 32px;
+        }
+        .fake-nav-links {
+            display: flex;
+            gap: 16px;
+        }
+        .fake-nav-links span {
+            color: #888;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Font Logo Options</h1>
+
+    <div class="logo-comparison">
+        <div class="logo-option">
+            <h2>Option A: Font Logos (266KB)</h2>
+            <div class="logo-display dark">
+                <img src="assets/images/font-logos.png" alt="Font Logos">
+            </div>
+            <p class="label">Dark Background</p>
+            <div class="logo-display light">
+                <img src="assets/images/font-logos.png" alt="Font Logos">
+            </div>
+            <p class="label">Light Background</p>
+        </div>
+
+        <div class="logo-option">
+            <h2>Option B: Font Logo (139KB)</h2>
+            <div class="logo-display dark">
+                <img src="assets/images/font-logo.png" alt="Font Logo">
+            </div>
+            <p class="label">Dark Background</p>
+            <div class="logo-display light">
+                <img src="assets/images/font-logo.png" alt="Font Logo">
+            </div>
+            <p class="label">Light Background</p>
+        </div>
+    </div>
+
+    <div class="navbar-preview">
+        <h2>In Navbar Context</h2>
+
+        <p style="color: #888; margin-bottom: 20px;">Option A (font-logos.png):</p>
+        <div class="fake-navbar">
+            <img src="assets/images/font-logos.png" alt="Logo" style="height: 28px;">
+            <div class="fake-nav-links">
+                <span>Athletes</span>
+                <span>Universities</span>
+                <span>Brands</span>
+                <span>Our Story</span>
+            </div>
+        </div>
+
+        <p style="color: #888; margin-bottom: 20px; margin-top: 40px;">Option B (font-logo.png):</p>
+        <div class="fake-navbar">
+            <img src="assets/images/font-logo.png" alt="Logo" style="height: 28px;">
+            <div class="fake-nav-links">
+                <span>Athletes</span>
+                <span>Universities</span>
+                <span>Brands</span>
+                <span>Our Story</span>
+            </div>
+        </div>
+
+        <p style="color: #888; margin-bottom: 20px; margin-top: 40px;">Current (circular logo):</p>
+        <div class="fake-navbar">
+            <img src="assets/images/logo-99.png" alt="Logo" style="height: 28px;">
+            <div class="fake-nav-links">
+                <span>Athletes</span>
+                <span>Universities</span>
+                <span>Brands</span>
+                <span>Our Story</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

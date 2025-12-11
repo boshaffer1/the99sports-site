@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIL Reality - The 99</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0A0A0A;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .viz-section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(ellipse at center top, #151510 0%, #0A0A0A 60%);
+        }
+
+        /* Header */
+        .viz-header {
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+        .counter-display {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            color: #D4AF37;
+            text-shadow: 0 0 60px rgba(212,175,55,0.5);
+            font-family: 'SF Mono', 'Monaco', monospace;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        .counter-display.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .headline {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: #888;
+            margin-top: 12px;
+            opacity: 0;
+            transition: opacity 0.8s ease 0.5s;
+        }
+        .headline.visible { opacity: 1; }
+        .headline span { color: #D4AF37; }
+
+        /* Canvas */
+        .viz-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 55vh;
+            min-height: 400px;
+        }
+        .viz-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Cups */
+        .cups-container {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 180px;
+            z-index: 5;
+        }
+        .cup {
+            position: relative;
+            text-align: center;
+        }
+        .cup-visual {
+            width: 130px;
+            height: 150px;
+            border: 3px solid;
+            border-top: none;
+            border-radius: 0 0 24px 24px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        .cup.gold .cup-visual {
+            border-color: #D4AF37;
+            box-shadow: 0 0 30px rgba(212,175,55,0.2);
+        }
+        .cup.white .cup-visual {
+            border-color: rgba(255,255,255,0.4);
+        }
+        .cup-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0%;
+            transition: height 0.2s ease-out;
+        }
+        .cup.gold .cup-fill {
+            background: linear-gradient(180deg, #F4D03F 0%, #D4AF37 50%, #8B7528 100%);
+            box-shadow: 0 -10px 30px rgba(212,175,55,0.6);
+        }
+        .cup.white .cup-fill {
+            background: linear-gradient(180deg, #fff 0%, #ddd 50%, #aaa 100%);
+            box-shadow: 0 -5px 20px rgba(255,255,255,0.3);
+        }
+
+        /* Cup labels */
+        .cup-label {
+            margin-top: 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        .cup.gold .cup-label { color: #D4AF37; }
+        .cup.white .cup-label { color: rgba(255,255,255,0.8); }
+        .cup-amount {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 8px;
+            font-family: 'SF Mono', monospace;
+            transition: all 0.3s ease;
+        }
+        .cup.gold .cup-amount { color: #D4AF37; }
+        .cup.white .cup-amount { color: rgba(255,255,255,0.6); }
+        .cup-balls {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* Ball counter display */
+        .ball-counter {
+            position: absolute;
+            top: 20px;
+            display: flex;
+            gap: 40px;
+            z-index: 10;
+        }
+        .ball-count {
+            text-align: center;
+            padding: 12px 24px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .ball-count .number {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'SF Mono', monospace;
+        }
+        .ball-count.gold .number { color: #D4AF37; }
+        .ball-count.white .number { color: #fff; }
+        .ball-count .label {
+            font-size: 0.7rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Particle burst effect */
+        .particle-burst {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        /* Pulse glow animation for gold cup */
+        @keyframes cupGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(212,175,55,0.2); }
+            50% { box-shadow: 0 0 50px rgba(212,175,55,0.5), 0 0 80px rgba(212,175,55,0.3); }
+        }
+        .cup.gold.glowing .cup-visual {
+            animation: cupGlow 1s ease-in-out infinite;
+        }
+
+        /* Shake animation for disparity emphasis */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+        .cup.white.shake .cup-visual {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        /* Loop indicator */
+        .loop-progress {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .loop-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #D4AF37, #F4D03F);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cups-container { gap: 80px; }
+            .cup-visual { width: 100px; height: 120px; }
+            .ball-counter { gap: 20px; }
+            .ball-count { padding: 8px 16px; }
+            .ball-count .number { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <section class="viz-section">
+        <div class="viz-header">
+            <div class="counter-display" id="counter">$0</div>
+            <p class="headline" id="headline">There's <span>$2.5B</span> in NIL opportunities for college athletes... watch where it all goes.</p>
+        </div>
+
+        <div class="ball-counter">
+            <div class="ball-count gold">
+                <div class="number" id="goldBallCount">0</div>
+                <div class="label">Top 1%</div>
+            </div>
+            <div class="ball-count white">
+                <div class="number" id="whiteBallCount">0</div>
+                <div class="label">The 99%</div>
+            </div>
+        </div>
+
+        <div class="viz-container">
+            <canvas class="viz-canvas" id="canvas"></canvas>
+            <div class="cups-container">
+                <div class="cup gold" id="goldCup">
+                    <div class="cup-visual">
+                        <div class="cup-fill" id="goldFill"></div>
+                    </div>
+                    <div class="cup-label">THE TOP 1%</div>
+                    <div class="cup-amount" id="goldAmount">$0</div>
+                    <div class="cup-balls"><span id="goldBalls">0</span> / 95 balls</div>
+                </div>
+                <div class="cup white" id="whiteCup">
+                    <div class="cup-visual">
+                        <div class="cup-fill" id="whiteFill"></div>
+                    </div>
+                    <div class="cup-label">THE OTHER 99%</div>
+                    <div class="cup-amount" id="whiteAmount">$0</div>
+                    <div class="cup-balls"><span id="whiteBalls">0</span> / 5 balls</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="loop-progress">
+            <div class="loop-progress-bar" id="loopProgress"></div>
+        </div>
+    </section>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // State
+        let balls = [];
+        let particles = [];
+        let goldLanded = 0;
+        let whiteLanded = 0;
+        let animationId = null;
+        let loopStartTime = 0;
+        const LOOP_DURATION = 15000; // 15 seconds
+
+        // Initialize canvas
+        function initCanvas() {
+            canvas.width = canvas.offsetWidth * 2;
+            canvas.height = canvas.offsetHeight * 2;
+            ctx.scale(2, 2);
+        }
+
+        // Format money
+        function formatMoney(amount) {
+            if (amount >= 1000000000) return '$' + (amount / 1000000000).toFixed(2) + 'B';
+            if (amount >= 1000000) return '$' + Math.round(amount / 1000000) + 'M';
+            return '$' + amount.toLocaleString();
+        }
+
+        // Animate counter
+        function animateCounter(element, target, duration = 2000) {
+            const startTime = performance.now();
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(target * easeOut);
+                element.textContent = '$' + current.toLocaleString();
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        // Create ball
+        function createBall(index) {
+            const isGold = index < 95;
+            const centerX = canvas.offsetWidth / 2;
+
+            return {
+                x: centerX + (Math.random() - 0.5) * 120,
+                y: -15 - Math.random() * 40,
+                vx: 0,
+                vy: 0,
+                radius: 8,
+                isGold: isGold,
+                targetX: isGold ? centerX - 160 : centerX + 160,
+                phase: 'spawn',
+                trail: [],
+                landed: false,
+                glow: isGold ? 1 : 0.6
+            };
+        }
+
+        // Create particle burst
+        function createParticleBurst(x, y, color, count = 8) {
+            for (let i = 0; i < count; i++) {
+                const angle = (i / count) * Math.PI * 2;
+                const speed = 2 + Math.random() * 3;
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 2,
+                    radius: 2 + Math.random() * 2,
+                    color: color,
+                    alpha: 1,
+                    decay: 0.02 + Math.random() * 0.02
+                });
+            }
+        }
+
+        // Update ball physics
+        function updateBall(ball) {
+            if (ball.landed) return;
+
+            // Store trail
+            if (ball.trail.length > 10) ball.trail.shift();
+            ball.trail.push({ x: ball.x, y: ball.y, alpha: 1 });
+
+            const centerX = canvas.offsetWidth / 2;
+            const landingY = canvas.offsetHeight - 200;
+
+            // Physics phases
+            if (ball.phase === 'spawn') {
+                ball.vy += 0.08;
+                ball.vx += (centerX - ball.x) * 0.008;
+                if (ball.y > 80) ball.phase = 'funnel';
+            }
+
+            if (ball.phase === 'funnel') {
+                ball.vy += 0.1;
+                const separation = Math.min((ball.y - 80) / 120, 1);
+                const targetNow = centerX + (ball.targetX - centerX) * separation;
+                ball.vx += (targetNow - ball.x) * 0.012;
+                if (ball.y > 200) ball.phase = 'falling';
+            }
+
+            if (ball.phase === 'falling') {
+                ball.vy += 0.18;
+                ball.vx += (ball.targetX - ball.x) * 0.004;
+            }
+
+            ball.vx *= 0.96;
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+
+            // Landing
+            if (ball.y > landingY) {
+                ball.landed = true;
+
+                // Particle burst
+                const burstColor = ball.isGold ? '#D4AF37' : '#ffffff';
+                createParticleBurst(ball.x, landingY, burstColor, ball.isGold ? 12 : 6);
+
+                // Update counts
+                if (ball.isGold) {
+                    goldLanded++;
+                    document.getElementById('goldFill').style.height = (goldLanded / 95 * 95) + '%';
+                    document.getElementById('goldAmount').textContent = formatMoney(goldLanded * 25000000);
+                    document.getElementById('goldBalls').textContent = goldLanded;
+                    document.getElementById('goldBallCount').textContent = goldLanded;
+
+                    // Add glow effect when filling
+                    if (goldLanded > 50) {
+                        document.getElementById('goldCup').classList.add('glowing');
+                    }
+                } else {
+                    whiteLanded++;
+                    document.getElementById('whiteFill').style.height = (whiteLanded / 5 * 8) + '%';
+                    document.getElementById('whiteAmount').textContent = formatMoney(whiteLanded * 25000000);
+                    document.getElementById('whiteBalls').textContent = whiteLanded;
+                    document.getElementById('whiteBallCount').textContent = whiteLanded;
+
+                    // Shake effect to emphasize tiny amount
+                    document.getElementById('whiteCup').classList.add('shake');
+                    setTimeout(() => {
+                        document.getElementById('whiteCup').classList.remove('shake');
+                    }, 300);
+                }
+            }
+        }
+
+        // Update particles
+        function updateParticles() {
+            particles = particles.filter(p => {
+                p.vy += 0.1;
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= p.decay;
+                return p.alpha > 0;
+            });
+        }
+
+        // Draw ball with glow and trail
+        function drawBall(ball) {
+            if (ball.landed) return;
+
+            // Draw trail
+            ball.trail.forEach((pos, i) => {
+                const alpha = (i / ball.trail.length) * 0.4;
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, ball.radius * (i / ball.trail.length) * 0.8, 0, Math.PI * 2);
+                if (ball.isGold) {
+                    ctx.fillStyle = `rgba(212, 175, 55, ${alpha})`;
+                } else {
+                    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                }
+                ctx.fill();
+            });
+
+            // Draw ball
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+
+            if (ball.isGold) {
+                const gradient = ctx.createRadialGradient(
+                    ball.x - 2, ball.y - 2, 0,
+                    ball.x, ball.y, ball.radius
+                );
+                gradient.addColorStop(0, '#F4D03F');
+                gradient.addColorStop(0.7, '#D4AF37');
+                gradient.addColorStop(1, '#8B7528');
+                ctx.fillStyle = gradient;
+                ctx.shadowColor = '#D4AF37';
+                ctx.shadowBlur = 25;
+            } else {
+                const gradient = ctx.createRadialGradient(
+                    ball.x - 2, ball.y - 2, 0,
+                    ball.x, ball.y, ball.radius
+                );
+                gradient.addColorStop(0, '#ffffff');
+                gradient.addColorStop(0.7, '#eeeeee');
+                gradient.addColorStop(1, '#cccccc');
+                ctx.fillStyle = gradient;
+                ctx.shadowColor = '#ffffff';
+                ctx.shadowBlur = 15;
+            }
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
+        // Draw particles
+        function drawParticles() {
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color.replace(')', `, ${p.alpha})`).replace('rgb', 'rgba').replace('#', '');
+
+                // Handle hex colors
+                if (p.color.startsWith('#')) {
+                    const r = parseInt(p.color.slice(1, 3), 16);
+                    const g = parseInt(p.color.slice(3, 5), 16);
+                    const b = parseInt(p.color.slice(5, 7), 16);
+                    ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.alpha})`;
+                }
+                ctx.fill();
+            });
+        }
+
+        // Draw funnel guides
+        function drawFunnelGuides() {
+            const centerX = canvas.offsetWidth / 2;
+
+            ctx.strokeStyle = 'rgba(212, 175, 55, 0.1)';
+            ctx.lineWidth = 2;
+
+            // Left guide
+            ctx.beginPath();
+            ctx.moveTo(centerX - 60, 40);
+            ctx.quadraticCurveTo(centerX - 100, 150, centerX - 160, 280);
+            ctx.stroke();
+
+            // Right guide
+            ctx.beginPath();
+            ctx.moveTo(centerX + 60, 40);
+            ctx.quadraticCurveTo(centerX + 100, 150, centerX + 160, 280);
+            ctx.stroke();
+
+            // Center divider (subtle)
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+            ctx.setLineDash([8, 8]);
+            ctx.beginPath();
+            ctx.moveTo(centerX, 100);
+            ctx.lineTo(centerX, 280);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        // Main animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+
+            drawFunnelGuides();
+
+            balls.forEach(ball => {
+                updateBall(ball);
+                drawBall(ball);
+            });
+
+            updateParticles();
+            drawParticles();
+
+            // Update loop progress
+            const elapsed = performance.now() - loopStartTime;
+            const progress = Math.min((elapsed / LOOP_DURATION) * 100, 100);
+            document.getElementById('loopProgress').style.width = progress + '%';
+
+            // Check for loop reset
+            if (elapsed >= LOOP_DURATION) {
+                resetAnimation();
+                return;
+            }
+
+            animationId = requestAnimationFrame(animate);
+        }
+
+        // Reset animation for loop
+        function resetAnimation() {
+            // Fade out effect
+            document.getElementById('counter').classList.remove('visible');
+            document.getElementById('headline').classList.remove('visible');
+
+            setTimeout(() => {
+                // Reset state
+                balls = [];
+                particles = [];
+                goldLanded = 0;
+                whiteLanded = 0;
+
+                // Reset UI
+                document.getElementById('goldFill').style.height = '0%';
+                document.getElementById('whiteFill').style.height = '0%';
+                document.getElementById('goldAmount').textContent = '$0';
+                document.getElementById('whiteAmount').textContent = '$0';
+                document.getElementById('goldBalls').textContent = '0';
+                document.getElementById('whiteBalls').textContent = '0';
+                document.getElementById('goldBallCount').textContent = '0';
+                document.getElementById('whiteBallCount').textContent = '0';
+                document.getElementById('goldCup').classList.remove('glowing');
+                document.getElementById('loopProgress').style.width = '0%';
+
+                // Restart
+                startAnimation();
+            }, 500);
+        }
+
+        // Start animation
+        function startAnimation() {
+            initCanvas();
+            loopStartTime = performance.now();
+
+            // Show counter
+            document.getElementById('counter').classList.add('visible');
+            animateCounter(document.getElementById('counter'), 2500000000, 2000);
+
+            // Show headline
+            setTimeout(() => {
+                document.getElementById('headline').classList.add('visible');
+            }, 500);
+
+            // Release balls staggered
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    balls.push(createBall(i));
+                }, 2000 + i * 60);
+            }
+
+            // Start animation loop
+            setTimeout(() => {
+                animate();
+            }, 2000);
+        }
+
+        // Handle resize
+        window.addEventListener('resize', initCanvas);
+
+        // Start on load
+        window.addEventListener('load', startAnimation);
+    </script>
+</body>
+</html>

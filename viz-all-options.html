@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIL Visualization Options - The 99</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #050508;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            gap: 8px;
+            background: rgba(0,0,0,0.9);
+            padding: 10px 16px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+        .nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 12px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .nav a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+        .nav a.active { color: #000; background: #D4AF37; }
+
+        /* Section Base */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 100px 24px 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .option-label {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: #D4AF37;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 100px;
+        }
+        .headline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            text-align: center;
+            color: #888;
+            margin-bottom: 20px;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+        .headline span { color: #D4AF37; }
+
+        /* Visualization Container */
+        .viz-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            margin: 20px auto;
+        }
+        .viz-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Cups */
+        .cups-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 200px;
+            padding: 0 40px;
+        }
+        .cup {
+            position: relative;
+            text-align: center;
+        }
+        .cup-visual {
+            width: 120px;
+            height: 140px;
+            border: 3px solid;
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0,0,0,0.5);
+        }
+        .cup.gold .cup-visual { border-color: #D4AF37; }
+        .cup.gray .cup-visual { border-color: #333; }
+        .cup-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0%;
+            transition: height 0.3s ease-out;
+        }
+        .cup.gold .cup-fill {
+            background: linear-gradient(180deg, #D4AF37 0%, #8B7528 100%);
+            box-shadow: 0 0 20px rgba(212,175,55,0.5);
+        }
+        .cup.gray .cup-fill {
+            background: linear-gradient(180deg, #444 0%, #222 100%);
+        }
+        .cup-label {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .cup.gold .cup-label { color: #D4AF37; }
+        .cup.gray .cup-label { color: #555; }
+        .cup-amount {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 8px;
+            font-family: 'SF Mono', monospace;
+        }
+        .cup.gold .cup-amount { color: #D4AF37; }
+        .cup.gray .cup-amount { color: #333; }
+        .cup-sub {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* Counter */
+        .counter-display {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 800;
+            color: #D4AF37;
+            text-shadow: 0 0 40px rgba(212,175,55,0.4);
+            font-family: 'SF Mono', monospace;
+            margin-bottom: 10px;
+        }
+
+        /* Option B: Plinko Pegs */
+        .pegs-container {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 250px;
+        }
+        .peg {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #333;
+            border-radius: 50%;
+        }
+
+        /* Option C: Funnel */
+        .funnel-svg {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 280px;
+        }
+
+        /* Restart button */
+        .restart-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #888;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        .restart-btn:hover {
+            background: rgba(212,175,55,0.2);
+            border-color: rgba(212,175,55,0.4);
+            color: #D4AF37;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav { flex-wrap: wrap; justify-content: center; }
+            .cups-container { gap: 60px; }
+            .cup-visual { width: 80px; height: 100px; }
+            .viz-container { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="#option-a">A: Physics</a>
+        <a href="#option-b">B: Plinko</a>
+        <a href="#option-c">C: Funnel</a>
+        <a href="#option-d" class="active">D: Hybrid</a>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- OPTION A: Simple Physics Ball Drop -->
+    <!-- ============================================ -->
+    <section id="option-a">
+        <span class="option-label">Option A: Simple Physics</span>
+        <div class="counter-display" id="counterA">$0</div>
+        <p class="headline">There's <span>$2.5B</span> in NIL opportunities for college athletes...<br>watch where it all goes.</p>
+        <div class="viz-container">
+            <canvas class="viz-canvas" id="canvasA"></canvas>
+            <div class="cups-container">
+                <div class="cup gold">
+                    <div class="cup-visual"><div class="cup-fill" id="fillA-gold"></div></div>
+                    <div class="cup-label">The Top 1%</div>
+                    <div class="cup-amount" id="amountA-gold">$0</div>
+                    <div class="cup-sub">95 balls</div>
+                </div>
+                <div class="cup gray">
+                    <div class="cup-visual"><div class="cup-fill" id="fillA-gray"></div></div>
+                    <div class="cup-label">The Other 99%</div>
+                    <div class="cup-amount" id="amountA-gray">$0</div>
+                    <div class="cup-sub">5 balls</div>
+                </div>
+            </div>
+        </div>
+        <button class="restart-btn" onclick="restartA()">Restart Animation</button>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- OPTION B: Plinko Style -->
+    <!-- ============================================ -->
+    <section id="option-b">
+        <span class="option-label">Option B: Plinko Style</span>
+        <div class="counter-display" id="counterB">$0</div>
+        <p class="headline">There's <span>$2.5B</span> in NIL opportunities for college athletes...<br>watch where it all goes.</p>
+        <div class="viz-container">
+            <canvas class="viz-canvas" id="canvasB"></canvas>
+            <div class="cups-container">
+                <div class="cup gold">
+                    <div class="cup-visual"><div class="cup-fill" id="fillB-gold"></div></div>
+                    <div class="cup-label">The Top 1%</div>
+                    <div class="cup-amount" id="amountB-gold">$0</div>
+                    <div class="cup-sub">95 balls</div>
+                </div>
+                <div class="cup gray">
+                    <div class="cup-visual"><div class="cup-fill" id="fillB-gray"></div></div>
+                    <div class="cup-label">The Other 99%</div>
+                    <div class="cup-amount" id="amountB-gray">$0</div>
+                    <div class="cup-sub">5 balls</div>
+                </div>
+            </div>
+        </div>
+        <button class="restart-btn" onclick="restartB()">Restart Animation</button>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- OPTION C: Funnel Style -->
+    <!-- ============================================ -->
+    <section id="option-c">
+        <span class="option-label">Option C: Funnel</span>
+        <div class="counter-display" id="counterC">$0</div>
+        <p class="headline">There's <span>$2.5B</span> in NIL opportunities for college athletes...<br>watch where it all goes.</p>
+        <div class="viz-container">
+            <svg class="funnel-svg" viewBox="0 0 500 280">
+                <defs>
+                    <linearGradient id="funnelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.2"/>
+                        <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.05"/>
+                    </linearGradient>
+                </defs>
+                <path d="M100,0 L400,0 L320,200 L280,200 L280,280 L220,280 L220,200 L180,200 Z"
+                      fill="url(#funnelGrad)" stroke="#D4AF37" stroke-width="1" opacity="0.6"/>
+                <line x1="250" y1="200" x2="250" y2="280" stroke="#333" stroke-width="1" stroke-dasharray="4"/>
+                <text x="160" y="260" fill="#D4AF37" font-size="10">LARGE EXIT</text>
+                <text x="290" y="260" fill="#444" font-size="10">tiny exit</text>
+            </svg>
+            <canvas class="viz-canvas" id="canvasC"></canvas>
+            <div class="cups-container">
+                <div class="cup gold">
+                    <div class="cup-visual"><div class="cup-fill" id="fillC-gold"></div></div>
+                    <div class="cup-label">The Top 1%</div>
+                    <div class="cup-amount" id="amountC-gold">$0</div>
+                    <div class="cup-sub">95 balls</div>
+                </div>
+                <div class="cup gray">
+                    <div class="cup-visual"><div class="cup-fill" id="fillC-gray"></div></div>
+                    <div class="cup-label">The Other 99%</div>
+                    <div class="cup-amount" id="amountC-gray">$0</div>
+                    <div class="cup-sub">5 balls</div>
+                </div>
+            </div>
+        </div>
+        <button class="restart-btn" onclick="restartC()">Restart Animation</button>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- OPTION D: Hybrid (Recommended) -->
+    <!-- ============================================ -->
+    <section id="option-d" style="background: linear-gradient(180deg, #0a0a0f 0%, #050508 100%);">
+        <span class="option-label" style="border-color: #D4AF37; background: rgba(212,175,55,0.1);">Option D: Hybrid (Recommended)</span>
+        <div class="counter-display" id="counterD">$0</div>
+        <p class="headline">There's <span>$2.5B</span> in NIL opportunities for college athletes...<br>watch where it all goes.</p>
+        <div class="viz-container" style="height: 550px;">
+            <canvas class="viz-canvas" id="canvasD"></canvas>
+            <div class="cups-container">
+                <div class="cup gold">
+                    <div class="cup-visual" style="width: 140px; height: 160px;"><div class="cup-fill" id="fillD-gold"></div></div>
+                    <div class="cup-label">The Top 1%</div>
+                    <div class="cup-amount" id="amountD-gold">$0</div>
+                    <div class="cup-sub">95 balls captured</div>
+                </div>
+                <div class="cup gray">
+                    <div class="cup-visual" style="width: 140px; height: 160px;"><div class="cup-fill" id="fillD-gray"></div></div>
+                    <div class="cup-label">The Other 99%</div>
+                    <div class="cup-amount" id="amountD-gray">$0</div>
+                    <div class="cup-sub">5 balls shared</div>
+                </div>
+            </div>
+        </div>
+        <button class="restart-btn" onclick="restartD()">Restart Animation</button>
+    </section>
+
+    <script>
+        // ============================================
+        // SHARED UTILITIES
+        // ============================================
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const startTime = performance.now();
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (target - start) * easeOut);
+                element.textContent = '$' + current.toLocaleString();
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        function formatMoney(amount) {
+            if (amount >= 1000000000) return '$' + (amount / 1000000000).toFixed(2) + 'B';
+            if (amount >= 1000000) return '$' + (amount / 1000000).toFixed(0) + 'M';
+            return '$' + amount.toLocaleString();
+        }
+
+        // ============================================
+        // OPTION A: Simple Physics
+        // ============================================
+        const canvasA = document.getElementById('canvasA');
+        const ctxA = canvasA.getContext('2d');
+        let ballsA = [];
+        let goldCountA = 0, grayCountA = 0;
+        let animatingA = false;
+
+        function initCanvasA() {
+            canvasA.width = canvasA.offsetWidth * 2;
+            canvasA.height = canvasA.offsetHeight * 2;
+            ctxA.scale(2, 2);
+        }
+
+        function createBallA(index) {
+            const isGold = index < 95;
+            return {
+                x: canvasA.offsetWidth / 2 + (Math.random() - 0.5) * 200,
+                y: -20 - Math.random() * 100,
+                vx: 0,
+                vy: 0,
+                radius: 6,
+                isGold: isGold,
+                targetX: isGold ? canvasA.offsetWidth * 0.3 : canvasA.offsetWidth * 0.7,
+                landed: false
+            };
+        }
+
+        function updateBallA(ball) {
+            if (ball.landed) return;
+            ball.vy += 0.15;
+            ball.vx += (ball.targetX - ball.x) * 0.001;
+            ball.vx *= 0.99;
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+
+            if (ball.y > canvasA.offsetHeight - 180) {
+                ball.landed = true;
+                if (ball.isGold) {
+                    goldCountA++;
+                    document.getElementById('fillA-gold').style.height = (goldCountA / 95 * 90) + '%';
+                    document.getElementById('amountA-gold').textContent = formatMoney(goldCountA * 25000000);
+                } else {
+                    grayCountA++;
+                    document.getElementById('fillA-gray').style.height = (grayCountA / 5 * 10) + '%';
+                    document.getElementById('amountA-gray').textContent = formatMoney(grayCountA * 25000000);
+                }
+            }
+        }
+
+        function drawBallA(ball) {
+            if (ball.landed) return;
+            ctxA.beginPath();
+            ctxA.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctxA.fillStyle = ball.isGold ? '#D4AF37' : '#444';
+            if (ball.isGold) {
+                ctxA.shadowColor = '#D4AF37';
+                ctxA.shadowBlur = 15;
+            } else {
+                ctxA.shadowBlur = 0;
+            }
+            ctxA.fill();
+        }
+
+        function animateA() {
+            if (!animatingA) return;
+            ctxA.clearRect(0, 0, canvasA.offsetWidth, canvasA.offsetHeight);
+            ballsA.forEach(ball => {
+                updateBallA(ball);
+                drawBallA(ball);
+            });
+            requestAnimationFrame(animateA);
+        }
+
+        function startA() {
+            initCanvasA();
+            ballsA = [];
+            goldCountA = 0;
+            grayCountA = 0;
+            document.getElementById('fillA-gold').style.height = '0%';
+            document.getElementById('fillA-gray').style.height = '0%';
+            document.getElementById('amountA-gold').textContent = '$0';
+            document.getElementById('amountA-gray').textContent = '$0';
+
+            animateCounter(document.getElementById('counterA'), 2500000000, 2000);
+
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    ballsA.push(createBallA(i));
+                }, 2000 + i * 50);
+            }
+
+            animatingA = true;
+            setTimeout(animateA, 2000);
+        }
+
+        function restartA() {
+            animatingA = false;
+            setTimeout(startA, 100);
+        }
+
+        // ============================================
+        // OPTION B: Plinko Style
+        // ============================================
+        const canvasB = document.getElementById('canvasB');
+        const ctxB = canvasB.getContext('2d');
+        let ballsB = [];
+        let pegsB = [];
+        let goldCountB = 0, grayCountB = 0;
+        let animatingB = false;
+
+        function initCanvasB() {
+            canvasB.width = canvasB.offsetWidth * 2;
+            canvasB.height = canvasB.offsetHeight * 2;
+            ctxB.scale(2, 2);
+
+            // Create peg positions
+            pegsB = [];
+            const rows = 8;
+            const startY = 60;
+            const rowHeight = 25;
+            for (let row = 0; row < rows; row++) {
+                const pegsInRow = row + 3;
+                const rowWidth = pegsInRow * 40;
+                const startX = (canvasB.offsetWidth - rowWidth) / 2 + 20;
+                for (let i = 0; i < pegsInRow; i++) {
+                    pegsB.push({
+                        x: startX + i * 40,
+                        y: startY + row * rowHeight,
+                        radius: 4
+                    });
+                }
+            }
+        }
+
+        function createBallB(index) {
+            const isGold = index < 95;
+            return {
+                x: canvasB.offsetWidth / 2 + (Math.random() - 0.5) * 40,
+                y: -10 - Math.random() * 50,
+                vx: 0,
+                vy: 0,
+                radius: 5,
+                isGold: isGold,
+                bias: isGold ? -0.3 : 0.3,
+                landed: false
+            };
+        }
+
+        function updateBallB(ball) {
+            if (ball.landed) return;
+            ball.vy += 0.12;
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+
+            // Peg collisions
+            pegsB.forEach(peg => {
+                const dx = ball.x - peg.x;
+                const dy = ball.y - peg.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < ball.radius + peg.radius + 2) {
+                    const angle = Math.atan2(dy, dx);
+                    ball.x = peg.x + Math.cos(angle) * (ball.radius + peg.radius + 3);
+                    ball.y = peg.y + Math.sin(angle) * (ball.radius + peg.radius + 3);
+                    ball.vx = Math.cos(angle) * 2 + ball.bias;
+                    ball.vy = Math.abs(Math.sin(angle)) * 1.5;
+                }
+            });
+
+            // Bounds
+            if (ball.x < 50) { ball.x = 50; ball.vx *= -0.5; }
+            if (ball.x > canvasB.offsetWidth - 50) { ball.x = canvasB.offsetWidth - 50; ball.vx *= -0.5; }
+
+            if (ball.y > canvasB.offsetHeight - 180) {
+                ball.landed = true;
+                if (ball.x < canvasB.offsetWidth / 2) {
+                    goldCountB++;
+                    document.getElementById('fillB-gold').style.height = (goldCountB / 95 * 90) + '%';
+                    document.getElementById('amountB-gold').textContent = formatMoney(goldCountB * 25000000);
+                } else {
+                    grayCountB++;
+                    document.getElementById('fillB-gray').style.height = (grayCountB / 5 * 10) + '%';
+                    document.getElementById('amountB-gray').textContent = formatMoney(grayCountB * 25000000);
+                }
+            }
+        }
+
+        function drawBallB(ball) {
+            if (ball.landed) return;
+            ctxB.beginPath();
+            ctxB.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctxB.fillStyle = ball.isGold ? '#D4AF37' : '#444';
+            if (ball.isGold) {
+                ctxB.shadowColor = '#D4AF37';
+                ctxB.shadowBlur = 12;
+            } else {
+                ctxB.shadowBlur = 0;
+            }
+            ctxB.fill();
+        }
+
+        function drawPegsB() {
+            pegsB.forEach(peg => {
+                ctxB.beginPath();
+                ctxB.arc(peg.x, peg.y, peg.radius, 0, Math.PI * 2);
+                ctxB.fillStyle = '#333';
+                ctxB.shadowBlur = 0;
+                ctxB.fill();
+            });
+        }
+
+        function animateB() {
+            if (!animatingB) return;
+            ctxB.clearRect(0, 0, canvasB.offsetWidth, canvasB.offsetHeight);
+            drawPegsB();
+            ballsB.forEach(ball => {
+                updateBallB(ball);
+                drawBallB(ball);
+            });
+            requestAnimationFrame(animateB);
+        }
+
+        function startB() {
+            initCanvasB();
+            ballsB = [];
+            goldCountB = 0;
+            grayCountB = 0;
+            document.getElementById('fillB-gold').style.height = '0%';
+            document.getElementById('fillB-gray').style.height = '0%';
+            document.getElementById('amountB-gold').textContent = '$0';
+            document.getElementById('amountB-gray').textContent = '$0';
+
+            animateCounter(document.getElementById('counterB'), 2500000000, 2000);
+
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    ballsB.push(createBallB(i));
+                }, 2000 + i * 80);
+            }
+
+            animatingB = true;
+            setTimeout(animateB, 2000);
+        }
+
+        function restartB() {
+            animatingB = false;
+            setTimeout(startB, 100);
+        }
+
+        // ============================================
+        // OPTION C: Funnel Style
+        // ============================================
+        const canvasC = document.getElementById('canvasC');
+        const ctxC = canvasC.getContext('2d');
+        let ballsC = [];
+        let goldCountC = 0, grayCountC = 0;
+        let animatingC = false;
+
+        function initCanvasC() {
+            canvasC.width = canvasC.offsetWidth * 2;
+            canvasC.height = canvasC.offsetHeight * 2;
+            ctxC.scale(2, 2);
+        }
+
+        function createBallC(index) {
+            const isGold = index < 95;
+            return {
+                x: canvasC.offsetWidth / 2 + (Math.random() - 0.5) * 150,
+                y: -10 - Math.random() * 80,
+                vx: 0,
+                vy: 0,
+                radius: 5,
+                isGold: isGold,
+                phase: 'falling',
+                landed: false
+            };
+        }
+
+        function updateBallC(ball) {
+            if (ball.landed) return;
+
+            const centerX = canvasC.offsetWidth / 2;
+            const funnelTop = 60;
+            const funnelNeck = 220;
+            const funnelBottom = 300;
+
+            ball.vy += 0.1;
+
+            if (ball.phase === 'falling') {
+                // Guide toward center funnel
+                if (ball.y > funnelTop && ball.y < funnelNeck) {
+                    const funnelWidth = 200 - (ball.y - funnelTop) * 0.6;
+                    if (ball.x < centerX - funnelWidth / 2) {
+                        ball.vx += 0.2;
+                    } else if (ball.x > centerX + funnelWidth / 2) {
+                        ball.vx -= 0.2;
+                    }
+                }
+
+                // At neck, decide direction
+                if (ball.y > funnelNeck - 20 && ball.y < funnelNeck + 20) {
+                    ball.phase = 'sorting';
+                    ball.vx = ball.isGold ? -2 : 2;
+                }
+            }
+
+            if (ball.phase === 'sorting') {
+                const targetX = ball.isGold ? centerX - 150 : centerX + 150;
+                ball.vx += (targetX - ball.x) * 0.01;
+            }
+
+            ball.vx *= 0.98;
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+
+            if (ball.y > canvasC.offsetHeight - 180) {
+                ball.landed = true;
+                if (ball.isGold) {
+                    goldCountC++;
+                    document.getElementById('fillC-gold').style.height = (goldCountC / 95 * 90) + '%';
+                    document.getElementById('amountC-gold').textContent = formatMoney(goldCountC * 25000000);
+                } else {
+                    grayCountC++;
+                    document.getElementById('fillC-gray').style.height = (grayCountC / 5 * 10) + '%';
+                    document.getElementById('amountC-gray').textContent = formatMoney(grayCountC * 25000000);
+                }
+            }
+        }
+
+        function drawBallC(ball) {
+            if (ball.landed) return;
+            ctxC.beginPath();
+            ctxC.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctxC.fillStyle = ball.isGold ? '#D4AF37' : '#444';
+            if (ball.isGold) {
+                ctxC.shadowColor = '#D4AF37';
+                ctxC.shadowBlur = 12;
+            } else {
+                ctxC.shadowBlur = 0;
+            }
+            ctxC.fill();
+        }
+
+        function animateC() {
+            if (!animatingC) return;
+            ctxC.clearRect(0, 0, canvasC.offsetWidth, canvasC.offsetHeight);
+            ballsC.forEach(ball => {
+                updateBallC(ball);
+                drawBallC(ball);
+            });
+            requestAnimationFrame(animateC);
+        }
+
+        function startC() {
+            initCanvasC();
+            ballsC = [];
+            goldCountC = 0;
+            grayCountC = 0;
+            document.getElementById('fillC-gold').style.height = '0%';
+            document.getElementById('fillC-gray').style.height = '0%';
+            document.getElementById('amountC-gold').textContent = '$0';
+            document.getElementById('amountC-gray').textContent = '$0';
+
+            animateCounter(document.getElementById('counterC'), 2500000000, 2000);
+
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    ballsC.push(createBallC(i));
+                }, 2000 + i * 60);
+            }
+
+            animatingC = true;
+            setTimeout(animateC, 2000);
+        }
+
+        function restartC() {
+            animatingC = false;
+            setTimeout(startC, 100);
+        }
+
+        // ============================================
+        // OPTION D: Hybrid (Recommended)
+        // ============================================
+        const canvasD = document.getElementById('canvasD');
+        const ctxD = canvasD.getContext('2d');
+        let ballsD = [];
+        let goldCountD = 0, grayCountD = 0;
+        let animatingD = false;
+
+        function initCanvasD() {
+            canvasD.width = canvasD.offsetWidth * 2;
+            canvasD.height = canvasD.offsetHeight * 2;
+            ctxD.scale(2, 2);
+        }
+
+        function createBallD(index) {
+            const isGold = index < 95;
+            const centerX = canvasD.offsetWidth / 2;
+            return {
+                x: centerX + (Math.random() - 0.5) * 100,
+                y: -15 - Math.random() * 60,
+                vx: 0,
+                vy: 0,
+                radius: 7,
+                isGold: isGold,
+                targetX: isGold ? centerX - 180 : centerX + 180,
+                phase: 'spawn',
+                trail: [],
+                landed: false
+            };
+        }
+
+        function updateBallD(ball) {
+            if (ball.landed) return;
+
+            // Store trail
+            if (ball.trail.length > 8) ball.trail.shift();
+            ball.trail.push({ x: ball.x, y: ball.y });
+
+            const centerX = canvasD.offsetWidth / 2;
+
+            if (ball.phase === 'spawn') {
+                ball.vy += 0.08;
+                // Converge to center first
+                ball.vx += (centerX - ball.x) * 0.005;
+                if (ball.y > 100) ball.phase = 'funnel';
+            }
+
+            if (ball.phase === 'funnel') {
+                ball.vy += 0.12;
+                // Start separating based on destination
+                const separation = Math.min((ball.y - 100) / 150, 1);
+                const targetNow = centerX + (ball.targetX - centerX) * separation;
+                ball.vx += (targetNow - ball.x) * 0.008;
+                if (ball.y > 250) ball.phase = 'falling';
+            }
+
+            if (ball.phase === 'falling') {
+                ball.vy += 0.15;
+                ball.vx += (ball.targetX - ball.x) * 0.003;
+            }
+
+            ball.vx *= 0.97;
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+
+            if (ball.y > canvasD.offsetHeight - 200) {
+                ball.landed = true;
+                if (ball.isGold) {
+                    goldCountD++;
+                    document.getElementById('fillD-gold').style.height = (goldCountD / 95 * 95) + '%';
+                    document.getElementById('amountD-gold').textContent = formatMoney(goldCountD * 25000000);
+                } else {
+                    grayCountD++;
+                    document.getElementById('fillD-gray').style.height = (grayCountD / 5 * 8) + '%';
+                    document.getElementById('amountD-gray').textContent = formatMoney(grayCountD * 25000000);
+                }
+            }
+        }
+
+        function drawBallD(ball) {
+            if (ball.landed) return;
+
+            // Draw trail
+            ball.trail.forEach((pos, i) => {
+                const alpha = (i / ball.trail.length) * 0.3;
+                ctxD.beginPath();
+                ctxD.arc(pos.x, pos.y, ball.radius * (i / ball.trail.length), 0, Math.PI * 2);
+                ctxD.fillStyle = ball.isGold ? `rgba(212, 175, 55, ${alpha})` : `rgba(68, 68, 68, ${alpha})`;
+                ctxD.fill();
+            });
+
+            // Draw ball
+            ctxD.beginPath();
+            ctxD.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            if (ball.isGold) {
+                const gradient = ctxD.createRadialGradient(ball.x - 2, ball.y - 2, 0, ball.x, ball.y, ball.radius);
+                gradient.addColorStop(0, '#F4D03F');
+                gradient.addColorStop(1, '#D4AF37');
+                ctxD.fillStyle = gradient;
+                ctxD.shadowColor = '#D4AF37';
+                ctxD.shadowBlur = 20;
+            } else {
+                ctxD.fillStyle = '#444';
+                ctxD.shadowBlur = 0;
+            }
+            ctxD.fill();
+        }
+
+        function drawFunnelD() {
+            const centerX = canvasD.offsetWidth / 2;
+
+            // Draw funnel guide lines
+            ctxD.strokeStyle = 'rgba(212, 175, 55, 0.15)';
+            ctxD.lineWidth = 2;
+            ctxD.beginPath();
+            ctxD.moveTo(centerX - 100, 50);
+            ctxD.lineTo(centerX - 180, 280);
+            ctxD.stroke();
+
+            ctxD.beginPath();
+            ctxD.moveTo(centerX + 100, 50);
+            ctxD.lineTo(centerX + 180, 280);
+            ctxD.stroke();
+
+            // Center divider
+            ctxD.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+            ctxD.setLineDash([5, 5]);
+            ctxD.beginPath();
+            ctxD.moveTo(centerX, 100);
+            ctxD.lineTo(centerX, 280);
+            ctxD.stroke();
+            ctxD.setLineDash([]);
+        }
+
+        function animateD() {
+            if (!animatingD) return;
+            ctxD.clearRect(0, 0, canvasD.offsetWidth, canvasD.offsetHeight);
+            drawFunnelD();
+            ballsD.forEach(ball => {
+                updateBallD(ball);
+                drawBallD(ball);
+            });
+            requestAnimationFrame(animateD);
+        }
+
+        function startD() {
+            initCanvasD();
+            ballsD = [];
+            goldCountD = 0;
+            grayCountD = 0;
+            document.getElementById('fillD-gold').style.height = '0%';
+            document.getElementById('fillD-gray').style.height = '0%';
+            document.getElementById('amountD-gold').textContent = '$0';
+            document.getElementById('amountD-gray').textContent = '$0';
+
+            animateCounter(document.getElementById('counterD'), 2500000000, 2000);
+
+            // Staggered ball release
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    ballsD.push(createBallD(i));
+                }, 2500 + i * 50);
+            }
+
+            animatingD = true;
+            setTimeout(animateD, 2500);
+        }
+
+        function restartD() {
+            animatingD = false;
+            setTimeout(startD, 100);
+        }
+
+        // ============================================
+        // INTERSECTION OBSERVER - Auto-start on scroll
+        // ============================================
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    if (id === 'option-a' && !animatingA) startA();
+                    if (id === 'option-b' && !animatingB) startB();
+                    if (id === 'option-c' && !animatingC) startC();
+                    if (id === 'option-d' && !animatingD) startD();
+
+                    // Update nav
+                    document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+                    document.querySelector(`.nav a[href="#${id}"]`)?.classList.add('active');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            initCanvasA();
+            initCanvasB();
+            initCanvasC();
+            initCanvasD();
+        });
+    </script>
+</body>
+</html>

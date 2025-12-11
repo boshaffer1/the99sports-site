@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | The 99 - Get In Touch</title>
+    <meta name="description" content="Get in touch with The 99 for NIL consulting, workshops, speaking engagements, and brand partnerships.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'Unbounded';
+            src: url('assets/fonts/Unbounded.ttf') format('truetype');
+            font-weight: 100 900;
+            font-display: swap;
+        }
+
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --gray: #888888;
+            --gray-dark: #1A1A1A;
+            --gray-darker: #111111;
+        }
+
+        /* Gold Glow Icons - Lucide */
+        .gold-icon {
+            color: var(--gold);
+            width: 28px;
+            height: 28px;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+        }
+        .gold-icon-sm {
+            color: var(--gold);
+            width: 20px;
+            height: 20px;
+            filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5));
+        }
+        .gold-icon-lg {
+            color: var(--gold);
+            width: 36px;
+            height: 36px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.7));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 100px;
+            width: calc(100% - 32px);
+            max-width: 900px;
+        }
+
+        .navbar-logo img { height: 28px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 100px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--black) !important;
+            font-weight: 600 !important;
+        }
+
+        .contact-page {
+            min-height: 100vh;
+            padding: 120px 24px 80px;
+            background: linear-gradient(135deg, var(--black) 0%, var(--gray-darker) 100%);
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .contact-header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 16px;
+        }
+
+        .contact-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        /* Quick Links */
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-option {
+            display: block;
+            padding: 24px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-option:hover {
+            border-color: rgba(212,175,55,0.4);
+            transform: translateY(-2px);
+        }
+
+        .contact-option-icon {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .contact-option h3 {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .contact-option p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-option-link {
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .contact-info {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .contact-info h4 {
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+
+        .contact-info-item span {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Form */
+        .form-box {
+            background: var(--gray-dark);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .form-box h2 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .form-box > p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: var(--white);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--gray);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: var(--gray-dark);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-submit:hover {
+            background: var(--gold-light);
+        }
+
+        footer {
+            background: var(--black);
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img { height: 36px; }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/images/font-logos.png" alt="The 99">
+        </a>
+        <div class="nav-links">
+            <a href="athletes.html">Athletes</a>
+            <a href="universities.html">Schools</a>
+            <a href="brands.html">Brands</a>
+            <a href="team.html">Our Story</a>
+            <a href="/" class="nav-cta">Home</a>
+        </div>
+    </nav>
+
+    <section class="contact-page">
+        <div class="contact-container">
+            <div class="contact-header fade-in">
+                <span class="section-tag">Contact</span>
+                <h1>Let's Work Together</h1>
+                <p>Whether you're an athlete, university, or brand—we're here to help you succeed in the NIL era.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="fade-in">
+                    <div class="contact-options">
+                        <a href="athletes.html" class="contact-option">
+                            <div class="contact-option-icon"><i data-lucide="zap" class="gold-icon"></i></div>
+                            <h3>I'm an Athlete</h3>
+                            <p>Learn more about how we help athletes build brands and land deals.</p>
+                            <span class="contact-option-link">Learn More About Athletes →</span>
+                        </a>
+                        <a href="universities.html" class="contact-option">
+                            <div class="contact-option-icon"><i data-lucide="building-2" class="gold-icon"></i></div>
+                            <h3>I'm with a University</h3>
+                            <p>See our NIL education workshops and consulting options for programs.</p>
+                            <span class="contact-option-link">Learn More About Schools →</span>
+                        </a>
+                        <a href="brands.html" class="contact-option">
+                            <div class="contact-option-icon"><i data-lucide="target" class="gold-icon"></i></div>
+                            <h3>I'm a Brand</h3>
+                            <p>Discover how we connect brands with equipped athlete creators.</p>
+                            <span class="contact-option-link">Learn More About Brands →</span>
+                        </a>
+                    </div>
+
+                    <div class="contact-info">
+                        <h4>Direct Contact</h4>
+                        <div class="contact-info-item">
+                            <i data-lucide="mail" class="gold-icon-sm"></i>
+                            team@the99sports.com
+                        </div>
+                        <div class="social-links">
+                            <a href="https://instagram.com/the99sports" target="_blank" title="Instagram"><i data-lucide="instagram" class="gold-icon-sm"></i></a>
+                            <a href="https://twitter.com/the99sports" target="_blank" title="Twitter"><i data-lucide="twitter" class="gold-icon-sm"></i></a>
+                            <a href="https://linkedin.com/company/the99sports" target="_blank" title="LinkedIn"><i data-lucide="linkedin" class="gold-icon-sm"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-box fade-in">
+                    <h2>Get In Touch</h2>
+                    <p>Tell us who you are and we'll customize the conversation.</p>
+                    <iframe
+                        data-tally-src="https://tally.so/embed/2EEqYb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                        loading="lazy"
+                        width="100%"
+                        height="854"
+                        frameborder="0"
+                        marginheight="0"
+                        marginwidth="0"
+                        title="Let's Get Started">
+                    </iframe>
+                    <script>
+                        var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s)}
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/font-logos.png" alt="The 99">
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="athletes.html">Athletes</a>
+                <a href="universities.html">Schools</a>
+                <a href="brands.html">Brands</a>
+                <a href="team.html">Our Story</a>
+            </div>
+            <p class="footer-copy">© 2024 The 99. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

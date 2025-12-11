@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization Options - The 99</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0A0A0A;
+            color: #fff;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            gap: 12px;
+            background: rgba(0,0,0,0.8);
+            padding: 12px 24px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a {
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        .nav a:hover, .nav a.active {
+            color: #000;
+            background: #D4AF37;
+        }
+
+        /* Section Base */
+        section {
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .section-title {
+            font-size: 0.9rem;
+            color: #D4AF37;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+        h2 span { color: #D4AF37; }
+
+        /* ============================================ */
+        /* OPTION A: STADIUM VISUALIZATION */
+        /* ============================================ */
+        #option-a {
+            background: linear-gradient(180deg, #0d1117 0%, #0A0A0A 100%);
+        }
+        .stadium-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 400px;
+        }
+        .stadium-canvas {
+            width: 100%;
+            height: 100%;
+        }
+        .stadium-stats {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 60px;
+            text-align: center;
+        }
+        .stadium-stat {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s ease forwards;
+        }
+        .stadium-stat:nth-child(2) { animation-delay: 0.2s; }
+        .stadium-stat .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .stadium-stat .number.gold { color: #D4AF37; }
+        .stadium-stat .number.gray { color: #444; }
+        .stadium-stat .label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* ============================================ */
+        /* OPTION B: MONEY WATERFALL */
+        /* ============================================ */
+        #option-b {
+            background: radial-gradient(ellipse at top, #1a1510 0%, #0A0A0A 60%);
+        }
+        .waterfall-container {
+            position: relative;
+            width: 600px;
+            height: 500px;
+        }
+        .money-source {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        .money-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #D4AF37;
+            text-shadow: 0 0 40px rgba(212,175,55,0.5);
+        }
+        .money-label {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 8px;
+        }
+        .funnel-svg {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 350px;
+        }
+        .bucket-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+        }
+        .bucket {
+            text-align: center;
+            position: relative;
+        }
+        .bucket-visual {
+            width: 80px;
+            height: 100px;
+            border: 3px solid;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bucket.gold .bucket-visual {
+            border-color: #D4AF37;
+        }
+        .bucket.gray .bucket-visual {
+            border-color: #333;
+        }
+        .bucket-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, #D4AF37 0%, #8B7528 100%);
+            animation: fillBucket 2s ease-out forwards;
+        }
+        .bucket.gold .bucket-fill { height: 0; animation: fillGold 2s ease-out 1s forwards; }
+        .bucket.gray .bucket-fill { height: 0; }
+        @keyframes fillGold {
+            to { height: 90%; }
+        }
+        .bucket-label {
+            margin-top: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .bucket.gold .bucket-label { color: #D4AF37; }
+        .bucket.gray .bucket-label { color: #444; }
+        .bucket-sub {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* Money particles */
+        .money-particle {
+            position: absolute;
+            font-size: 1.2rem;
+            color: #D4AF37;
+            opacity: 0;
+            animation: fallMoney 2s ease-in infinite;
+        }
+        @keyframes fallMoney {
+            0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(300px) rotate(360deg); }
+        }
+
+        /* ============================================ */
+        /* OPTION C: INVISIBLE MAJORITY */
+        /* ============================================ */
+        #option-c {
+            background: #0A0A0A;
+        }
+        .spotlight-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            height: 500px;
+        }
+        .spotlight-stage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .golden-athlete {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        .athlete-figure {
+            width: 60px;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .athlete-figure .head {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #D4AF37;
+            box-shadow: 0 0 30px rgba(212,175,55,0.8);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .athlete-figure .body {
+            width: 24px;
+            height: 50px;
+            background: #D4AF37;
+            border-radius: 12px 12px 0 0;
+            margin-top: 8px;
+            box-shadow: 0 0 20px rgba(212,175,55,0.6);
+        }
+        .athlete-figure .legs {
+            display: flex;
+            gap: 4px;
+        }
+        .athlete-figure .leg {
+            width: 10px;
+            height: 40px;
+            background: #D4AF37;
+            border-radius: 0 0 6px 6px;
+            box-shadow: 0 0 15px rgba(212,175,55,0.5);
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(212,175,55,0.8); }
+            50% { box-shadow: 0 0 60px rgba(212,175,55,1); }
+        }
+        .spotlight-beam {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(212,175,55,0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .shadow-athletes {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+        .shadow-figure {
+            position: absolute;
+            opacity: 0;
+            animation: fadeInShadow 0.5s ease forwards;
+        }
+        .shadow-figure .head {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #222;
+        }
+        .shadow-figure .body {
+            width: 16px;
+            height: 35px;
+            background: #222;
+            border-radius: 8px 8px 0 0;
+            margin: 5px auto 0;
+        }
+        .counter-display {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        .counter-numbers {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            justify-content: center;
+        }
+        .counter-item {
+            text-align: center;
+        }
+        .counter-value {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .counter-value.gold { color: #D4AF37; }
+        .counter-value.dim { color: #333; }
+        .counter-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 8px;
+        }
+        .counter-divider {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInShadow {
+            to { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="#option-a">Option A: Stadium</a>
+        <a href="#option-b">Option B: Money Funnel</a>
+        <a href="#option-c">Option C: Spotlight</a>
+    </nav>
+
+    <!-- OPTION A: STADIUM -->
+    <section id="option-a">
+        <span class="section-title">Option A</span>
+        <h2>A Stadium of <span>500,000</span> Athletes.<br>Only <span>5,000</span> Glow Gold.</h2>
+        <div class="stadium-container">
+            <canvas class="stadium-canvas" id="stadiumCanvas"></canvas>
+            <div class="stadium-stats">
+                <div class="stadium-stat">
+                    <div class="number gold" id="goldCount">0</div>
+                    <div class="label">Athletes with NIL deals</div>
+                </div>
+                <div class="stadium-stat">
+                    <div class="number gray" id="grayCount">0</div>
+                    <div class="label">Athletes left behind</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION B: MONEY WATERFALL -->
+    <section id="option-b">
+        <span class="section-title">Option B</span>
+        <h2><span>$2.5 Billion</span> Falls.<br>Watch Where It Lands.</h2>
+        <div class="waterfall-container">
+            <div class="money-source">
+                <div class="money-amount">$2,500,000,000</div>
+                <div class="money-label">Total NIL Market Value</div>
+            </div>
+
+            <svg class="funnel-svg" viewBox="0 0 400 350">
+                <defs>
+                    <linearGradient id="funnelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.3"/>
+                        <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.05"/>
+                    </linearGradient>
+                </defs>
+                <path d="M50,0 L350,0 L230,300 L170,300 Z" fill="url(#funnelGrad)" stroke="#D4AF37" stroke-width="1" opacity="0.5"/>
+                <!-- Money flow animation -->
+                <circle class="flow-dot" cx="200" cy="50" r="4" fill="#D4AF37">
+                    <animate attributeName="cy" values="50;280" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="flow-dot" cx="180" cy="80" r="3" fill="#D4AF37">
+                    <animate attributeName="cy" values="80;280" dur="2.2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="1;0" dur="2.2s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="flow-dot" cx="220" cy="60" r="3" fill="#D4AF37">
+                    <animate attributeName="cy" values="60;280" dur="1.8s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="1;0" dur="1.8s" repeatCount="indefinite"/>
+                </circle>
+            </svg>
+
+            <div class="bucket-container">
+                <div class="bucket gold">
+                    <div class="bucket-visual">
+                        <div class="bucket-fill"></div>
+                    </div>
+                    <div class="bucket-label">1%</div>
+                    <div class="bucket-sub">$2.475B captured</div>
+                </div>
+                <div class="bucket gray">
+                    <div class="bucket-visual">
+                        <div class="bucket-fill"></div>
+                    </div>
+                    <div class="bucket-label">99%</div>
+                    <div class="bucket-sub">$25M shared</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION C: INVISIBLE MAJORITY -->
+    <section id="option-c">
+        <span class="section-title">Option C</span>
+        <h2>One Athlete in the <span>Spotlight</span>.<br>Ninety-Nine in the <span>Shadows</span>.</h2>
+        <div class="spotlight-container">
+            <div class="spotlight-stage">
+                <div class="spotlight-beam"></div>
+                <div class="golden-athlete">
+                    <div class="athlete-figure">
+                        <div class="head"></div>
+                        <div class="body"></div>
+                        <div class="legs">
+                            <div class="leg"></div>
+                            <div class="leg"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shadow-athletes" id="shadowAthletes"></div>
+            </div>
+            <div class="counter-display">
+                <div class="counter-numbers">
+                    <div class="counter-item">
+                        <div class="counter-value gold">1</div>
+                        <div class="counter-label">deal made</div>
+                    </div>
+                    <div class="counter-divider">:</div>
+                    <div class="counter-item">
+                        <div class="counter-value dim" id="shadowCounter">0</div>
+                        <div class="counter-label">deals missed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // OPTION A: Stadium Canvas
+        const canvas = document.getElementById('stadiumCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth * 2;
+            canvas.height = canvas.offsetHeight * 2;
+            ctx.scale(2, 2);
+        }
+        resizeCanvas();
+
+        const totalDots = 5000;
+        const goldDots = 50; // 1%
+        const dots = [];
+
+        for (let i = 0; i < totalDots; i++) {
+            const angle = (i / totalDots) * Math.PI * 2;
+            const radius = 80 + (i / totalDots) * 120 + Math.random() * 30;
+            dots.push({
+                x: canvas.offsetWidth / 2 + Math.cos(angle) * radius,
+                y: canvas.offsetHeight / 2 + Math.sin(angle) * radius * 0.6,
+                isGold: i < goldDots,
+                scale: 0,
+                targetScale: 1,
+                delay: i * 0.5
+            });
+        }
+
+        let startTime = null;
+        function animateStadium(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+
+            ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+
+            dots.forEach((dot, i) => {
+                if (elapsed > dot.delay) {
+                    dot.scale += (dot.targetScale - dot.scale) * 0.1;
+                }
+
+                if (dot.scale > 0.01) {
+                    ctx.beginPath();
+                    ctx.arc(dot.x, dot.y, 2 * dot.scale, 0, Math.PI * 2);
+
+                    if (dot.isGold) {
+                        ctx.fillStyle = '#D4AF37';
+                        ctx.shadowColor = '#D4AF37';
+                        ctx.shadowBlur = 10;
+                    } else {
+                        ctx.fillStyle = '#333';
+                        ctx.shadowBlur = 0;
+                    }
+                    ctx.fill();
+                }
+            });
+
+            // Update counters
+            const visibleGold = dots.filter(d => d.isGold && d.scale > 0.5).length;
+            const visibleGray = dots.filter(d => !d.isGold && d.scale > 0.5).length;
+            document.getElementById('goldCount').textContent = visibleGold.toLocaleString();
+            document.getElementById('grayCount').textContent = visibleGray.toLocaleString();
+
+            requestAnimationFrame(animateStadium);
+        }
+
+        // OPTION C: Shadow Athletes
+        const shadowContainer = document.getElementById('shadowAthletes');
+        const shadowCounter = document.getElementById('shadowCounter');
+        let shadowCount = 0;
+
+        function createShadowAthletes() {
+            for (let i = 0; i < 99; i++) {
+                const shadow = document.createElement('div');
+                shadow.className = 'shadow-figure';
+
+                // Position in concentric circles around center
+                const ring = Math.floor(i / 20);
+                const posInRing = i % 20;
+                const angle = (posInRing / 20) * Math.PI * 2 + ring * 0.3;
+                const radius = 100 + ring * 60;
+
+                const x = 50 + Math.cos(angle) * (radius / 10);
+                const y = 50 + Math.sin(angle) * (radius / 15);
+
+                shadow.style.left = x + '%';
+                shadow.style.top = y + '%';
+                shadow.style.transform = 'translate(-50%, -50%)';
+                shadow.style.animationDelay = (i * 30) + 'ms';
+
+                shadow.innerHTML = '<div class="head"></div><div class="body"></div>';
+                shadowContainer.appendChild(shadow);
+            }
+
+            // Animate counter
+            let count = 0;
+            const counterInterval = setInterval(() => {
+                count++;
+                shadowCounter.textContent = count;
+                if (count >= 99) clearInterval(counterInterval);
+            }, 30);
+        }
+
+        // Intersection Observer to trigger animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'option-a') {
+                        requestAnimationFrame(animateStadium);
+                    }
+                    if (entry.target.id === 'option-c' && shadowContainer.children.length === 0) {
+                        createShadowAthletes();
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Nav active state
+        const navLinks = document.querySelectorAll('.nav a');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 99 | NIL Consulting</title>
+    <meta name="description" content="Elite NIL consulting for athletic programs, athletes, and brands. Build athletes' futures with The 99.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="The 99 | NIL Consulting">
+    <meta property="og:description" content="Elite NIL consulting for athletic programs, athletes, and brands. Build athletes' futures with The 99.">
+    <meta property="og:image" content="https://the99sports.com/assets/images/logo-99.png">
+    <meta property="og:url" content="https://the99sports.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The 99 | NIL Consulting">
+    <meta name="twitter:description" content="Elite NIL consulting for athletic programs, athletes, and brands.">
+    <meta name="twitter:image" content="https://the99sports.com/assets/images/logo-99.png">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'Unbounded';
+            src: url('assets/fonts/Unbounded.ttf') format('truetype');
+            font-weight: 100 900;
+            font-display: swap;
+        }
+
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --gray: #888888;
+            --gray-dark: #1A1A1A;
+            --gray-darker: #111111;
+        }
+
+        /* Gold Glow Icons - Lucide */
+        .gold-icon {
+            color: var(--gold);
+            width: 28px;
+            height: 28px;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+        }
+        .gold-icon-sm {
+            color: var(--gold);
+            width: 20px;
+            height: 20px;
+            filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5));
+        }
+        .gold-icon-lg {
+            color: var(--gold);
+            width: 36px;
+            height: 36px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.7));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 100px;
+            width: calc(100% - 32px);
+            max-width: 900px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            border-color: rgba(255,255,255,0.12);
+        }
+
+        .navbar-logo img {
+            height: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 100px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--black) !important;
+            font-weight: 600 !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-light) !important;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 8px 16px;
+            }
+            .nav-links a {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            z-index: 0;
+            filter: grayscale(100%);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.85) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 24px;
+        }
+
+        .hero-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 32px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero h1 span { color: var(--gold); }
+
+        .hero p {
+            font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 32px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--gold-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .hero-cta { animation: fadeInUp 1s ease-out 0.6s both; }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 24px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+            animation: scroll-dot 2s infinite;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        @keyframes scroll-dot {
+            0%, 100% { opacity: 1; top: 8px; }
+            50% { opacity: 0.5; top: 20px; }
+        }
+
+        /* Sections */
+        section { padding: 60px 24px; position: relative; }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .section-description {
+            font-size: 1.65rem;
+            color: var(--gray);
+            line-height: 1.55;
+            max-width: 900px;
+        }
+
+        /* VSL Section */
+        .vsl-section {
+            position: relative;
+            width: 100%;
+            background: var(--gray-darker);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
+            gap: 32px;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.06) 0%, var(--gray-darker) 70%);
+        }
+        .vsl-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            max-width: 1000px;
+            text-align: center;
+        }
+        .vsl-headline {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(24px, 4vw, 40px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: var(--white);
+        }
+        .vsl-subheadline {
+            font-size: 1.65rem;
+            color: var(--gray);
+            line-height: 1.55;
+            max-width: 900px;
+        }
+        .vsl-video-container {
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.1);
+            position: relative;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+        }
+        .vsl-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media (max-width: 768px) {
+            .vsl-section {
+                padding: 60px 16px;
+            }
+            .vsl-headline {
+                font-size: 24px;
+            }
+            .vsl-subheadline {
+                font-size: 16px;
+            }
+        }
+
+        /* NIL Reality / Pie Chart Section */
+        .nil-reality {
+            background: var(--gray-darker);
+        }
+
+        .nil-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .problem-points { margin-top: 32px; }
+
+        .problem-point {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .problem-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            flex-shrink: 0;
+        }
+
+        .problem-point h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .problem-point p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Pie Chart */
+        .chart-container { position: relative; }
+
+        .chart-wrapper {
+            position: relative;
+            padding: 20px;
+        }
+
+        .chart-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+            filter: blur(40px);
+            pointer-events: none;
+        }
+
+        .chart-ring {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+        }
+
+        .chart-svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            filter: drop-shadow(0 0 20px rgba(212,175,55,0.3));
+        }
+
+        .chart-track {
+            fill: none;
+            stroke: rgba(255,255,255,0.06);
+            stroke-width: 32;
+        }
+
+        .chart-segment-99 {
+            fill: none;
+            stroke: url(#goldGradient);
+            stroke-width: 32;
+            stroke-linecap: round;
+            stroke-dasharray: 0 880;
+            filter: drop-shadow(0 0 12px rgba(212,175,55,0.5));
+            transition: stroke-width 0.3s ease;
+        }
+
+        .chart-segment-99.animated {
+            animation: fillSegment99 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .chart-segment-1 {
+            fill: none;
+            stroke: url(#silverGradient);
+            stroke-width: 32;
+            stroke-linecap: round;
+            stroke-dasharray: 0 880;
+            stroke-dashoffset: -871;
+        }
+
+        .chart-segment-1.animated {
+            animation: fillSegment1 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            animation-delay: 2.2s;
+        }
+
+        @keyframes fillSegment99 {
+            0% { stroke-dasharray: 0 880; }
+            100% { stroke-dasharray: 871 880; }
+        }
+
+        @keyframes fillSegment1 {
+            0% { stroke-dasharray: 0 880; }
+            100% { stroke-dasharray: 8.8 880; }
+        }
+
+        .chart-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .chart-value {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(180deg, #fff 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .chart-value-suffix {
+            font-size: 2rem;
+        }
+
+        .chart-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            box-shadow: 0 0 8px var(--gold-glow);
+        }
+
+        .legend-dot.silver {
+            background: linear-gradient(135deg, #888, #ccc);
+        }
+
+        .chart-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .chart-stat {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .chart-stat:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212,175,55,0.3);
+        }
+
+        .chart-stat-icon { font-size: 1.25rem; margin-bottom: 8px; }
+
+        .chart-stat-value {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .chart-stat-value.gold { color: var(--gold); }
+
+        .chart-stat-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        /* Value Cards */
+        .value-section { background: var(--black); }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 32px 20px;
+            background: var(--gray-dark);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(212,175,55,0.3);
+        }
+
+        .value-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 50%;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+        }
+
+        .value-icon i,
+        .value-icon svg {
+            color: var(--black) !important;
+            filter: none !important;
+            width: 28px;
+            height: 28px;
+        }
+
+        .value-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about { background: var(--gray-dark); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 8px;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            bottom: -16px;
+            right: -16px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            z-index: -1;
+        }
+
+        .about-content h2 {
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+
+        .about-highlights {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            border-color: rgba(212,175,55,0.3);
+        }
+
+        .highlight-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Logos Section - Animated Marquee */
+        .logos-section {
+            background: var(--black);
+            padding: 48px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            overflow: hidden;
+        }
+
+        .logos-title {
+            text-align: center;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .logos-marquee {
+            display: flex;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .logos-track {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            animation: marquee 20s linear infinite;
+            padding: 0 30px;
+        }
+
+        .logos-track img {
+            height: 32px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .logos-track img:hover {
+            opacity: 1;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Trusted By Section */
+        .trusted-section {
+            background: var(--gray-darker);
+            padding: 32px 0;
+            overflow: hidden;
+        }
+
+        .trusted-title {
+            text-align: center;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .trusted-marquee {
+            display: flex;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .trusted-track {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            animation: marquee-reverse 25s linear infinite;
+            padding: 0 25px;
+        }
+
+        .trusted-track img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .trusted-track img:hover {
+            opacity: 1;
+        }
+
+        .school-logo {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--white);
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+        }
+
+        .school-logo:hover {
+            opacity: 1;
+        }
+
+        @keyframes marquee-reverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .logos-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            opacity: 0.5;
+        }
+
+        .logos-row img {
+            height: 28px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Services Section */
+        .services { background: var(--black); }
+
+        .services-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: transparent;
+            color: var(--gray);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
+        }
+
+        /* Impact Metrics Banner */
+        .metrics-banner {
+            background: linear-gradient(135deg, var(--gray-darker) 0%, var(--black) 100%);
+            padding: 60px 24px;
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+        }
+
+        .metrics-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .metric-item {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(180deg, #fff 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        @media (max-width: 768px) {
+            .metrics-grid {
+                gap: 32px;
+            }
+            .metric-value {
+                font-size: 2rem;
+            }
+        }
+
+        .services-panel {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .services-panel.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .services-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .services-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 24px;
+        }
+
+        .services-list {
+            list-style: none;
+        }
+
+        .services-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .services-list li::before {
+            content: '→';
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .services-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 8px;
+        }
+
+        /* Speaking Section */
+        .speaking-section {
+            background: var(--black);
+            padding: 100px 24px;
+        }
+
+        .speaking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .speaking-content .section-description {
+            margin-bottom: 24px;
+        }
+
+        .speaking-topics {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+        }
+
+        .speaking-topics h4 {
+            font-size: 0.85rem;
+            color: var(--gold);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .speaking-topics ul {
+            list-style: none;
+        }
+
+        .speaking-topics li {
+            padding: 8px 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .speaking-topics li:last-child {
+            border-bottom: none;
+        }
+
+        .speaking-topics li::before {
+            content: '→ ';
+            color: var(--gold);
+        }
+
+        .speaking-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 1024px) {
+            .speaking-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .speaking-image {
+                order: -1;
+            }
+        }
+
+        /* Testimonials Infinite Marquee - Premium Design */
+        .testimonials-section {
+            background: var(--black);
+            padding: 80px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding: 0 24px;
+        }
+
+        .marquee-container {
+            position: relative;
+        }
+
+        /* Premium fade edges */
+        .marquee-container::before,
+        .marquee-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, var(--black), transparent);
+        }
+
+        .marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--black), transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+            padding: 0 12px;
+            animation: marquee-scroll 45s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 12px)); }
+        }
+
+        .testimonial-card {
+            flex-shrink: 0;
+            width: 380px;
+            background: linear-gradient(135deg, rgba(26,26,26,0.9), rgba(10,10,10,0.95));
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.12);
+            transform: translateY(-4px) scale(1.01);
+        }
+
+        /* Gold accent line at top */
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 28px;
+            right: 28px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.5;
+            border-radius: 2px;
+        }
+
+        .quote-mark {
+            position: absolute;
+            top: 16px;
+            left: 20px;
+            color: var(--gold);
+            font-size: 48px;
+            font-family: Georgia, serif;
+            line-height: 1;
+            opacity: 0.25;
+        }
+
+        .testimonial-quote {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.75;
+            margin-bottom: 24px;
+            padding-top: 8px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            padding: 8px;
+            object-fit: contain;
+        }
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--white);
+        }
+
+        .author-title {
+            font-size: 0.8rem;
+            color: var(--gold);
+            opacity: 0.8;
+        }
+
+        .author-school-logo {
+            height: 36px;
+            width: auto;
+            max-width: 60px;
+            object-fit: contain;
+            opacity: 0.85;
+            margin-left: auto;
+            flex-shrink: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .testimonial-card:hover .author-school-logo {
+            opacity: 1;
+        }
+
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-track {
+                animation: none !important;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-section {
+                padding: 60px 0;
+            }
+            .testimonial-card {
+                width: 320px;
+                padding: 24px;
+            }
+            .marquee-container::before,
+            .marquee-container::after {
+                width: 60px;
+            }
+            .author-school-logo {
+                display: none;
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--black) 0%, #1a1510 100%);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: var(--gray);
+            max-width: 450px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img { height: 36px; }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.7rem;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-content {
+            background: var(--gray-dark);
+            padding: 36px;
+            border-radius: 8px;
+            max-width: 480px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nil-content, .about-grid, .services-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .value-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-image { order: -1; }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 60px 20px; }
+
+            .value-grid, .chart-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .services-tabs {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .tab-btn { width: 100%; }
+
+            .cta-buttons { flex-direction: column; }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .chart-ring {
+                width: 240px;
+                height: 240px;
+            }
+
+            .chart-value { font-size: 2.5rem; }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced Mobile Optimization - Lamborghini-style */
+        @media (max-width: 768px) {
+            /* Full-width edge-to-edge sections */
+            section { padding: 48px 16px; }
+
+            /* Hero adjustments */
+            .hero {
+                min-height: 100vh;
+                min-height: 100dvh;
+            }
+
+            .hero-content {
+                padding: 0 16px;
+            }
+
+            .hero-logo {
+                width: 60px;
+                margin-bottom: 24px;
+            }
+
+            /* VSL section mobile */
+            .vsl-section {
+                padding: 48px 16px;
+            }
+
+            .vsl-video-container {
+                border-radius: 12px;
+                max-width: 100%;
+            }
+
+            .vsl-headline {
+                font-size: clamp(1.2rem, 5vw, 1.6rem);
+            }
+
+            .vsl-subheadline {
+                font-size: 0.95rem;
+                padding: 0 8px;
+            }
+
+            /* Problem points stack */
+            .problem-point {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 16px;
+            }
+
+            .problem-icon {
+                margin-bottom: 12px;
+            }
+
+            /* Speaking section mobile */
+            .speaking-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .speaking-image {
+                order: -1;
+            }
+
+            .speaking-image img {
+                height: 280px;
+            }
+
+            /* Touch-friendly buttons */
+            .btn {
+                padding: 16px 32px;
+                font-size: 0.9rem;
+                min-height: 48px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-cta .btn {
+                width: auto;
+                min-width: 200px;
+            }
+
+            /* Nav mobile refinements */
+            .navbar {
+                width: calc(100% - 24px);
+                padding: 8px 12px;
+            }
+
+            .nav-links a:not(.nav-cta):not(.active) {
+                display: none;
+            }
+
+            .nav-cta {
+                padding: 8px 16px !important;
+            }
+
+            /* Cards and grid refinements */
+            .value-card {
+                padding: 24px 16px;
+            }
+
+            .testimonial-card {
+                padding: 20px;
+            }
+
+            /* Services tabs horizontal scroll */
+            .services-tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 8px;
+                padding-bottom: 8px;
+            }
+
+            .tab-btn {
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            /* About image */
+            .about-image img {
+                height: 320px;
+            }
+
+            /* Metrics mobile */
+            .metrics-grid {
+                gap: 24px;
+            }
+
+            .metric-item {
+                min-width: 120px;
+            }
+        }
+
+        /* Small mobile (375px and below) */
+        @media (max-width: 375px) {
+            section { padding: 40px 12px; }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .vsl-headline {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 14px 24px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Tablet improvements */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                max-width: 100%;
+                padding: 0 32px;
+            }
+
+            .speaking-grid {
+                gap: 40px;
+            }
+
+            .services-content {
+                gap: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/images/font-logos.png" alt="The 99">
+        </a>
+        <div class="nav-links">
+            <a href="athletes.html">Athletes</a>
+            <a href="universities.html">Schools</a>
+            <a href="brands.html">Brands</a>
+            <a href="team.html">Our Story</a>
+            <a href="#" class="nav-cta" onclick="openModal(); return false;">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline poster="assets/images/trace-suit.jpg">
+            <source src="assets/videos/hero-bg.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <img src="assets/images/font-logos.png" alt="The 99" class="hero-logo">
+            <h1><span>The Future of NIL</span>—for Athletes, Schools, and Brands.</h1>
+            <p>We help athletes build brands that last, schools compete for top talent, and brands connect with authentic voices.</p>
+            <div class="hero-cta">
+                <a href="#" class="btn btn-gold" onclick="openModal(); return false;">Unlock Your NIL Potential</a>
+            </div>
+        </div>
+        <div class="scroll-indicator"><span></span></div>
+    </section>
+
+    <!-- VSL Section -->
+    <section class="vsl-section">
+        <div class="vsl-content fade-in">
+            <h2 class="vsl-headline">BUILT BY AN ATHLETE. FOR EVERY ATHLETE.</h2>
+            <p class="vsl-subheadline">I came from the 99% and created opportunities that only the top 1% were getting. Now I'm teaching every athlete how to do the same.</p>
+        </div>
+        <div class="vsl-video-container fade-in" id="vsl-container">
+            <iframe
+                id="vsl-video"
+                src="https://www.youtube.com/embed/I6h5VbMGqUs?si=279zbH04H2558pp3"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Testimonials - Premium Infinite Marquee -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="testimonials-header fade-in">
+            <span class="section-tag">What Leaders Say</span>
+            <h2 class="section-title">Trusted by Industry Leaders</h2>
+        </div>
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <!-- Card 1: Jim Isch - NCAA -->
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">Trace bridges the gap between athletes, brands, and universities in a way I haven't seen before. He understands the complexities of the NIL landscape.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/ncaa.svg" alt="NCAA"></div>
+                        <div class="author-info">
+                            <div class="author-name">Jim Isch</div>
+                            <div class="author-title">NCAA Executive / Former COO</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2: Matt McMahon - LSU -->
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">Trace has built a powerful brand that serves as a model for student-athletes everywhere. His framework is practical and proven.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/lsu.webp" alt="LSU"></div>
+                        <div class="author-info">
+                            <div class="author-name">Matt McMahon</div>
+                            <div class="author-title">LSU Head Basketball Coach</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3: Ian Hamilton - Nike -->
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">Trace has proven success building athlete brands. His framework for personal branding and deal-making is invaluable for any program.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/nike.png" alt="Nike"></div>
+                        <div class="author-info">
+                            <div class="author-name">Ian Hamilton</div>
+                            <div class="author-title">Former Nike Global Marketing Director</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4: Ronnie Hamilton - Louisville -->
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">Trace has the credibility to speak on NIL because he's lived it. His experience closing 70+ deals gives him a perspective that resonates with our athletes.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/louisville.webp" alt="Louisville"></div>
+                        <div class="author-info">
+                            <div class="author-name">Ronnie Hamilton</div>
+                            <div class="author-title">Louisville Assistant Coach</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5: Rob Lanier - Rice -->
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">Trace understands NIL from every angle—athlete, brand, institution. That 360-degree perspective makes his insights uniquely valuable.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/rice.png" alt="Rice"></div>
+                        <div class="author-info">
+                            <div class="author-name">Rob Lanier</div>
+                            <div class="author-title">Rice Head Basketball Coach</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 6: Chris Capko - SMU -->
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">The platform Trace has built gives athletes a real blueprint for success. It's not theory—it's actionable and it works.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/smu.png" alt="SMU"></div>
+                        <div class="author-info">
+                            <div class="author-name">Chris Capko</div>
+                            <div class="author-title">SMU Assistant Coach</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 7: Aaron Katsuma - Minnesota -->
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">What sets Trace apart is his authenticity. Athletes trust him because he's been in their shoes and built something real.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/minnesota.webp" alt="Minnesota"></div>
+                        <div class="author-info">
+                            <div class="author-name">Aaron Katsuma</div>
+                            <div class="author-title">Minnesota Assistant Coach</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Duplicates for seamless loop -->
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">Trace bridges the gap between athletes, brands, and universities in a way I haven't seen before. He understands the complexities of the NIL landscape.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/ncaa.svg" alt="NCAA"></div>
+                        <div class="author-info">
+                            <div class="author-name">Jim Isch</div>
+                            <div class="author-title">NCAA Executive / Former COO</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">Trace has built a powerful brand that serves as a model for student-athletes everywhere. His framework is practical and proven.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/lsu.webp" alt="LSU"></div>
+                        <div class="author-info">
+                            <div class="author-name">Matt McMahon</div>
+                            <div class="author-title">LSU Head Basketball Coach</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">Trace has proven success building athlete brands. His framework for personal branding and deal-making is invaluable for any program.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/nike.png" alt="Nike"></div>
+                        <div class="author-info">
+                            <div class="author-name">Ian Hamilton</div>
+                            <div class="author-title">Former Nike Global Marketing Director</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">Trace has the credibility to speak on NIL because he's lived it. His experience closing 70+ deals gives him a perspective that resonates with our athletes.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/louisville.webp" alt="Louisville"></div>
+                        <div class="author-info">
+                            <div class="author-name">Ronnie Hamilton</div>
+                            <div class="author-title">Louisville Assistant Coach</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">Trace understands NIL from every angle—athlete, brand, institution. That 360-degree perspective makes his insights uniquely valuable.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/rice.png" alt="Rice"></div>
+                        <div class="author-info">
+                            <div class="author-name">Rob Lanier</div>
+                            <div class="author-title">Rice Head Basketball Coach</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">The platform Trace has built gives athletes a real blueprint for success. It's not theory—it's actionable and it works.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/smu.png" alt="SMU"></div>
+                        <div class="author-info">
+                            <div class="author-name">Chris Capko</div>
+                            <div class="author-title">SMU Assistant Coach</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <span class="quote-mark">"</span>
+                    <p class="testimonial-quote">What sets Trace apart is his authenticity. Athletes trust him because he's been in their shoes and built something real.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="assets/images/logos/minnesota.webp" alt="Minnesota"></div>
+                        <div class="author-info">
+                            <div class="author-name">Aaron Katsuma</div>
+                            <div class="author-title">Minnesota Assistant Coach</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NIL Reality Section - Ball Drop Visualization -->
+    <section class="nil-reality" id="reality">
+        <style>
+            .nil-reality {
+                background: linear-gradient(180deg, var(--gray-darker) 0%, #0a0a0a 100%);
+                padding: 80px 24px;
+                overflow: hidden;
+            }
+            .nil-layout {
+                display: grid;
+                grid-template-columns: 1fr 1.2fr;
+                gap: 60px;
+                align-items: center;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .nil-text .section-tag { margin-bottom: 12px; }
+            .nil-text .section-title { margin-bottom: 16px; }
+            .nil-text .section-description { margin-bottom: 32px; }
+            .nil-problem-points { margin-top: 24px; }
+            .nil-problem-point {
+                display: flex;
+                gap: 16px;
+                padding: 16px 0;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+            }
+            .nil-problem-point:last-child { border-bottom: none; }
+            .nil-problem-icon { flex-shrink: 0; }
+            .nil-problem-point h4 {
+                font-size: 1rem;
+                margin-bottom: 4px;
+                color: var(--white);
+            }
+            .nil-problem-point p {
+                font-size: 0.9rem;
+                color: var(--gray);
+                line-height: 1.5;
+            }
+            .nil-viz-wrapper {
+                position: relative;
+            }
+            .nil-viz-header {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .nil-counter {
+                font-family: 'SF Mono', 'Monaco', monospace;
+                font-size: clamp(2rem, 5vw, 3rem);
+                font-weight: 800;
+                color: var(--gold);
+                text-shadow: 0 0 40px rgba(212,175,55,0.4);
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.8s ease;
+            }
+            .nil-counter.visible { opacity: 1; transform: translateY(0); }
+            .nil-headline {
+                font-size: clamp(0.85rem, 2vw, 1rem);
+                color: var(--gray);
+                margin-top: 8px;
+                opacity: 0;
+                transition: opacity 0.8s ease 0.3s;
+            }
+            .nil-headline.visible { opacity: 1; }
+            .nil-headline span { color: var(--gold); }
+            .nil-viz-container {
+                position: relative;
+                width: 100%;
+                height: 400px;
+            }
+            .nil-canvas {
+                position: absolute;
+                top: 0; left: 0;
+                width: 100%; height: 100%;
+            }
+            .nil-cups {
+                position: absolute;
+                bottom: 20px;
+                left: 0; right: 0;
+                display: flex;
+                justify-content: center;
+                gap: 80px;
+                z-index: 5;
+            }
+            .nil-cup {
+                position: relative;
+                text-align: center;
+            }
+            .nil-cup-visual {
+                width: 120px;
+                height: 140px;
+                border: 3px solid;
+                border-top: none;
+                border-radius: 0 0 24px 24px;
+                position: relative;
+                overflow: hidden;
+                background: rgba(0,0,0,0.5);
+            }
+            .nil-cup.gold .nil-cup-visual {
+                border-color: var(--gold);
+                box-shadow: 0 0 25px rgba(212,175,55,0.15);
+            }
+            .nil-cup.white .nil-cup-visual {
+                border-color: rgba(255,255,255,0.3);
+            }
+            .nil-cup-fill {
+                position: absolute;
+                bottom: 0; left: 0; right: 0;
+                height: 0%;
+                transition: height 0.15s ease-out;
+            }
+            .nil-cup.gold .nil-cup-fill {
+                background: linear-gradient(180deg, #F4D03F 0%, #D4AF37 50%, #8B7528 100%);
+                box-shadow: 0 -8px 25px rgba(212,175,55,0.5);
+            }
+            .nil-cup.white .nil-cup-fill {
+                background: linear-gradient(180deg, #fff 0%, #e0e0e0 50%, #bbb 100%);
+                box-shadow: 0 -5px 15px rgba(255,255,255,0.2);
+            }
+            .nil-cup-label {
+                margin-top: 12px;
+                font-size: 1rem;
+                font-weight: 700;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+            }
+            .nil-cup.gold .nil-cup-label { color: var(--gold); }
+            .nil-cup.white .nil-cup-label { color: rgba(255,255,255,0.7); }
+            .nil-cup-amount {
+                font-family: 'SF Mono', monospace;
+                font-size: 1.3rem;
+                font-weight: 700;
+                margin-top: 4px;
+            }
+            .nil-cup.gold .nil-cup-amount { color: var(--gold); }
+            .nil-cup.white .nil-cup-amount { color: rgba(255,255,255,0.5); }
+            .nil-cup-balls {
+                font-size: 0.7rem;
+                color: #555;
+                margin-top: 2px;
+            }
+            @keyframes nilCupGlow {
+                0%, 100% { box-shadow: 0 0 25px rgba(212,175,55,0.15); }
+                50% { box-shadow: 0 0 45px rgba(212,175,55,0.4); }
+            }
+            .nil-cup.gold.glowing .nil-cup-visual {
+                animation: nilCupGlow 1.5s ease-in-out infinite;
+            }
+            /* 3D People Visualization */
+            .people-viz-wrapper {
+                margin-top: 40px;
+                padding-top: 32px;
+                border-top: 1px solid rgba(255,255,255,0.08);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .people-grid-3d {
+                display: grid;
+                grid-template-columns: repeat(10, 1fr);
+                gap: 8px;
+                max-width: 400px;
+                margin: 0 auto 20px;
+                perspective: 500px;
+            }
+            .person-3d {
+                width: 32px;
+                height: 48px;
+                position: relative;
+                cursor: pointer;
+                transform-style: preserve-3d;
+                transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+            .person-3d:hover {
+                transform: translateY(-4px) rotateY(180deg) scale(1.15);
+            }
+            .person-3d svg {
+                width: 100%;
+                height: 100%;
+                transition: all 0.3s ease;
+            }
+            .person-3d.gold svg {
+                fill: var(--gold);
+                filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.8));
+            }
+            .person-3d.gray svg {
+                fill: #2d333b;
+            }
+            .person-3d.gray:hover svg {
+                fill: #444c56;
+            }
+            .people-stat {
+                font-size: 1.1rem;
+                color: var(--gray);
+                line-height: 1.5;
+                text-align: center;
+            }
+            .people-stat span {
+                color: var(--gold);
+                font-weight: 700;
+                font-size: 1.3rem;
+            }
+            /* Solution Section */
+            .nil-solution {
+                margin-top: 32px;
+                padding-top: 24px;
+                border-top: 1px solid rgba(212,175,55,0.2);
+            }
+            .nil-cta-line {
+                font-family: 'Unbounded', sans-serif;
+                font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+                font-weight: 600;
+                color: var(--gold);
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+                margin-bottom: 12px;
+            }
+            .nil-promise {
+                font-size: 1.05rem;
+                color: var(--gray);
+                line-height: 1.6;
+            }
+            .nil-promise span {
+                color: var(--white);
+                font-weight: 600;
+            }
+            @media (max-width: 1024px) {
+                .nil-layout {
+                    grid-template-columns: 1fr;
+                    gap: 40px;
+                }
+                .nil-text { text-align: center; }
+                .nil-problem-point {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    gap: 12px;
+                }
+                .people-grid-3d {
+                    max-width: 320px;
+                }
+                .people-stat {
+                    text-align: center;
+                }
+                .nil-cta-line {
+                    text-align: center;
+                }
+                .nil-promise {
+                    text-align: center;
+                }
+            }
+            @media (max-width: 768px) {
+                .nil-cups { gap: 40px; }
+                .nil-cup-visual { width: 90px; height: 110px; }
+                .nil-viz-container { height: 350px; }
+                .nil-cup-amount { font-size: 1rem; }
+                .people-grid-3d {
+                    grid-template-columns: repeat(5, 1fr);
+                    gap: 8px;
+                    max-width: 220px;
+                }
+                .person-3d {
+                    width: 36px;
+                    height: 54px;
+                }
+            }
+        </style>
+
+        <div class="nil-layout">
+            <div class="nil-text fade-in">
+                <span class="section-tag" style="font-size: 0.85rem;">The Problem with NIL</span>
+                <h2 class="section-title">While 1% of Athletes Take 95% of NIL Money...</h2>
+                <p class="section-description">The other 99% are left wondering what they're missing. We're here to close that gap.</p>
+                <div class="nil-problem-points">
+                    <div class="nil-problem-point">
+                        <div class="nil-problem-icon"><i data-lucide="x-circle" class="gold-icon"></i></div>
+                        <div>
+                            <h4>"I can't compete with the top-tier athletes"</h4>
+                        </div>
+                    </div>
+                    <div class="nil-problem-point">
+                        <div class="nil-problem-icon"><i data-lucide="x-circle" class="gold-icon"></i></div>
+                        <div>
+                            <h4>"I don't know the right steps or the right people"</h4>
+                        </div>
+                    </div>
+                    <div class="nil-problem-point">
+                        <div class="nil-problem-icon"><i data-lucide="x-circle" class="gold-icon"></i></div>
+                        <div>
+                            <h4>"I don't have time to figure out brand building alone"</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="people-viz-wrapper fade-in">
+                    <div class="people-grid-3d" id="people-grid"></div>
+                    <p class="people-stat">Less than <span>10%</span> of NCAA athletes have consistent NIL deals</p>
+                </div>
+                <div class="nil-solution">
+                    <p class="nil-cta-line">We show you how.</p>
+                    <p class="nil-promise">The 99 gives every athlete the education, strategy, and connections to build real NIL value. <span>Any school. Any sport. Any athlete.</span></p>
+                </div>
+            </div>
+
+            <div class="nil-viz-wrapper fade-in">
+                <div class="nil-viz-header">
+                    <p class="nil-headline" id="nilHeadline">There's <span>$2.5B</span> in NIL opportunities... watch where it goes.</p>
+                    <div class="nil-counter" id="nilCounter">$0</div>
+                </div>
+
+                <div class="nil-viz-container">
+                    <canvas class="nil-canvas" id="nilCanvas"></canvas>
+                    <div class="nil-cups">
+                        <div class="nil-cup white" id="nilWhiteCup">
+                            <div class="nil-cup-visual">
+                                <div class="nil-cup-fill" id="nilWhiteFill"></div>
+                            </div>
+                            <div class="nil-cup-label">The Top 1%</div>
+                            <div class="nil-cup-amount" id="nilWhiteAmount">$0</div>
+                            <div class="nil-cup-balls"><span id="nilWhiteBalls">0</span> / 95</div>
+                        </div>
+                        <div class="nil-cup gold" id="nilGoldCup">
+                            <div class="nil-cup-visual">
+                                <div class="nil-cup-fill" id="nilGoldFill"></div>
+                            </div>
+                            <div class="nil-cup-label">The Other 99%</div>
+                            <div class="nil-cup-amount" id="nilGoldAmount">$0</div>
+                            <div class="nil-cup-balls"><span id="nilGoldBalls">0</span> / 5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        (function() {
+            // Generate 3D People Grid
+            const peopleGrid = document.getElementById('people-grid');
+            if (peopleGrid) {
+                for (let i = 0; i < 10; i++) {
+                    const person = document.createElement('div');
+                    person.className = `person-3d ${i < 1 ? 'gold' : 'gray'}`;
+                    person.innerHTML = `<svg viewBox="0 0 24 32"><circle cx="12" cy="8" r="6"/><path d="M12 16c-6 0-12 3-12 8v4h24v-4c0-5-6-8-12-8z"/></svg>`;
+                    person.style.animationDelay = `${i * 0.02}s`;
+                    peopleGrid.appendChild(person);
+                }
+            }
+
+            const canvas = document.getElementById('nilCanvas');
+            const ctx = canvas.getContext('2d');
+            let balls = [];
+            let particles = [];
+            let pegs = [];
+            let goldLanded = 0, whiteLanded = 0;
+            let animating = false;
+            let loopTimer = null;
+
+            function initCanvas() {
+                const rect = canvas.parentElement.getBoundingClientRect();
+                canvas.width = rect.width * 2;
+                canvas.height = rect.height * 2;
+                ctx.scale(2, 2);
+
+                // Create peg grid - properly centered
+                pegs = [];
+                const w = rect.width;
+                const centerX = w / 2;
+                const rows = 8;
+                const startY = 25;
+                const rowHeight = 20;
+                const pegSpacing = 24;
+
+                for (let row = 0; row < rows; row++) {
+                    const pegsInRow = 5 + row;
+                    const offset = (row % 2) * (pegSpacing / 2);
+                    for (let i = 0; i < pegsInRow; i++) {
+                        const x = centerX - ((pegsInRow - 1) * pegSpacing) / 2 + i * pegSpacing + offset;
+                        pegs.push({
+                            x: x,
+                            y: startY + row * rowHeight,
+                            r: 3
+                        });
+                    }
+                }
+            }
+
+            function formatMoney(amt) {
+                if (amt >= 1e9) return '$' + (amt/1e9).toFixed(2) + 'B';
+                if (amt >= 1e6) return '$' + Math.round(amt/1e6) + 'M';
+                return '$' + amt.toLocaleString();
+            }
+
+            function animateCounter(el, target, dur) {
+                const start = performance.now();
+                (function update(now) {
+                    const p = Math.min((now - start) / dur, 1);
+                    const ease = 1 - Math.pow(1 - p, 3);
+                    el.textContent = '$' + Math.floor(target * ease).toLocaleString();
+                    if (p < 1) requestAnimationFrame(update);
+                })(start);
+            }
+
+            function createBall(i) {
+                const goesLeft = i < 95; // 95 balls go to left (1% cup), 5 go to right (99% cup)
+                const rect = canvas.parentElement.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                return {
+                    x: centerX + (Math.random() - 0.5) * 10,
+                    y: -5 - Math.random() * 15,
+                    vx: goesLeft ? -0.3 - Math.random() * 0.2 : 0.3 + Math.random() * 0.2,
+                    vy: 0.5,
+                    r: 4,
+                    goesLeft,
+                    trail: [],
+                    landed: false
+                };
+            }
+
+            function burst(x, y, color, n) {
+                for (let i = 0; i < n; i++) {
+                    const a = (i/n) * Math.PI * 2;
+                    const s = 2 + Math.random() * 3;
+                    particles.push({ x, y, vx: Math.cos(a)*s, vy: Math.sin(a)*s - 2, r: 2 + Math.random()*2, color, alpha: 1 });
+                }
+            }
+
+            function updateBall(b) {
+                if (b.landed) return;
+                if (b.trail.length > 6) b.trail.shift();
+                b.trail.push({x: b.x, y: b.y});
+
+                const rect = canvas.parentElement.getBoundingClientRect();
+                const w = rect.width;
+                const landY = rect.height - 190;
+                const centerX = w / 2;
+
+                // Gravity
+                b.vy += 0.12;
+                b.x += b.vx;
+                b.y += b.vy;
+
+                // Peg collisions - bounce off pegs
+                pegs.forEach(peg => {
+                    const dx = b.x - peg.x;
+                    const dy = b.y - peg.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const minDist = b.r + peg.r;
+                    if (dist < minDist) {
+                        // Normalize and bounce
+                        const nx = dx / dist;
+                        const ny = dy / dist;
+                        // Push ball out of peg
+                        b.x = peg.x + nx * (minDist + 1);
+                        b.y = peg.y + ny * (minDist + 1);
+                        // Reflect velocity with bias
+                        const dot = b.vx * nx + b.vy * ny;
+                        b.vx = b.vx - 1.5 * dot * nx + (b.goesLeft ? -0.5 : 0.5);
+                        b.vy = Math.abs(b.vy - 1.5 * dot * ny) * 0.6;
+                        // Add slight randomness
+                        b.vx += (Math.random() - 0.5) * 0.3;
+                    }
+                });
+
+                // Guide balls to their side
+                const bias = b.goesLeft ? -0.02 : 0.02;
+                b.vx += bias;
+
+                // Damping
+                b.vx *= 0.99;
+
+                // Bounds
+                if (b.x < 30) { b.x = 30; b.vx = Math.abs(b.vx) * 0.5; }
+                if (b.x > w - 30) { b.x = w - 30; b.vx = -Math.abs(b.vx) * 0.5; }
+
+                if (b.y > landY) {
+                    b.landed = true;
+                    const landsLeft = b.x < centerX;
+
+                    // Left cup = white (1%), Right cup = gold (99%)
+                    burst(b.x, landY, landsLeft ? '#fff' : '#D4AF37', landsLeft ? 8 : 6);
+
+                    if (landsLeft) {
+                        // White cup (1%) - gets 95 balls
+                        whiteLanded++;
+                        document.getElementById('nilWhiteFill').style.height = Math.min(95, whiteLanded / 95 * 100) + '%';
+                        document.getElementById('nilWhiteAmount').textContent = formatMoney(whiteLanded * 25000000);
+                        document.getElementById('nilWhiteBalls').textContent = whiteLanded;
+                    } else {
+                        // Gold cup (99%) - gets 5 balls
+                        goldLanded++;
+                        document.getElementById('nilGoldFill').style.height = Math.min(20, goldLanded / 5 * 25) + '%';
+                        document.getElementById('nilGoldAmount').textContent = formatMoney(goldLanded * 25000000);
+                        document.getElementById('nilGoldBalls').textContent = goldLanded;
+                        if (goldLanded >= 3) document.getElementById('nilGoldCup').classList.add('glowing');
+                    }
+                }
+            }
+
+            function updateParticles() {
+                particles = particles.filter(p => {
+                    p.vy += 0.12;
+                    p.x += p.vx; p.y += p.vy;
+                    p.alpha -= 0.025;
+                    return p.alpha > 0;
+                });
+            }
+
+            function drawBall(b) {
+                if (b.landed) return;
+                const isGoldBall = !b.goesLeft; // Gold balls go right (to 99% cup)
+                b.trail.forEach((t, i) => {
+                    const a = (i / b.trail.length) * 0.35;
+                    ctx.beginPath();
+                    ctx.arc(t.x, t.y, b.r * (i / b.trail.length), 0, Math.PI * 2);
+                    ctx.fillStyle = isGoldBall ? `rgba(212,175,55,${a})` : `rgba(255,255,255,${a})`;
+                    ctx.fill();
+                });
+
+                ctx.beginPath();
+                ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+                if (isGoldBall) {
+                    const g = ctx.createRadialGradient(b.x-2, b.y-2, 0, b.x, b.y, b.r);
+                    g.addColorStop(0, '#F4D03F'); g.addColorStop(0.6, '#D4AF37'); g.addColorStop(1, '#8B7528');
+                    ctx.fillStyle = g;
+                    ctx.shadowColor = '#D4AF37'; ctx.shadowBlur = 20;
+                } else {
+                    const g = ctx.createRadialGradient(b.x-2, b.y-2, 0, b.x, b.y, b.r);
+                    g.addColorStop(0, '#fff'); g.addColorStop(0.6, '#eee'); g.addColorStop(1, '#ccc');
+                    ctx.fillStyle = g;
+                    ctx.shadowColor = '#fff'; ctx.shadowBlur = 12;
+                }
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+
+            function drawParticles() {
+                particles.forEach(p => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    if (p.color.startsWith('#')) {
+                        const r = parseInt(p.color.slice(1,3),16);
+                        const g = parseInt(p.color.slice(3,5),16);
+                        const b = parseInt(p.color.slice(5,7),16);
+                        ctx.fillStyle = `rgba(${r},${g},${b},${p.alpha})`;
+                    }
+                    ctx.fill();
+                });
+            }
+
+            function drawPegs() {
+                pegs.forEach(peg => {
+                    ctx.beginPath();
+                    ctx.arc(peg.x, peg.y, peg.r, 0, Math.PI * 2);
+                    ctx.fillStyle = '#333';
+                    ctx.shadowColor = 'rgba(212,175,55,0.3)';
+                    ctx.shadowBlur = 4;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                });
+            }
+
+            function animate() {
+                if (!animating) return;
+                const rect = canvas.parentElement.getBoundingClientRect();
+                ctx.clearRect(0, 0, rect.width, rect.height);
+                drawPegs();
+                balls.forEach(b => { updateBall(b); drawBall(b); });
+                updateParticles();
+                drawParticles();
+                requestAnimationFrame(animate);
+            }
+
+            function reset() {
+                balls = []; particles = [];
+                goldLanded = 0; whiteLanded = 0;
+                document.getElementById('nilGoldFill').style.height = '0%';
+                document.getElementById('nilWhiteFill').style.height = '0%';
+                document.getElementById('nilGoldAmount').textContent = '$0';
+                document.getElementById('nilWhiteAmount').textContent = '$0';
+                document.getElementById('nilGoldBalls').textContent = '0';
+                document.getElementById('nilWhiteBalls').textContent = '0';
+                document.getElementById('nilGoldCup').classList.remove('glowing');
+                document.getElementById('nilCounter').classList.remove('visible');
+                document.getElementById('nilHeadline').classList.remove('visible');
+            }
+
+            function start() {
+                initCanvas();
+                reset();
+
+                document.getElementById('nilCounter').classList.add('visible');
+                animateCounter(document.getElementById('nilCounter'), 2500000000, 2000);
+
+                setTimeout(() => {
+                    document.getElementById('nilHeadline').classList.add('visible');
+                }, 400);
+
+                // White balls (95) go left - drop steadily
+                for (let i = 0; i < 95; i++) {
+                    setTimeout(() => balls.push(createBall(i)), 1500 + i * 80);
+                }
+
+                // Gold balls (5) go right - spread throughout
+                const goldTiming = [500, 2000, 3500, 5000, 6500];
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => balls.push(createBall(95 + i)), 1500 + goldTiming[i]);
+                }
+
+                animating = true;
+                setTimeout(animate, 1800);
+
+                loopTimer = setTimeout(() => {
+                    animating = false;
+                    setTimeout(start, 800);
+                }, 15000);
+            }
+
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting && !animating) {
+                        start();
+                    } else if (!e.isIntersecting && animating) {
+                        animating = false;
+                        clearTimeout(loopTimer);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            obs.observe(document.getElementById('reality'));
+            window.addEventListener('resize', initCanvas);
+        })();
+        </script>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="value-section">
+        <div class="container">
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <span class="section-tag fade-in">Why The 99?</span>
+                <h2 class="section-title fade-in">We Bridge the Gap</h2>
+                <p class="section-description fade-in" style="margin: 0 auto;">Strategic NIL solutions for athletic programs, athletes, and brands.</p>
+            </div>
+            <div class="value-grid">
+                <div class="value-card fade-in">
+                    <div class="value-icon"><i data-lucide="building-2" class="gold-icon-lg"></i></div>
+                    <h3>For Schools</h3>
+                    <p>Comprehensive NIL education programs that prepare your athletes for success.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon"><i data-lucide="person-standing" class="gold-icon-lg"></i></div>
+                    <h3>For Athletes</h3>
+                    <p>Strategic brand building and partnership development that maximizes your earning potential.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon"><i data-lucide="dollar-sign" class="gold-icon-lg"></i></div>
+                    <h3>For Brands</h3>
+                    <p>Access to authentic athlete partnerships that drive real engagement and results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Condensed -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image fade-in">
+                    <img src="assets/images/trace-presenting.jpg" alt="Trace Young presenting">
+                </div>
+                <div class="about-content fade-in">
+                    <span class="section-tag">Our Story</span>
+                    <h2>FROM THE 99% TO HELPING THE 99%</h2>
+                    <p>The 99 was founded by Trace Young, a former collegiate athlete who built his own brand and closed 70+ NIL deals. Now he's teaching every athlete—regardless of school, sport, or following—how to do the same.</p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i data-lucide="mic" class="gold-icon-sm"></i></span>
+                            <span>Featured Speaker at NCAA Events</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i data-lucide="tv" class="gold-icon-sm"></i></span>
+                            <span>As Seen on ESPN & Amazon Prime</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon"><i data-lucide="trophy" class="gold-icon-sm"></i></span>
+                            <span>Trusted by Power 5 Programs</span>
+                        </div>
+                    </div>
+                    <a href="team.html" class="btn btn-outline" style="margin-top: 24px;">Meet the Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <div style="text-align: center; max-width: 550px; margin: 0 auto 32px;">
+                <span class="section-tag fade-in">Our Services</span>
+                <h2 class="section-title fade-in">How We Help</h2>
+                <p class="section-description fade-in" style="margin: 0 auto;">From campus visits to year-round consulting, we meet programs and athletes where they are.</p>
+            </div>
+            <div class="services-tabs">
+                <button class="tab-btn active" data-tab="app">The 99 Network</button>
+                <button class="tab-btn" data-tab="speaking">Speaking Engagements</button>
+                <button class="tab-btn" data-tab="workshops">NIL Workshops</button>
+                <button class="tab-btn" data-tab="academy">NIL Academy</button>
+            </div>
+            <div class="services-panel active" data-panel="app">
+                <div class="services-content">
+                    <div class="services-info fade-in">
+                        <h3>THE 99 NETWORK</h3>
+                        <ul class="services-list">
+                            <li>Direct connection between brands and athletes</li>
+                            <li>Athletes equipped to create amazing content</li>
+                            <li>Hands-off for brands with guaranteed results</li>
+                            <li>Athlete analytics and performance tracking</li>
+                            <li>Streamlined deal flow and management</li>
+                        </ul>
+                    </div>
+                    <div class="services-image fade-in">
+                        <img src="assets/images/trace-lsu.jpg" alt="The 99 Network">
+                    </div>
+                </div>
+            </div>
+            <div class="services-panel" data-panel="speaking">
+                <div class="services-content">
+                    <div class="services-info fade-in">
+                        <h3>IN-PERSON SPEAKING ENGAGEMENTS</h3>
+                        <ul class="services-list">
+                            <li>Dynamic presentations for athletic departments and teams</li>
+                            <li>Business school and university guest lectures</li>
+                            <li>Hands-on consulting for building personal brands</li>
+                            <li>NIL strategy sessions that keep academics and athletics first</li>
+                            <li>Custom talks for conferences, panels, and events</li>
+                        </ul>
+                    </div>
+                    <div class="services-image fade-in">
+                        <img src="assets/images/trace-presenting.jpg" alt="Speaking engagement">
+                    </div>
+                </div>
+            </div>
+            <div class="services-panel" data-panel="workshops">
+                <div class="services-content">
+                    <div class="services-info fade-in">
+                        <h3>NIL WORKSHOPS</h3>
+                        <ul class="services-list">
+                            <li>How to build your brand as an athlete</li>
+                            <li>Social media strategy and content creation</li>
+                            <li>How athletes can land more deals</li>
+                            <li>Pitching yourself to brands that align with your values</li>
+                            <li>Creating long-term value beyond college</li>
+                            <li>Access to exclusive athlete community</li>
+                        </ul>
+                    </div>
+                    <div class="services-image fade-in">
+                        <img src="assets/images/trace-smu.jpg" alt="NIL Workshop">
+                    </div>
+                </div>
+            </div>
+            <div class="services-panel" data-panel="academy">
+                <div class="services-content">
+                    <div class="services-info fade-in">
+                        <h3>NIL ACADEMY</h3>
+                        <ul class="services-list">
+                            <li>Self-paced NIL education program</li>
+                            <li>Step-by-step brand building framework</li>
+                            <li>Content creation templates and strategies</li>
+                            <li>Deal negotiation playbooks</li>
+                        </ul>
+                    </div>
+                    <div class="services-image fade-in">
+                        <img src="assets/images/trace-blueprint.png" alt="NIL Academy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <div class="container fade-in">
+            <h2>Ready to Get Started?</h2>
+            <p>Let's discuss how The 99 can help your program, athletes, or brand succeed in the NIL era.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-gold" onclick="openModal(); return false;">Unlock Your NIL Potential</a>
+                <a href="mailto:team@the99sports.com" class="btn btn-outline">Email Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/font-logos.png" alt="The 99">
+            </div>
+            <div class="footer-links">
+                <a href="athletes.html">Athletes</a>
+                <a href="universities.html">Schools</a>
+                <a href="brands.html">Brands</a>
+                <a href="team.html">Our Story</a>
+                <a href="#" onclick="openModal(); return false;">Contact</a>
+            </div>
+            <p class="footer-copy">© 2024 The 99. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h3 style="margin-bottom: 16px; font-family: 'Unbounded', sans-serif;">Get In Touch</h3>
+            <p style="color: var(--gray); margin-bottom: 20px;">Tell us who you are and we'll customize the conversation.</p>
+            <div id="tally-form">
+                <iframe
+                    data-tally-src="https://tally.so/embed/2EEqYb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                    loading="lazy"
+                    width="100%"
+                    height="854"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    title="Let's Get Started">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <script>
+        var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s)}
+    </script>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.services-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelector(`[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+            });
+        });
+
+        // Modal
+        function openModal() {
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('contactModal').addEventListener('click', (e) => {
+            if (e.target.id === 'contactModal') closeModal();
+        });
+
+        // Fade in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Animated value counter
+        const animateValue = (el, start, end, duration, suffix = '') => {
+            let startTime = null;
+            const step = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const value = Math.floor(eased * (end - start) + start);
+                el.textContent = value + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Pie chart animation
+        let chartAnimated = false;
+        const chartObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !chartAnimated) {
+                    chartAnimated = true;
+
+                    const chartCounter = document.getElementById('chartCounter');
+                    const segment99 = document.getElementById('segment99');
+                    const segment1 = document.getElementById('segment1');
+                    const stat1 = document.getElementById('stat1');
+                    const stat2 = document.getElementById('stat2');
+
+                    if (chartCounter) animateValue(chartCounter, 0, 99, 2500);
+                    if (segment99) segment99.classList.add('animated');
+                    if (segment1) segment1.classList.add('animated');
+
+                    setTimeout(() => {
+                        if (stat1) animateValue(stat1, 0, 5, 1500, '%');
+                        if (stat2) animateValue(stat2, 0, 95, 1500, '%');
+                    }, 2800);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const chartContainer = document.querySelector('.chart-container');
+        if (chartContainer) chartObserver.observe(chartContainer);
+
+        // YouTube Video Autoplay on Scroll
+        const vslContainer = document.getElementById('vsl-container');
+        if (vslContainer) {
+            const vslObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const iframe = document.getElementById('vsl-video');
+                    if (iframe) {
+                        if (entry.isIntersecting) {
+                            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                        } else {
+                            iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            vslObserver.observe(vslContainer);
+        }
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

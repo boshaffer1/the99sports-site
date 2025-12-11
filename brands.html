@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Brands | The 99 - Authentic Athlete Partnerships</title>
+    <meta name="description" content="Connect with college athletes who align with your brand values. Strategic NIL partnerships that drive real engagement and results.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'Unbounded';
+            src: url('assets/fonts/Unbounded.ttf') format('truetype');
+            font-weight: 100 900;
+            font-display: swap;
+        }
+
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --gray: #888888;
+            --gray-dark: #1A1A1A;
+            --gray-darker: #111111;
+        }
+
+        /* Gold Glow Icons - Lucide */
+        .gold-icon {
+            color: var(--gold);
+            width: 28px;
+            height: 28px;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+        }
+        .gold-icon-sm {
+            color: var(--gold);
+            width: 20px;
+            height: 20px;
+            filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5));
+        }
+        .gold-icon-lg {
+            color: var(--gold);
+            width: 36px;
+            height: 36px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.7));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 100px;
+            width: calc(100% - 32px);
+            max-width: 900px;
+        }
+
+        .navbar-logo img { height: 28px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 100px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-links a.active { color: var(--gold); }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--black) !important;
+            font-weight: 600 !important;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 24px 80px;
+            background: linear-gradient(135deg, var(--black) 0%, #101518 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.7) 100%);
+            z-index: 1;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content h1 span { color: var(--gold); }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .hero-stat { text-align: center; }
+
+        .hero-stat-value {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--gold-glow);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .benefits {
+            padding: 80px 24px;
+            background: var(--gray-darker);
+        }
+
+        .benefits-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 48px;
+            letter-spacing: -0.02em;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .benefit-card {
+            padding: 32px 24px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            border-color: rgba(212,175,55,0.3);
+            transform: translateY(-4px);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .services {
+            padding: 80px 24px;
+            background: var(--black);
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .services-list {
+            list-style: none;
+        }
+
+        .services-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1rem;
+        }
+
+        .services-list li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .services-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 12px;
+        }
+
+        .form-section {
+            padding: 80px 24px;
+            background: var(--gray-dark);
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 16px;
+        }
+
+        .form-container > p {
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+
+        .form-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: var(--white);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--gray);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: var(--gray-dark);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-submit:hover {
+            background: var(--gold-light);
+        }
+
+        footer {
+            background: var(--black);
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img { height: 36px; }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-container,
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-image { order: -1; }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+
+            /* Enhanced Mobile Optimization */
+            section { padding: 48px 16px; }
+
+            .hero {
+                padding: 120px 16px 60px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .benefits-grid {
+                gap: 20px;
+            }
+
+            .benefit-card {
+                padding: 24px 20px;
+            }
+
+            .btn {
+                padding: 16px 24px;
+                min-height: 48px;
+                width: 100%;
+            }
+
+            .hero .btn {
+                width: auto;
+                min-width: 200px;
+            }
+
+            .navbar {
+                width: calc(100% - 24px);
+                padding: 8px 12px;
+            }
+
+            .partners-section {
+                padding: 48px 16px;
+            }
+
+            .partner-card {
+                padding: 20px 16px;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 375px) {
+            section { padding: 40px 12px; }
+
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .benefit-card {
+                padding: 20px 16px;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Partners Section */
+        .partners-section {
+            padding: 80px 24px;
+            background: var(--gray-darker);
+        }
+
+        .partners-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .partner-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 32px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .partner-card:hover {
+            border-color: rgba(212,175,55,0.3);
+            background: rgba(212,175,55,0.02);
+            transform: translateY(-4px);
+        }
+
+        .partner-card img {
+            max-height: 40px;
+            max-width: 120px;
+            filter: brightness(0) invert(1);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .partner-card:hover img {
+            opacity: 1;
+        }
+
+        .partner-name {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--white);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .partner-card:hover .partner-name {
+            opacity: 1;
+        }
+
+        @media (max-width: 1024px) {
+            .partners-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: var(--gray-dark);
+            padding: 36px;
+            border-radius: 8px;
+            max-width: 480px;
+            width: 90%;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/images/font-logos.png" alt="The 99">
+        </a>
+        <div class="nav-links">
+            <a href="athletes.html">Athletes</a>
+            <a href="universities.html">Schools</a>
+            <a href="brands.html" class="active">Brands</a>
+            <a href="team.html">Our Story</a>
+            <a href="#" class="nav-cta" onclick="openModal(); return false;">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="assets/videos/brands-bg.mov" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-content fade-in">
+                <h1>ATHLETES WHO KNOW HOW TO <span>CREATE</span></h1>
+                <p>We don't just connect you with athletes—we connect you with athletes equipped to make amazing content. Hands-off for you, guaranteed results.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">500+</div>
+                        <div class="hero-stat-label">Athletes in Network</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">50+</div>
+                        <div class="hero-stat-label">Programs Nationwide</div>
+                    </div>
+                </div>
+                <a href="#form" class="btn btn-gold">Start a Partnership</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="benefits-container">
+            <span class="section-tag fade-in">Why Partner With The 99</span>
+            <h2 class="section-title fade-in">Not Just Connecting—Equipping</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="target" class="gold-icon-lg"></i></div>
+                    <h3>Curated Matching</h3>
+                    <p>We connect you with athletes who authentically fit your brand—not just high followers, but real alignment.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="bar-chart-3" class="gold-icon-lg"></i></div>
+                    <h3>Measurable Results</h3>
+                    <p>Track campaign performance with clear metrics and ROI reporting on every partnership.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="check-circle" class="gold-icon-lg"></i></div>
+                    <h3>Compliance Handled</h3>
+                    <p>Navigate NIL regulations with confidence. We ensure every partnership is fully compliant.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="trophy" class="gold-icon-lg"></i></div>
+                    <h3>Premium Access</h3>
+                    <p>Connect with athletes from Power 5 programs and rising stars before they blow up.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="handshake" class="gold-icon-lg"></i></div>
+                    <h3>Hands-Off For You</h3>
+                    <p>Our athletes are trained to create great content. You get results without the back-and-forth.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="lightbulb" class="gold-icon-lg"></i></div>
+                    <h3>Campaign Strategy</h3>
+                    <p>Leverage our expertise to create campaigns that resonate with Gen Z audiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="services-container">
+            <div class="services-grid">
+                <div class="fade-in">
+                    <span class="section-tag">Partnership Options</span>
+                    <h2 class="section-title">Flexible Partnership Models</h2>
+                    <ul class="services-list">
+                        <li>One-time campaign activations</li>
+                        <li>Long-term ambassador programs</li>
+                        <li>Event appearances and activations</li>
+                        <li>Social media content partnerships</li>
+                        <li>Product seeding and reviews</li>
+                        <li>Multi-athlete team partnerships</li>
+                        <li>NIL collective sponsorships</li>
+                    </ul>
+                </div>
+                <div class="services-image fade-in">
+                    <img src="assets/images/trace-presenting.jpg" alt="Brand strategy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners-section">
+        <div class="partners-container">
+            <span class="section-tag fade-in">Our Network</span>
+            <h2 class="section-title fade-in">Brands We've Partnered With</h2>
+            <p class="fade-in" style="color: var(--gray); max-width: 600px; margin: 16px auto 0;">We've facilitated partnerships across industries—from sportswear giants to emerging lifestyle brands.</p>
+            <div class="partners-grid">
+                <div class="partner-card fade-in">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike">
+                </div>
+                <div class="partner-card fade-in">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" alt="Adidas">
+                </div>
+                <div class="partner-card fade-in">
+                    <span class="partner-name">BODYARMOR</span>
+                </div>
+                <div class="partner-card fade-in">
+                    <span class="partner-name">CELSIUS</span>
+                </div>
+                <div class="partner-card fade-in">
+                    <span class="partner-name">CHIPOTLE</span>
+                </div>
+                <div class="partner-card fade-in">
+                    <span class="partner-name">CHAMPS</span>
+                </div>
+                <div class="partner-card fade-in">
+                    <span class="partner-name">OAKLEY</span>
+                </div>
+                <div class="partner-card fade-in">
+                    <span class="partner-name">STATE FARM</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section" id="form">
+        <div class="form-container">
+            <span class="section-tag fade-in">Get Started</span>
+            <h2 class="fade-in">Let's Build Something Together</h2>
+            <p class="fade-in">Tell us about your brand and partnership goals. We'll follow up within 24 hours.</p>
+            <div class="form-box fade-in">
+                <iframe
+                    data-tally-src="https://tally.so/embed/2EEqYb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                    loading="lazy"
+                    width="100%"
+                    height="854"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    title="Let's Get Started">
+                </iframe>
+                <script>
+                    var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s)}
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/font-logos.png" alt="The 99">
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="athletes.html">Athletes</a>
+                <a href="universities.html">Schools</a>
+                <a href="brands.html">Brands</a>
+                <a href="team.html">Our Story</a>
+            </div>
+            <p class="footer-copy">© 2024 The 99. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h3 style="margin-bottom: 16px; font-family: 'Unbounded', sans-serif;">Get In Touch</h3>
+            <p style="color: var(--gray); margin-bottom: 20px;">Tell us about your brand and partnership goals.</p>
+            <div id="tally-form">
+                <iframe
+                    data-tally-src="https://tally.so/embed/2EEqYb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                    loading="lazy"
+                    width="100%"
+                    height="854"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    title="Let's Get Started">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <script>
+        var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s)}
+    </script>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('contactModal').addEventListener('click', (e) => {
+            if (e.target.id === 'contactModal') closeModal();
+        });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

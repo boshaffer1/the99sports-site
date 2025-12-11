@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive NIL Chart - The 99 Sports</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --gray: #888888;
+            --gray-dark: #1A1A1A;
+            --gray-darker: #111111;
+            --cyan: #35cbd6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            min-height: 100vh;
+            padding: 40px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-description {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Bento Grid Layout - Fluxo Style */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: auto;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bento-card {
+            background: var(--gray-dark);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(212,175,55,0.4);
+            box-shadow: 0 20px 60px rgba(212,175,55,0.15);
+        }
+
+        /* Card Sizes */
+        .bento-large {
+            grid-column: span 8;
+            grid-row: span 2;
+            min-height: 400px;
+        }
+
+        .bento-medium {
+            grid-column: span 4;
+            min-height: 200px;
+        }
+
+        .bento-wide {
+            grid-column: span 6;
+            min-height: 280px;
+        }
+
+        /* Main Chart Card */
+        .chart-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gray-darker) 0%, #1a1510 100%);
+        }
+
+        /* Interactive Ring Chart */
+        .ring-chart {
+            position: relative;
+            width: 320px;
+            height: 320px;
+        }
+
+        .ring-svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .ring-track {
+            fill: none;
+            stroke: rgba(255,255,255,0.05);
+            stroke-width: 24;
+        }
+
+        .ring-progress {
+            fill: none;
+            stroke: url(#goldGradient);
+            stroke-width: 24;
+            stroke-linecap: round;
+            stroke-dasharray: 0 1000;
+            transition: stroke-dasharray 2s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+        }
+
+        .ring-progress.animated {
+            stroke-dasharray: 879 1000;
+        }
+
+        .ring-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .ring-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .ring-value {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(180deg, #fff 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .ring-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        .ring-sublabel {
+            font-size: 0.75rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 8px;
+        }
+
+        /* People Visualization Card */
+        .people-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(180deg, var(--gray-dark) 0%, var(--gray-darker) 100%);
+        }
+
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .person-icon {
+            width: 100%;
+            aspect-ratio: 1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .person-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .person-icon.gold svg {
+            fill: var(--gold);
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8));
+        }
+
+        .person-icon.gray svg {
+            fill: #444;
+        }
+
+        .person-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .person-icon.gold:hover svg {
+            filter: drop-shadow(0 0 16px rgba(212, 175, 55, 1));
+        }
+
+        .people-label {
+            text-align: center;
+        }
+
+        .people-stat {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .people-desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        /* Market Card - Gradient Style */
+        .market-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .market-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(212,175,55,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .market-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .market-value span {
+            color: var(--gold);
+        }
+
+        .market-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Inequality Card */
+        .inequality-card {
+            background: linear-gradient(135deg, #2d1f0f 0%, #1a1510 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .inequality-bars {
+            display: flex;
+            gap: 8px;
+            height: 120px;
+            align-items: flex-end;
+        }
+
+        .inequality-bar {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .inequality-bar:hover {
+            transform: scaleY(1.05);
+        }
+
+        .inequality-bar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--gold-light) 100%);
+            border-radius: 8px 8px 0 0;
+            transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .inequality-bar.bar-1::after { height: 0; }
+        .inequality-bar.bar-2::after { height: 0; }
+        .inequality-bar.bar-3::after { height: 0; }
+        .inequality-bar.bar-4::after { height: 0; }
+        .inequality-bar.bar-5::after { height: 0; }
+
+        .inequality-bar.animated.bar-1::after { height: 95%; }
+        .inequality-bar.animated.bar-2::after { height: 3%; }
+        .inequality-bar.animated.bar-3::after { height: 1.5%; }
+        .inequality-bar.animated.bar-4::after { height: 0.4%; }
+        .inequality-bar.animated.bar-5::after { height: 0.1%; }
+
+        .inequality-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+        }
+
+        .inequality-label {
+            font-size: 0.7rem;
+            color: var(--gray);
+            text-align: center;
+        }
+
+        .inequality-label.highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .inequality-stat {
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .inequality-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .inequality-stat-value span {
+            color: var(--gold);
+        }
+
+        .inequality-stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Animated Counter */
+        .counter {
+            display: inline-block;
+        }
+
+        /* Interactive Tooltip */
+        .tooltip {
+            position: absolute;
+            background: var(--black);
+            border: 1px solid var(--gold);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 100;
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            50% { transform: translateY(-100px) translateX(50px); opacity: 0.6; }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .bento-large { grid-column: span 12; }
+            .bento-medium { grid-column: span 6; }
+            .bento-wide { grid-column: span 12; }
+        }
+
+        @media (max-width: 768px) {
+            .bento-medium { grid-column: span 12; }
+            .ring-chart { width: 260px; height: 260px; }
+            .ring-value { font-size: 3rem; }
+            .people-grid { grid-template-columns: repeat(5, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="section-header">
+        <span class="section-tag">The Reality</span>
+        <h2 class="section-title">The NIL Market Isn't Built for Everyone</h2>
+        <p class="section-description">While headlines celebrate million-dollar deals for star athletes, 99% of college athletes are left behind.</p>
+    </div>
+
+    <div class="bento-grid">
+        <!-- Main Ring Chart -->
+        <div class="bento-card bento-large chart-card">
+            <div class="particles">
+                <div class="particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+                <div class="particle" style="top: 60%; left: 80%; animation-delay: 2s;"></div>
+                <div class="particle" style="top: 80%; left: 30%; animation-delay: 4s;"></div>
+                <div class="particle" style="top: 30%; left: 70%; animation-delay: 6s;"></div>
+            </div>
+            <div class="ring-chart">
+                <div class="ring-glow"></div>
+                <svg class="ring-svg" viewBox="0 0 320 320">
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#D4AF37"/>
+                            <stop offset="50%" style="stop-color:#F4D03F"/>
+                            <stop offset="100%" style="stop-color:#D4AF37"/>
+                        </linearGradient>
+                    </defs>
+                    <circle class="ring-track" cx="160" cy="160" r="140"/>
+                    <circle class="ring-progress" cx="160" cy="160" r="140"/>
+                </svg>
+                <div class="ring-center">
+                    <div class="ring-value"><span class="counter" data-target="99">0</span>%</div>
+                    <div class="ring-label">of athletes</div>
+                    <div class="ring-sublabel">competing for 5% of deals</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- People Visualization -->
+        <div class="bento-card bento-medium people-card">
+            <div class="people-grid">
+                <div class="person-icon gold">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="4"/><path d="M12 12c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg>
+                </div>
+                <div class="person-icon gray"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="4"/><path d="M12 12c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></div>
+                <div class="person-icon gray"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="4"/><path d="M12 12c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></div>
+                <div class="person-icon gray"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="4"/><path d="M12 12c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></div>
+                <div class="person-icon gray"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="4"/><path d="M12 12c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></div>
+                <div class="person-icon gray"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="4"/><path d="M12 12c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></div>
+                <div class="person-icon gray"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="4"/><path d="M12 12c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></div>
+                <div class="person-icon gray"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="4"/><path d="M12 12c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></div>
+                <div class="person-icon gray"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="4"/><path d="M12 12c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></div>
+                <div class="person-icon gray"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="4"/><path d="M12 12c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg></div>
+            </div>
+            <div class="people-label">
+                <div class="people-stat">&lt;10%</div>
+                <div class="people-desc">of NCAA athletes have consistent NIL deals</div>
+            </div>
+        </div>
+
+        <!-- Market Value -->
+        <div class="bento-card bento-medium market-card">
+            <div class="market-value">$<span class="counter" data-target="2.5" data-decimal="true">0</span>B</div>
+            <div class="market-label">Total NIL Market Size</div>
+        </div>
+
+        <!-- Inequality Bars -->
+        <div class="bento-card bento-wide inequality-card">
+            <div>
+                <div class="inequality-bars">
+                    <div class="inequality-bar bar-1" data-value="95%"></div>
+                    <div class="inequality-bar bar-2" data-value="3%"></div>
+                    <div class="inequality-bar bar-3" data-value="1.5%"></div>
+                    <div class="inequality-bar bar-4" data-value="0.4%"></div>
+                    <div class="inequality-bar bar-5" data-value="0.1%"></div>
+                </div>
+                <div class="inequality-labels">
+                    <span class="inequality-label highlight">Top 1%</span>
+                    <span class="inequality-label">Top 5%</span>
+                    <span class="inequality-label">Top 10%</span>
+                    <span class="inequality-label">Top 25%</span>
+                    <span class="inequality-label">Everyone Else</span>
+                </div>
+            </div>
+            <div class="inequality-stat">
+                <div class="inequality-stat-value">1% takes <span>95%</span></div>
+                <div class="inequality-stat-label">of all NIL money</div>
+            </div>
+        </div>
+
+        <!-- Call to Action Card -->
+        <div class="bento-card bento-wide" style="background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%); display: flex; align-items: center; justify-content: space-between;">
+            <div>
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--black); margin-bottom: 8px;">We're Changing This</h3>
+                <p style="color: rgba(0,0,0,0.7); font-size: 0.9rem;">The 99 helps every athlete build their brand and unlock opportunities.</p>
+            </div>
+            <a href="#" style="background: var(--black); color: var(--white); padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: transform 0.3s ease;">
+                Learn More
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate ring
+                    document.querySelector('.ring-progress')?.classList.add('animated');
+
+                    // Animate bars
+                    document.querySelectorAll('.inequality-bar').forEach((bar, i) => {
+                        setTimeout(() => bar.classList.add('animated'), i * 200);
+                    });
+
+                    // Animate counters
+                    document.querySelectorAll('.counter').forEach(counter => {
+                        animateCounter(counter);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(document.querySelector('.bento-grid'));
+
+        // Counter animation
+        function animateCounter(element) {
+            const target = parseFloat(element.dataset.target);
+            const isDecimal = element.dataset.decimal === 'true';
+            const duration = 2000;
+            const start = 0;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = start + (target - start) * easeOut;
+
+                element.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Interactive hover effects
+        document.querySelectorAll('.inequality-bar').forEach(bar => {
+            bar.addEventListener('mouseenter', function() {
+                const value = this.dataset.value;
+                this.style.setProperty('--glow', '0 0 20px rgba(212, 175, 55, 0.5)');
+            });
+        });
+
+        // Person icon hover interactions
+        document.querySelectorAll('.person-icon').forEach((icon, index) => {
+            icon.addEventListener('mouseenter', function() {
+                if (this.classList.contains('gold')) {
+                    // Show tooltip or highlight
+                }
+            });
+        });
+    </script>
+</body>
+</html>

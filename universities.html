@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Universities | The 99 - NIL Education & Consulting</title>
+    <meta name="description" content="Comprehensive NIL education and consulting for athletic programs. Prepare your student-athletes for success while maintaining compliance.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'Unbounded';
+            src: url('assets/fonts/Unbounded.ttf') format('truetype');
+            font-weight: 100 900;
+            font-display: swap;
+        }
+
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --gray: #888888;
+            --gray-dark: #1A1A1A;
+            --gray-darker: #111111;
+        }
+
+        /* Gold Glow Icons - Lucide */
+        .gold-icon {
+            color: var(--gold);
+            width: 28px;
+            height: 28px;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+        }
+        .gold-icon-sm {
+            color: var(--gold);
+            width: 20px;
+            height: 20px;
+            filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5));
+        }
+        .gold-icon-lg {
+            color: var(--gold);
+            width: 36px;
+            height: 36px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.7));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 100px;
+            width: calc(100% - 32px);
+            max-width: 900px;
+        }
+
+        .navbar-logo img { height: 28px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 100px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-links a.active { color: var(--gold); }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--black) !important;
+            font-weight: 600 !important;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 24px 80px;
+            background: var(--black);
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.4;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.8) 100%);
+            z-index: 1;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content h1 span { color: var(--gold); }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .hero-stat { text-align: center; }
+
+        .hero-stat-value {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--gold-glow);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .benefits {
+            padding: 80px 24px;
+            background: var(--gray-darker);
+        }
+
+        .benefits-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 48px;
+            letter-spacing: -0.02em;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .benefit-card {
+            padding: 32px 24px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            border-color: rgba(212,175,55,0.3);
+            transform: translateY(-4px);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Program Options */
+        .programs {
+            padding: 80px 24px;
+            background: var(--black);
+        }
+
+        .programs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .program-card {
+            padding: 32px;
+            background: var(--gray-dark);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover {
+            border-color: rgba(212,175,55,0.3);
+        }
+
+        .program-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: rgba(212,175,55,0.15);
+            color: var(--gold);
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .program-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .program-card > p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .program-features {
+            list-style: none;
+        }
+
+        .program-features li {
+            padding: 8px 0;
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .program-features li::before {
+            content: '→';
+            color: var(--gold);
+        }
+
+        .services {
+            padding: 80px 24px;
+            background: var(--gray-darker);
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .services-list {
+            list-style: none;
+        }
+
+        .services-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1rem;
+        }
+
+        .services-list li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .services-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 12px;
+        }
+
+        .form-section {
+            padding: 80px 24px;
+            background: var(--gray-dark);
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 16px;
+        }
+
+        .form-container > p {
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+
+        .form-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: var(--white);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--gray);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: var(--gray-dark);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-submit:hover {
+            background: var(--gold-light);
+        }
+
+        footer {
+            background: var(--black);
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img { height: 36px; }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-container,
+            .services-grid,
+            .programs-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-image { order: -1; }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+
+            /* Enhanced Mobile Optimization */
+            section { padding: 48px 16px; }
+
+            .hero {
+                padding: 120px 16px 60px;
+                min-height: 80vh;
+            }
+
+            .hero-video {
+                opacity: 0.3;
+            }
+
+            .hero h1 {
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-container {
+                text-align: center;
+            }
+
+            .hero-container .btn {
+                width: auto;
+                min-width: 200px;
+            }
+
+            .benefits-grid {
+                gap: 20px;
+            }
+
+            .benefit-card {
+                padding: 24px 20px;
+            }
+
+            .program-card {
+                padding: 24px 20px;
+            }
+
+            .btn {
+                padding: 16px 24px;
+                min-height: 48px;
+            }
+
+            .navbar {
+                width: calc(100% - 24px);
+                padding: 8px 12px;
+            }
+
+            .form-container {
+                padding: 32px 20px;
+            }
+
+            .form-box {
+                padding: 24px 16px;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 375px) {
+            section { padding: 40px 12px; }
+
+            .hero {
+                min-height: 70vh;
+            }
+
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .benefit-card,
+            .program-card {
+                padding: 20px 16px;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: var(--gray-dark);
+            padding: 36px;
+            border-radius: 8px;
+            max-width: 480px;
+            width: 90%;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/images/font-logos.png" alt="The 99">
+        </a>
+        <div class="nav-links">
+            <a href="athletes.html">Athletes</a>
+            <a href="universities.html" class="active">Schools</a>
+            <a href="brands.html">Brands</a>
+            <a href="team.html">Our Story</a>
+            <a href="#" class="nav-cta" onclick="openModal(); return false;">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="assets/videos/schools-bg.mov" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-content fade-in">
+                <h1>WIN RECRUITS. <span>BUILD YOUR BRAND.</span></h1>
+                <p>Many athletes are media trained, but almost none are social media trained. Social media is where opportunities are made—and where reputations can be ruined with one mistake.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">50+</div>
+                        <div class="hero-stat-label">Programs Served</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">100+</div>
+                        <div class="hero-stat-label">Workshops Delivered</div>
+                    </div>
+                </div>
+                <a href="#form" class="btn btn-gold">Unlock Your NIL Potential</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="benefits-container">
+            <span class="section-tag fade-in">Why Partner With Us</span>
+            <h2 class="section-title fade-in">Build Programs That Last</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="trophy" class="gold-icon-lg"></i></div>
+                    <h3>Recruiting Advantage</h3>
+                    <p>Top recruits want programs that will prepare them for NIL success. Stand out from the competition.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="check-circle" class="gold-icon-lg"></i></div>
+                    <h3>Compliance Confidence</h3>
+                    <p>Navigate NIL regulations with ease. Our programs are built with compliance at the core.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="users" class="gold-icon-lg"></i></div>
+                    <h3>Athlete Retention</h3>
+                    <p>Athletes who feel supported and educated are more likely to stay committed to your program.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="trending-up" class="gold-icon-lg"></i></div>
+                    <h3>Program Reputation</h3>
+                    <p>Be known as the program that truly invests in student-athlete development beyond the field.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="graduation-cap" class="gold-icon-lg"></i></div>
+                    <h3>Life Skills</h3>
+                    <p>Personal branding, negotiation, and financial literacy—skills that last beyond athletics.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon"><i data-lucide="handshake" class="gold-icon-lg"></i></div>
+                    <h3>Ease the Burden</h3>
+                    <p>Take NIL education off your staff's plate. We handle it so collectives and coaches don't have to.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="programs">
+        <div class="programs-container">
+            <span class="section-tag fade-in">Our Programs</span>
+            <h2 class="section-title fade-in">Flexible Options for Every Program</h2>
+            <div class="programs-grid">
+                <div class="program-card fade-in">
+                    <span class="program-badge">Most Popular</span>
+                    <h3>On-Campus Workshop</h3>
+                    <p>Interactive half-day or full-day sessions delivered on your campus for your student-athletes.</p>
+                    <ul class="program-features">
+                        <li>Personal branding foundations</li>
+                        <li>Social media strategy</li>
+                        <li>Deal negotiation basics</li>
+                        <li>Q&A with athletes</li>
+                        <li>Custom curriculum options</li>
+                    </ul>
+                </div>
+                <div class="program-card fade-in">
+                    <span class="program-badge">Comprehensive</span>
+                    <h3>Semester Program</h3>
+                    <p>Multi-session curriculum integrated into your athletic department's programming.</p>
+                    <ul class="program-features">
+                        <li>Weekly or bi-weekly sessions</li>
+                        <li>Progressive skill building</li>
+                        <li>Individual athlete assessments</li>
+                        <li>Brand building workshops</li>
+                        <li>Ongoing support & resources</li>
+                    </ul>
+                </div>
+                <div class="program-card fade-in">
+                    <span class="program-badge">Quick Start</span>
+                    <h3>Keynote Presentation</h3>
+                    <p>High-impact presentation for team meetings, assemblies, or athletic department events.</p>
+                    <ul class="program-features">
+                        <li>60-90 minute presentation</li>
+                        <li>Engaging and interactive</li>
+                        <li>Perfect for team kickoffs</li>
+                        <li>Customized messaging</li>
+                        <li>Follow-up resources included</li>
+                    </ul>
+                </div>
+                <div class="program-card fade-in">
+                    <span class="program-badge">Ongoing</span>
+                    <h3>Consulting Retainer</h3>
+                    <p>Year-round partnership providing ongoing support for your athletic department's NIL initiatives.</p>
+                    <ul class="program-features">
+                        <li>Dedicated point of contact</li>
+                        <li>Quarterly workshops</li>
+                        <li>Staff training sessions</li>
+                        <li>Policy consultation</li>
+                        <li>Collective partnership guidance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="services-container">
+            <div class="services-grid">
+                <div class="services-image fade-in">
+                    <img src="assets/images/trace-presenting.jpg" alt="NIL Education">
+                </div>
+                <div class="fade-in">
+                    <span class="section-tag">What's Included</span>
+                    <h2 class="section-title">Comprehensive NIL Education</h2>
+                    <ul class="services-list">
+                        <li>Personal brand development strategies</li>
+                        <li>Social media optimization techniques</li>
+                        <li>Contract negotiation fundamentals</li>
+                        <li>Financial literacy education</li>
+                        <li>Compliance guidelines and best practices</li>
+                        <li>Media training and interview skills</li>
+                        <li>Long-term career planning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section" id="form">
+        <div class="form-container">
+            <span class="section-tag fade-in">Get Started</span>
+            <h2 class="fade-in">Schedule a Consultation</h2>
+            <p class="fade-in">Tell us about your program and we'll create a customized NIL education plan.</p>
+            <div class="form-box fade-in">
+                <iframe
+                    data-tally-src="https://tally.so/embed/2EEqYb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                    loading="lazy"
+                    width="100%"
+                    height="854"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    title="Let's Get Started">
+                </iframe>
+                <script>
+                    var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s)}
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/font-logos.png" alt="The 99">
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="athletes.html">Athletes</a>
+                <a href="universities.html">Schools</a>
+                <a href="brands.html">Brands</a>
+                <a href="team.html">Our Story</a>
+            </div>
+            <p class="footer-copy">© 2024 The 99. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h3 style="margin-bottom: 16px; font-family: 'Unbounded', sans-serif;">Get In Touch</h3>
+            <p style="color: var(--gray); margin-bottom: 20px;">Tell us about your program and NIL goals.</p>
+            <div id="tally-form">
+                <iframe
+                    data-tally-src="https://tally.so/embed/2EEqYb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                    loading="lazy"
+                    width="100%"
+                    height="854"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    title="Let's Get Started">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <script>
+        var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s)}
+    </script>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('contactModal').addEventListener('click', (e) => {
+            if (e.target.id === 'contactModal') closeModal();
+        });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

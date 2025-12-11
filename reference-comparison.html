@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Reference Comparison</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0A0A0A;
+            color: #fff;
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .reference {
+            background: #1A1A1A;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .reference h2 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: #D4AF37;
+        }
+        .reference img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .reference p {
+            margin-top: 16px;
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .cta a {
+            display: inline-block;
+            background: #D4AF37;
+            color: #000;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 8px;
+        }
+        .cta a:hover {
+            background: #F4D03F;
+        }
+        @media (max-width: 768px) {
+            .comparison { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Design Reference Comparison</h1>
+
+    <div class="comparison">
+        <div class="reference">
+            <h2>Current Chart (The 99 Sports)</h2>
+            <img src="file:///var/folders/4p/kfxdtrv10j36tynztk059wc00000gn/T/TemporaryItems/NSIRD_screencaptureui_LJGjfj/Screenshot%202025-12-07%20at%2012.56.29%20PM.png" alt="Current Chart">
+            <p><strong>Features:</strong> Person icons (1 gold, 9 gray), circular ring chart with 99% in center, glowing gold effect, dark background, "$2.5B market" footer</p>
+        </div>
+
+        <div class="reference">
+            <h2>Fluxo Design Inspiration</h2>
+            <img src="file:///var/folders/4p/kfxdtrv10j36tynztk059wc00000gn/T/TemporaryItems/NSIRD_screencaptureui_yAP0Up/Screenshot%202025-12-07%20at%2012.57.52%20PM.png" alt="Fluxo Design">
+            <p><strong>Features:</strong> Bento-grid layout, colorful gradient illustrations, clean typography, card-based design with subtle shadows, modern minimalist aesthetic</p>
+        </div>
+    </div>
+
+    <div class="cta">
+        <a href="chart-preview.html">View New Interactive Chart</a>
+        <a href="index.html">Back to Homepage</a>
+    </div>
+</body>
+</html>
