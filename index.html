@@ -1201,8 +1201,8 @@
             justify-content: center;
             flex-shrink: 0;
             box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-            padding: 8px;
-            object-fit: contain;
+            padding: 2px;
+            overflow: hidden;
         }
         .author-avatar img {
             width: 100%;
@@ -2382,44 +2382,7 @@
             }
 
             function drawPegs() {
-                // Draw cups first (behind pegs)
-                const rect = canvas.parentElement.getBoundingClientRect();
-                const w = rect.width;
-                const h = rect.height;
-                const centerX = w / 2;
-                const cupY = h - 180;
-                const cupWidth = 90;
-                const cupHeight = 100;
-                const cupGap = 50;
-                
-                // Left cup (white - 1% - gets 95 balls)
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(centerX - cupGap - cupWidth, cupY);
-                ctx.lineTo(centerX - cupGap - cupWidth + 15, cupY + cupHeight);
-                ctx.lineTo(centerX - cupGap - 15, cupY + cupHeight);
-                ctx.lineTo(centerX - cupGap, cupY);
-                ctx.stroke();
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-                ctx.fill();
-                
-                // Right cup (gold - 99% - gets 5 balls)
-                ctx.strokeStyle = '#D4AF37';
-                ctx.lineWidth = 3;
-                ctx.shadowColor = '#D4AF37';
-                ctx.shadowBlur = 15;
-                ctx.beginPath();
-                ctx.moveTo(centerX + cupGap, cupY);
-                ctx.lineTo(centerX + cupGap + 15, cupY + cupHeight);
-                ctx.lineTo(centerX + cupGap + cupWidth - 15, cupY + cupHeight);
-                ctx.lineTo(centerX + cupGap + cupWidth, cupY);
-                ctx.stroke();
-                ctx.fillStyle = 'rgba(212, 175, 55, 0.05)';
-                ctx.fill();
-                ctx.shadowBlur = 0;
-                
-                // Draw pegs
+                // Draw pegs only - cups are in HTML
                 pegs.forEach(peg => {
                     ctx.beginPath();
                     ctx.arc(peg.x, peg.y, peg.r, 0, Math.PI * 2);
