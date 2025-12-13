@@ -2227,10 +2227,10 @@
                 const rect = canvas.parentElement.getBoundingClientRect();
                 const centerX = rect.width / 2;
                 return {
-                    x: centerX + (Math.random() - 0.5) * 10,
-                    y: -5 - Math.random() * 15,
-                    vx: goesLeft ? -0.3 - Math.random() * 0.2 : 0.3 + Math.random() * 0.2,
-                    vy: 0.5,
+                    x: centerX + (Math.random() - 0.5) * 8,
+                    y: -5 - Math.random() * 10,
+                    vx: goesLeft ? -0.5 - Math.random() * 0.3 : 0.5 + Math.random() * 0.3,
+                    vy: 0.3,
                     r: 4,
                     goesLeft,
                     trail: [],
@@ -2256,8 +2256,8 @@
                 const landY = rect.height - 190;
                 const centerX = w / 2;
 
-                // Gravity
-                b.vy += 0.12;
+                // Gravity - slower for better visual
+                b.vy += 0.08;
                 b.x += b.vx;
                 b.y += b.vy;
 
@@ -2274,28 +2274,39 @@
                         // Push ball out of peg
                         b.x = peg.x + nx * (minDist + 1);
                         b.y = peg.y + ny * (minDist + 1);
-                        // Reflect velocity with bias
+                        // Reflect velocity with strong directional bias
                         const dot = b.vx * nx + b.vy * ny;
-                        b.vx = b.vx - 1.5 * dot * nx + (b.goesLeft ? -0.5 : 0.5);
+                        b.vx = b.vx - 1.5 * dot * nx + (b.goesLeft ? -0.8 : 0.8);
                         b.vy = Math.abs(b.vy - 1.5 * dot * ny) * 0.6;
-                        // Add slight randomness
-                        b.vx += (Math.random() - 0.5) * 0.3;
+                        // Add slight randomness but keep directional bias
+                        b.vx += (Math.random() - 0.5) * 0.2 + (b.goesLeft ? -0.1 : 0.1);
                     }
                 });
 
-                // Guide balls to their side
-                const bias = b.goesLeft ? -0.02 : 0.02;
+                // Guide balls strongly to their side - no middle allowed
+                const distFromCenter = Math.abs(b.x - centerX);
+                if (distFromCenter < 50 && b.y > landY - 100) {
+                    // Force balls away from center when they're near the bottom
+                    b.vx = b.goesLeft ? -2 : 2;
+                }
+                const bias = b.goesLeft ? -0.05 : 0.05;
                 b.vx += bias;
 
                 // Damping
-                b.vx *= 0.99;
+                b.vx *= 0.98;
 
-                // Bounds
-                if (b.x < 30) { b.x = 30; b.vx = Math.abs(b.vx) * 0.5; }
-                if (b.x > w - 30) { b.x = w - 30; b.vx = -Math.abs(b.vx) * 0.5; }
+                // Bounds - keep balls from edges
+                if (b.x < 20) { b.x = 20; b.vx = Math.abs(b.vx) * 0.7; }
+                if (b.x > w - 20) { b.x = w - 20; b.vx = -Math.abs(b.vx) * 0.7; }
 
                 if (b.y > landY) {
                     b.landed = true;
+                    // Make sure ball lands on correct side - force it if needed
+                    if (b.goesLeft && b.x >= centerX - 20) {
+                        b.x = centerX - 40; // Force to left side
+                    } else if (!b.goesLeft && b.x <= centerX + 20) {
+                        b.x = centerX + 40; // Force to right side
+                    }
                     const landsLeft = b.x < centerX;
 
                     // Left cup = white (1%), Right cup = gold (99%)
@@ -2417,13 +2428,13 @@
                     document.getElementById('nilHeadline').classList.add('visible');
                 }, 400);
 
-                // White balls (95) go left - drop steadily
+                // White balls (95) go left - slower, more dramatic release
                 for (let i = 0; i < 95; i++) {
-                    setTimeout(() => balls.push(createBall(i)), 1500 + i * 80);
+                    setTimeout(() => balls.push(createBall(i)), 1500 + i * 100);
                 }
 
-                // Gold balls (5) go right - spread throughout
-                const goldTiming = [500, 2000, 3500, 5000, 6500];
+                // Gold balls (5) go right - spread throughout animation
+                const goldTiming = [800, 2500, 4500, 7000, 9000];
                 for (let i = 0; i < 5; i++) {
                     setTimeout(() => balls.push(createBall(95 + i)), 1500 + goldTiming[i]);
                 }
