@@ -2321,13 +2321,13 @@
                         whiteLanded++;
                         document.getElementById('nilWhiteFill').style.height = Math.min(95, whiteLanded / 95 * 100) + '%';
                         document.getElementById('nilWhiteAmount').textContent = formatMoney(whiteLanded * 25000000);
-                        document.getElementById('nilWhiteBalls').textContent = whiteLanded;
+                        // document.getElementById('nilWhiteBalls').textContent = whiteLanded;
                     } else {
                         // Gold cup (99%) - gets 5 balls
                         goldLanded++;
                         document.getElementById('nilGoldFill').style.height = Math.min(20, goldLanded / 5 * 25) + '%';
                         document.getElementById('nilGoldAmount').textContent = formatMoney(goldLanded * 25000000);
-                        document.getElementById('nilGoldBalls').textContent = goldLanded;
+                        // document.getElementById('nilGoldBalls').textContent = goldLanded;
                         if (goldLanded >= 3) document.getElementById('nilGoldCup').classList.add('glowing');
                     }
                 }
@@ -2418,8 +2418,8 @@
                 document.getElementById('nilWhiteFill').style.height = '0%';
                 document.getElementById('nilGoldAmount').textContent = '$0';
                 document.getElementById('nilWhiteAmount').textContent = '$0';
-                document.getElementById('nilGoldBalls').textContent = '0';
-                document.getElementById('nilWhiteBalls').textContent = '0';
+                // document.getElementById('nilGoldBalls').textContent = '0';
+                // document.getElementById('nilWhiteBalls').textContent = '0';
                 document.getElementById('nilGoldCup').classList.remove('glowing');
                 document.getElementById('nilCounter').classList.remove('visible');
                 document.getElementById('nilHeadline').classList.remove('visible');
