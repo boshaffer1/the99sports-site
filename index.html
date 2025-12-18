@@ -7,8 +7,8 @@
     <meta name="description" content="Elite NIL consulting for athletic programs, athletes, and brands. Build athletes' futures with The 99.">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- Open Graph -->
     <meta property="og:title" content="The 99 | NIL Consulting">
@@ -190,7 +190,7 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 900px;
+            max-width: 1200px;
             padding: 0 24px;
         }
 
@@ -202,7 +202,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-size: clamp(3rem, 8vw, 5rem);
             margin-bottom: 20px;
             letter-spacing: 0.02em;
             text-transform: uppercase;
@@ -1303,6 +1303,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
         }
 
         .footer-logo img { height: 36px; }
@@ -1320,6 +1322,8 @@
         }
 
         .footer-links a:hover { color: var(--gold); }
+        
+        .footer-socials a:hover { color: var(--gold); }
 
         .footer-copy {
             color: var(--gray);
@@ -1618,7 +1622,8 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <img src="assets/images/font-logos.png" alt="The 99" class="hero-logo">
-            <h1><span>The Future of NIL</span>—for Athletes, Schools, and Brands.</h1>
+            <h1 style="white-space: nowrap;"><span>The Future of NIL</span></h1>
+            <p style="font-family: 'Unbounded', sans-serif; font-size: 2.2rem; font-weight: 500; margin-top: -10px; margin-bottom: 30px; letter-spacing: 0.02em; color: var(--white); text-transform: uppercase;">For Athletes, Schools, and Brands.</p>
             <div class="hero-cta" style="margin-top: 32px;">
                 <a href="#" class="btn btn-gold" onclick="openModal(); return false;">Unlock Your NIL Potential</a>
             </div>
@@ -1635,7 +1640,7 @@
         <div class="vsl-video-container fade-in" id="vsl-container">
             <iframe
                 id="vsl-video"
-                src="https://www.youtube.com/embed/I6h5VbMGqUs?si=279zbH04H2558pp3"
+                src="https://www.youtube.com/embed/I6h5VbMGqUs"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -2632,11 +2637,20 @@
                 <img src="assets/images/font-logos.png" alt="The 99">
             </div>
             <div class="footer-links">
-                <a href="athletes.html">Athletes</a>
                 <a href="universities.html">Schools</a>
-                <a href="brands.html">Brands</a>
                 <a href="team.html">Our Story</a>
-                <a href="#" onclick="openModal(); return false;">Contact</a>
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="refund-policy.html">Refund Policy</a>
+            </div>
+            <div class="footer-socials" style="display: flex; gap: 16px; align-items: center;">
+                <a href="https://www.instagram.com/the99sports/" target="_blank" rel="noopener noreferrer" style="color: var(--gray); transition: color 0.3s ease;">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                    </svg>
+                </a>
             </div>
             <p class="footer-copy">© 2024 The 99. All rights reserved.</p>
         </div>
