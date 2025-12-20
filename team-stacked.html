@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | The 99 - Meet The Team</title>
+    <meta name="description" content="Meet the team behind The 99. Founded by former collegiate athlete Trace Young, we're on a mission to help every athlete succeed in the NIL era.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'Unbounded';
+            src: url('assets/fonts/Unbounded.ttf') format('truetype');
+            font-weight: 100 900;
+            font-display: swap;
+        }
+
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --gray: #888888;
+            --gray-dark: #1A1A1A;
+            --gray-darker: #111111;
+        }
+
+        /* Gold Glow Icons - Lucide */
+        .gold-icon {
+            color: var(--gold);
+            width: 28px;
+            height: 28px;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+        }
+        .gold-icon-sm {
+            color: var(--gold);
+            width: 20px;
+            height: 20px;
+            filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5));
+        }
+        .gold-icon-lg {
+            color: var(--gold);
+            width: 36px;
+            height: 36px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.7));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 100px;
+            width: calc(100% - 32px);
+            max-width: 1200px;
+        }
+
+        .navbar-logo img { height: 28px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 100px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-links a.active {
+            color: var(--white);
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--black) !important;
+            font-weight: 600 !important;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 140px 24px 80px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--gray-darker) 0%, var(--black) 100%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        /* Origin Story */
+        .origin {
+            padding: 60px 24px;
+            background: var(--black);
+        }
+
+        .origin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .origin-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .origin-content h2 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            margin-bottom: 24px;
+        }
+
+        .origin-content p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 80px 24px;
+            background: var(--gray-dark);
+        }
+
+        .team-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .team-header h2 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            margin-bottom: 16px;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .team-member {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .team-member-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: -2;
+        }
+
+        .team-member-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.3) 100%);
+            z-index: -1;
+        }
+
+        .team-member-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .team-member-text {
+            color: var(--white);
+        }
+
+        .team-member-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .team-member-info {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .team-member-name {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        .team-member-role {
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .team-member-bio {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .team-member-highlights {
+            margin-top: auto;
+            padding-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .team-highlight {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        /* CTA */
+        .cta {
+            padding: 80px 24px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--black) 0%, #1a1510 100%);
+        }
+
+        .cta h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--gold-glow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img { height: 36px; }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 768px) {
+            .origin-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a:not(.nav-cta):not(.active) {
+                display: none;
+            }
+
+            /* Enhanced Mobile Optimization */
+            section { padding: 48px 16px; }
+
+            .hero {
+                padding: 120px 16px 60px;
+            }
+
+            .hero h1 {
+                font-size: clamp(1.6rem, 5vw, 2.2rem);
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .origin {
+                padding: 60px 16px;
+            }
+
+            .origin-content h2 {
+                font-size: clamp(1.3rem, 4vw, 1.8rem);
+            }
+
+            .origin-content p {
+                font-size: 0.95rem;
+            }
+
+            .team {
+                padding: 60px 16px;
+            }
+
+            .team-member-image {
+                height: 300px;
+            }
+
+            .team-member-info {
+                padding: 20px;
+            }
+
+            .team-member-name {
+                font-size: 1.1rem;
+            }
+
+            .team-member-bio {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 16px 24px;
+                min-height: 48px;
+            }
+
+            .navbar {
+                width: calc(100% - 24px);
+                padding: 8px 12px;
+            }
+
+            .cta {
+                padding: 60px 16px;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 375px) {
+            section { padding: 40px 12px; }
+
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+
+            .team-member-image {
+                height: 260px;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                color: var(--gold);
+                text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            }
+            50% {
+                color: var(--gold-light);
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 30px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-content {
+            background: var(--gray-dark);
+            padding: 36px;
+            border-radius: 8px;
+            max-width: 480px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/images/font-logos.png" alt="The 99">
+        </a>
+        <div class="nav-links">
+            <a href="athletes.html">Athletes</a>
+            <a href="universities.html">Schools</a>
+            <a href="brands.html">Brands</a>
+            <a href="team.html" class="active">Our Story</a>
+            <a href="#" class="nav-cta" onclick="openModal(); return false;">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="fade-in">
+            <span class="section-tag">Our Story</span>
+            <h1>FROM THE <span>99%</span> TO HELPING THE 99%</h1>
+            <p>We didn't build The 99 from a boardroom. We built it from experience—as athletes who learned how to create opportunities in a system that wasn't designed for us.</p>
+        </div>
+    </section>
+
+    <section class="team">
+        <div class="team-container">
+            <div class="team-header fade-in">
+                <span class="section-tag">Meet The Team</span>
+                <h2>THE PEOPLE BEHIND THE 99</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member fade-in">
+                    <img src="assets/images/trace-lsu.jpg" alt="" class="team-member-bg">
+                    <div class="team-member-overlay"></div>
+                    <div class="team-member-content">
+                        <div class="team-member-text">
+                            <h3 class="team-member-name" style="font-size: 3rem; margin-bottom: 16px;">TRACE YOUNG</h3>
+                            <div class="team-member-role" style="animation: pulse-glow 2s ease-in-out infinite; font-size: 1.3rem; margin-bottom: 32px;">Founder & CEO</div>
+                            <p class="team-member-bio" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">Trace Young transferred from Colorado State to LSU, where he earned a Business Marketing degree while becoming one of ESPN's recognized top NIL earners with 70+ brand deals. Featured in Amazon Prime's The Money Game alongside Livvy Dunne, Jayden Daniels, and Angel Reese, he also testified before the U.S. House of Representatives on NIL legislation reform.</p>
+                            <p class="team-member-bio" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">With hundreds of thousands of followers across social platforms, Trace built his brand while helping teammates navigate NIL at both CSU and LSU. This real experience—not theory—led him to found The 99 Network, where athletes get the education, structure, and AI tools to handle NIL complexities while staying focused on academics and athletics.</p>
+                            <p class="team-member-bio" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 32px;">Trace is also co-founder of Ballogy, an AI-powered sports technology platform that helps athletes and coaches track performance, build practice plans, and access training analytics.</p>
+                            <div class="team-member-highlights" style="display: flex; gap: 32px; flex-wrap: wrap;">
+                                <div class="team-highlight">
+                                    <i data-lucide="mic" class="gold-icon-sm"></i>
+                                    <span>Featured Speaker at NCAA Events</span>
+                                </div>
+                                <div class="team-highlight">
+                                    <i data-lucide="tv" class="gold-icon-sm"></i>
+                                    <span>As Seen on ESPN & Amazon Prime</span>
+                                </div>
+                                <div class="team-highlight">
+                                    <i data-lucide="trophy" class="gold-icon-sm"></i>
+                                    <span>Trusted by Power 5 Programs</span>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="assets/images/trace-suit.jpg" alt="Trace Young" class="team-member-image">
+                    </div>
+                </div>
+                <div class="team-member fade-in" style="background: linear-gradient(135deg, var(--gray-dark), var(--black));">
+                    <div class="team-member-overlay" style="background: linear-gradient(270deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.3) 100%);"></div>
+                    <div class="team-member-content">
+                        <img src="assets/images/bo-new.jpg" alt="Bo Shaffer" class="team-member-image">
+                        <div class="team-member-text">
+                            <h3 class="team-member-name" style="font-size: 3rem; margin-bottom: 16px;">BO SHAFFER</h3>
+                            <div class="team-member-role" style="font-size: 1.3rem; margin-bottom: 32px; color: var(--gold);">Co-Founder</div>
+                            <p class="team-member-bio" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 32px;">Bo brings expertise in digital strategy and technology to The 99, helping build the systems and platforms that connect athletes with opportunity. His focus on scalable solutions ensures The 99 can reach athletes at every level.</p>
+                            <div class="team-member-highlights" style="display: flex; gap: 32px; flex-wrap: wrap;">
+                                <div class="team-highlight">
+                                    <i data-lucide="code" class="gold-icon-sm"></i>
+                                    <span>Technology & Platform Strategy</span>
+                                </div>
+                                <div class="team-highlight">
+                                    <i data-lucide="rocket" class="gold-icon-sm"></i>
+                                    <span>Digital Growth & Marketing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="fade-in">
+            <h2>READY TO WORK WITH US?</h2>
+            <p>Let's discuss how The 99 can help your program, athletes, or brand succeed in the NIL era.</p>
+            <a href="#" class="btn btn-gold" onclick="openModal(); return false;">Unlock Your NIL Potential</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/font-logos.png" alt="The 99">
+            </div>
+            <div class="footer-links">
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="refund-policy.html">Refund Policy</a>
+            </div>
+            <div class="footer-socials" style="display: flex; gap: 16px; align-items: center;">
+                <a href="https://www.instagram.com/the99sports/" target="_blank" rel="noopener noreferrer" style="color: var(--gray); transition: color 0.3s ease;">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copy">© 2024 The 99. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h3 style="margin-bottom: 16px; font-family: 'Unbounded', sans-serif;">Get In Touch</h3>
+            <p style="color: var(--gray); margin-bottom: 20px;">Tell us who you are and we'll customize the conversation.</p>
+            <div id="tally-form">
+                <iframe
+                    data-tally-src="https://tally.so/embed/2EEqYb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                    loading="lazy"
+                    width="100%"
+                    height="854"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    title="Let's Get Started">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <script>
+        var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s)}
+    </script>
+
+    <script>
+        // Fade in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Modal
+        function openModal() {
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('contactModal').addEventListener('click', (e) => {
+            if (e.target.id === 'contactModal') closeModal();
+        });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
