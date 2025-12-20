@@ -473,6 +473,17 @@
             transform: translateY(0);
         }
 
+        @keyframes pulse-glow {
+            0%, 100% {
+                color: var(--gold);
+                text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            }
+            50% {
+                color: var(--gold-light);
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 30px rgba(212, 175, 55, 0.4);
+            }
+        }
+
         /* Modal */
         .modal-overlay {
             display: none;
@@ -543,7 +554,7 @@
                     <img src="assets/images/trace-suit.jpg" alt="Trace Young" class="team-member-image" style="object-fit: cover; object-position: center 35%;">
                     <div class="team-member-info">
                         <h3 class="team-member-name">Trace Young</h3>
-                        <div class="team-member-role">Founder & CEO</div>
+                        <div class="team-member-role" style="animation: pulse-glow 2s ease-in-out infinite;">Founder & CEO</div>
                         <p class="team-member-bio">Trace Young transferred from Colorado State to LSU, where he earned a Business Marketing degree while becoming one of ESPN's recognized top NIL earners with 70+ brand deals. Featured in Amazon Prime's The Money Game alongside Livvy Dunne, Jayden Daniels, and Angel Reese, he also testified before the U.S. House of Representatives on NIL legislation reform.</p>
                         <p class="team-member-bio">With hundreds of thousands of followers across social platforms, Trace built his brand while helping teammates navigate NIL at both CSU and LSU. This real experience—not theory—led him to found The 99 Network, where athletes get the education, structure, and AI tools to handle NIL complexities while staying focused on academics and athletics.</p>
                         <p class="team-member-bio">Trace is also co-founder of Ballogy, an AI-powered sports technology platform that helps athletes and coaches track performance, build practice plans, and access training analytics.</p>
@@ -564,7 +575,7 @@
                     </div>
                 </div>
                 <div class="team-member fade-in">
-                    <img src="assets/images/bo-new.jpg" alt="Bo Shaffer" class="team-member-image" style="object-fit: cover; object-position: center 15%;">
+                    <img src="assets/images/bo-new.jpg" alt="Bo Shaffer" class="team-member-image" style="object-fit: cover; object-position: center 35%;">
                     <div class="team-member-info">
                         <h3 class="team-member-name">Bo Shaffer</h3>
                         <div class="team-member-role">Co-Founder</div>
