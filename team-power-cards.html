@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership Team | The 99 - Elite Sports Business</title>
+    <meta name="description" content="Meet the elite leadership team behind The 99. ESPN-featured founders transforming NIL for college athletes.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'Unbounded';
+            src: url('assets/fonts/Unbounded.ttf') format('truetype');
+            font-weight: 100 900;
+            font-display: swap;
+        }
+
+        :root {
+            --rich-black: #0A0A0A;
+            --deep-charcoal: #1C1C1C;
+            --charcoal: #2A2A2A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --gray: #888888;
+            --gray-light: #CCCCCC;
+            --gray-dark: #1A1A1A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(180deg, var(--rich-black) 0%, var(--deep-charcoal) 100%);
+            color: var(--white);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 100px;
+            width: calc(100% - 32px);
+            max-width: 1200px;
+        }
+
+        .navbar-logo img { height: 28px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 100px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-links a.active {
+            color: var(--white);
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--rich-black) !important;
+            font-weight: 600 !important;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 140px 24px 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 24px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .section-tag::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .header-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Power Cards Section */
+        .power-cards-section {
+            padding: 60px 24px 100px;
+        }
+
+        .power-cards-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Power Cards Grid */
+        .power-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Individual Power Card */
+        .power-card {
+            position: relative;
+            background: var(--charcoal);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .power-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        /* Portrait Section */
+        .card-portrait {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            background: var(--deep-charcoal);
+        }
+
+        .card-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .power-card:hover .card-portrait img {
+            transform: scale(1.05);
+        }
+
+        /* Semi-transparent overlay */
+        .portrait-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(10,10,10,0.2) 0%, 
+                rgba(10,10,10,0.4) 70%, 
+                rgba(10,10,10,0.95) 100%);
+            pointer-events: none;
+        }
+
+        /* University Badge */
+        .university-badge {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            background: rgba(10,10,10,0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 100px;
+            border: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .university-name {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Card Content */
+        .card-content {
+            padding: 40px;
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--deep-charcoal) 100%);
+        }
+
+        /* Name and Title */
+        .card-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .card-name {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--white);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        /* Trust Signals - Horizontal Row */
+        .trust-signals {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: rgba(10,10,10,0.3);
+            border-radius: 12px;
+        }
+
+        .trust-signal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .trust-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--gold);
+            filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
+        }
+
+        .trust-label {
+            font-size: 0.7rem;
+            color: var(--gray-light);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Accolades - Scannable Bullet Points */
+        .card-accolades {
+            margin-bottom: 32px;
+        }
+
+        .accolade-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--gray-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .accolade-bullet {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            color: var(--gold);
+            margin-top: 2px;
+        }
+
+        /* CTA Button */
+        .card-cta {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: var(--gold);
+            color: var(--rich-black);
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .card-cta:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--rich-black);
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img { height: 36px; }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.7rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .power-cards-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .card-portrait {
+                height: 500px;
+            }
+
+            .trust-signals {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .trust-signal {
+                min-width: 70px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-section {
+                padding: 120px 20px 40px;
+            }
+
+            .header-title {
+                font-size: 2rem;
+            }
+
+            .card-portrait {
+                height: 400px;
+            }
+
+            .card-content {
+                padding: 32px 24px;
+            }
+
+            .card-name {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a:not(.nav-cta):not(.active) {
+                display: none;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-content {
+            background: var(--gray-dark);
+            padding: 36px;
+            border-radius: 8px;
+            max-width: 480px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/images/font-logos.png" alt="The 99">
+        </a>
+        <div class="nav-links">
+            <a href="athletes.html">Athletes</a>
+            <a href="universities.html">Schools</a>
+            <a href="brands.html">Brands</a>
+            <a href="team-profiles.html" class="active">Our Story</a>
+            <a href="#" class="nav-cta" onclick="openModal(); return false;">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="header-section">
+        <div class="fade-in">
+            <div class="section-tag">The Leaders</div>
+            <h1 class="header-title">Elite Sports Business</h1>
+            <p class="header-subtitle">Meet the founders transforming NIL through real experience, not theory</p>
+        </div>
+    </section>
+
+    <!-- Power Cards Section -->
+    <section class="power-cards-section">
+        <div class="power-cards-container">
+            <div class="power-cards-grid">
+                
+                <!-- Trace Young Power Card -->
+                <article class="power-card fade-in">
+                    <div class="card-portrait">
+                        <img src="assets/images/trace-suit.jpg" alt="Trace Young - Founder & CEO" style="object-position: center 35%;">
+                        <div class="portrait-overlay"></div>
+                        <div class="university-badge">
+                            <span class="university-name">LSU</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2 class="card-name">Trace Young</h2>
+                            <div class="card-title">Founder & CEO</div>
+                        </div>
+                        
+                        <!-- Trust Signals -->
+                        <div class="trust-signals">
+                            <div class="trust-signal">
+                                <i data-lucide="tv" class="trust-icon"></i>
+                                <span class="trust-label">ESPN<br>Featured</span>
+                            </div>
+                            <div class="trust-signal">
+                                <i data-lucide="film" class="trust-icon"></i>
+                                <span class="trust-label">Amazon<br>Prime</span>
+                            </div>
+                            <div class="trust-signal">
+                                <i data-lucide="building" class="trust-icon"></i>
+                                <span class="trust-label">Congress<br>Speaker</span>
+                            </div>
+                            <div class="trust-signal">
+                                <i data-lucide="mic" class="trust-icon"></i>
+                                <span class="trust-label">NCAA<br>Events</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Accolades -->
+                        <div class="card-accolades">
+                            <div class="accolade-item">
+                                <i data-lucide="check-circle" class="accolade-bullet"></i>
+                                <span>70+ brand partnerships secured, ESPN-recognized top NIL earner</span>
+                            </div>
+                            <div class="accolade-item">
+                                <i data-lucide="check-circle" class="accolade-bullet"></i>
+                                <span>Featured in The Money Game alongside Livvy Dunne & Angel Reese</span>
+                            </div>
+                            <div class="accolade-item">
+                                <i data-lucide="check-circle" class="accolade-bullet"></i>
+                                <span>Testified before U.S. House of Representatives on NIL reform</span>
+                            </div>
+                            <div class="accolade-item">
+                                <i data-lucide="check-circle" class="accolade-bullet"></i>
+                                <span>Built 500K+ social following while competing at CSU & LSU</span>
+                            </div>
+                            <div class="accolade-item">
+                                <i data-lucide="check-circle" class="accolade-bullet"></i>
+                                <span>Co-founder of Ballogy, AI-powered sports technology platform</span>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA -->
+                        <a href="#" class="card-cta" onclick="openModal(); return false;">Contact Trace</a>
+                    </div>
+                </article>
+                
+                <!-- Bo Shaffer Power Card -->
+                <article class="power-card fade-in">
+                    <div class="card-portrait">
+                        <img src="assets/images/bo-new.jpg" alt="Bo Shaffer - Co-Founder" style="object-position: center 60%;">
+                        <div class="portrait-overlay"></div>
+                        <div class="university-badge">
+                            <span class="university-name">Duke University</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h2 class="card-name">Bo Shaffer</h2>
+                            <div class="card-title">Co-Founder</div>
+                        </div>
+                        
+                        <!-- Trust Signals -->
+                        <div class="trust-signals">
+                            <div class="trust-signal">
+                                <i data-lucide="graduation-cap" class="trust-icon"></i>
+                                <span class="trust-label">Duke<br>University</span>
+                            </div>
+                            <div class="trust-signal">
+                                <i data-lucide="code-2" class="trust-icon"></i>
+                                <span class="trust-label">Tech<br>Strategy</span>
+                            </div>
+                            <div class="trust-signal">
+                                <i data-lucide="trending-up" class="trust-icon"></i>
+                                <span class="trust-label">Growth<br>Expert</span>
+                            </div>
+                            <div class="trust-signal">
+                                <i data-lucide="globe" class="trust-icon"></i>
+                                <span class="trust-label">Digital<br>Platforms</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Accolades -->
+                        <div class="card-accolades">
+                            <div class="accolade-item">
+                                <i data-lucide="check-circle" class="accolade-bullet"></i>
+                                <span>Built scalable AI-powered platforms reaching athletes nationwide</span>
+                            </div>
+                            <div class="accolade-item">
+                                <i data-lucide="check-circle" class="accolade-bullet"></i>
+                                <span>Digital strategy & technology architecture for The 99 Network</span>
+                            </div>
+                            <div class="accolade-item">
+                                <i data-lucide="check-circle" class="accolade-bullet"></i>
+                                <span>Growth marketing expertise driving athlete brand development</span>
+                            </div>
+                            <div class="accolade-item">
+                                <i data-lucide="check-circle" class="accolade-bullet"></i>
+                                <span>Systems that connect athletes with opportunities at every level</span>
+                            </div>
+                            <div class="accolade-item">
+                                <i data-lucide="check-circle" class="accolade-bullet"></i>
+                                <span>Platform development enabling automated NIL deal flow</span>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA -->
+                        <a href="#" class="card-cta" onclick="openModal(); return false;">Contact Bo</a>
+                    </div>
+                </article>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/font-logos.png" alt="The 99">
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="refund-policy.html">Refund Policy</a>
+            </div>
+            <div class="footer-socials" style="display: flex; gap: 16px; align-items: center;">
+                <a href="https://www.instagram.com/the99sports/" target="_blank" rel="noopener noreferrer" style="color: var(--gray); transition: color 0.3s ease;">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copy">© 2024 The 99. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h3 style="margin-bottom: 16px; font-family: 'Unbounded', sans-serif;">Get In Touch</h3>
+            <p style="color: var(--gray); margin-bottom: 20px;">Tell us who you are and we'll customize the conversation.</p>
+            <div id="tally-form">
+                <iframe
+                    data-tally-src="https://tally.so/embed/2EEqYb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                    loading="lazy"
+                    width="100%"
+                    height="854"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    title="Let's Get Started">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <script>
+        var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s)}
+    </script>
+
+    <script>
+        // Fade in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Modal
+        function openModal() {
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('contactModal').addEventListener('click', (e) => {
+            if (e.target.id === 'contactModal') closeModal();
+        });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

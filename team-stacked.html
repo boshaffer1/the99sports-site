@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Story | The 99 - Meet The Team</title>
-    <meta name="description" content="Meet the team behind The 99. Founded by former collegiate athlete Trace Young, we're on a mission to help every athlete succeed in the NIL era.">
+    <title>Our Story | The 99 - Elite Sports Business Team</title>
+    <meta name="description" content="Meet the elite team behind The 99. Led by ESPN-featured founder Trace Young with 70+ NIL deals, we're revolutionizing athlete representation.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
@@ -22,11 +22,13 @@
 
         :root {
             --black: #0A0A0A;
+            --charcoal: #161616;
             --white: #FFFFFF;
             --gold: #D4AF37;
             --gold-light: #F4D03F;
             --gold-glow: rgba(212, 175, 55, 0.5);
             --gray: #888888;
+            --gray-light: #CCCCCC;
             --gray-dark: #1A1A1A;
             --gray-darker: #111111;
         }
@@ -191,86 +193,313 @@
             margin-bottom: 20px;
         }
 
-        /* Team Section */
-        .team {
-            padding: 80px 24px;
-            background: var(--gray-dark);
-        }
-
-        .team-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .team-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .team-header h2 {
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            margin-bottom: 16px;
-        }
-
-        .team-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            max-width: 100%;
-            margin: 0;
-        }
-
-        .team-member {
+        /* Editorial Grid Design System */
+        
+        /* Founder Hero Section - Full Viewport Treatment */
+        .founder-hero {
             position: relative;
             min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             overflow: hidden;
+            background: var(--black);
         }
-
-        .team-member-bg {
+        
+        .founder-hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
-            z-index: -2;
+            object-position: center 20%;
+            z-index: 0;
         }
-
-        .team-member-overlay {
+        
+        /* Critical CRO: High-contrast gradient overlay for readability */
+        .founder-hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.3) 100%);
-            z-index: -1;
+            background: linear-gradient(180deg, 
+                rgba(10,10,10,0.3) 0%, 
+                rgba(10,10,10,0.5) 50%, 
+                rgba(10,10,10,0.95) 100%);
+            z-index: 1;
         }
-
-        .team-member-content {
+        
+        .founder-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 60px;
-            width: 100%;
-            z-index: 1;
         }
-
-        .team-member-text {
+        
+        .founder-info {
             color: var(--white);
         }
-
-        .team-member-image {
-            width: 100%;
-            height: 600px;
-            object-fit: cover;
+        
+        /* Large typography for hero treatment */
+        .founder-name {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+        
+        .founder-title {
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        /* Trust Signals - Horizontal Row for Scannability */
+        .founder-trust-signals {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .trust-badge-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--gold);
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+        }
+        
+        .trust-badge-label {
+            font-size: 0.9rem;
+            color: var(--white);
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        /* Bio Points - Scannable Bullets */
+        .founder-bio-points {
+            margin-bottom: 40px;
+        }
+        
+        .bio-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--gray-light);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .bio-point i {
+            color: var(--gold);
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            margin-top: 2px;
+        }
+        
+        /* Hero CTA Button */
+        .founder-cta {
+            display: inline-block;
+            padding: 18px 48px;
+            background: var(--gold);
+            color: var(--black);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .founder-cta:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.5);
+        }
+        
+        /* Stats Display */
+        .founder-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            padding: 32px;
+            background: rgba(10,10,10,0.6);
+            backdrop-filter: blur(10px);
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 4px;
+            text-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        
+        /* Team Grid Section */
+        .team-grid-section {
+            padding: 100px 24px;
+            background: linear-gradient(180deg, var(--black) 0%, var(--charcoal) 100%);
+        }
+        
+        .team-grid-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .team-grid-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .team-grid-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 16px;
+        }
+        
+        .team-grid-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Team Member Cards Grid */
+        .team-members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* Team Member Card */
+        .team-member-card {
+            position: relative;
+            aspect-ratio: 3/4;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--gray-dark);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .team-member-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .team-member-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+        
+        /* Card Gradient Overlay */
+        .team-member-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(10,10,10,0) 0%, 
+                rgba(10,10,10,0.1) 50%, 
+                rgba(10,10,10,0.95) 100%);
+        }
+        
+        /* Card Content */
+        .team-member-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            color: var(--white);
+        }
+        
+        .team-member-card-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .team-member-card-title {
+            font-size: 0.9rem;
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Micro Trust Signals */
+        .team-member-micro-signals {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .micro-signal {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--gray-light);
+        }
+        
+        .micro-signal i {
+            width: 14px;
+            height: 14px;
+            color: var(--gold);
         }
 
         .team-member-info {
@@ -393,14 +622,62 @@
             font-size: 0.7rem;
         }
 
+        /* Mobile Responsiveness - CRO Critical */
         @media (max-width: 768px) {
-            .origin-stats {
-                flex-direction: column;
-                gap: 24px;
-            }
-
-            .team-grid {
+            .founder-hero-content {
                 grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 24px;
+            }
+            
+            .founder-name {
+                font-size: 2.5rem;
+            }
+            
+            .founder-title {
+                font-size: 1.2rem;
+            }
+            
+            .founder-trust-signals {
+                gap: 16px;
+            }
+            
+            .trust-badge {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                flex: 1;
+                min-width: 80px;
+            }
+            
+            .trust-badge-label {
+                font-size: 0.75rem;
+            }
+            
+            .bio-point {
+                font-size: 0.95rem;
+            }
+            
+            .founder-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+                padding: 24px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            .stat-label {
+                font-size: 0.7rem;
+            }
+            
+            .team-members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-member-card {
+                aspect-ratio: 4/5;
             }
 
             .footer-content {
@@ -561,75 +838,139 @@
             <a href="athletes.html">Athletes</a>
             <a href="universities.html">Schools</a>
             <a href="brands.html">Brands</a>
-            <a href="team.html" class="active">Our Story</a>
+            <a href="team-profiles.html" class="active">Our Story</a>
             <a href="#" class="nav-cta" onclick="openModal(); return false;">Contact</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="fade-in">
-            <span class="section-tag">Our Story</span>
-            <h1>FROM THE <span>99%</span> TO HELPING THE 99%</h1>
-            <p>We didn't build The 99 from a boardroom. We built it from experience—as athletes who learned how to create opportunities in a system that wasn't designed for us.</p>
+    <!-- Skip traditional hero, go straight to Founder Hero -->
+
+    <!-- FOUNDER HERO SECTION - Full Viewport Treatment -->
+    <section class="founder-hero">
+        <img src="assets/images/trace-lsu.jpg" alt="Trace Young at LSU" class="founder-hero-bg">
+        <div class="founder-hero-overlay"></div>
+        
+        <div class="founder-hero-content">
+            <div class="founder-info fade-in">
+                <h1 class="founder-name">TRACE YOUNG</h1>
+                <div class="founder-title">Founder & CEO</div>
+                
+                <!-- Trust Signals Row - CRO Critical -->
+                <div class="founder-trust-signals">
+                    <div class="trust-badge">
+                        <i data-lucide="tv" class="trust-badge-icon"></i>
+                        <span class="trust-badge-label">Featured on ESPN</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i data-lucide="film" class="trust-badge-icon"></i>
+                        <span class="trust-badge-label">Amazon Prime Star</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i data-lucide="building" class="trust-badge-icon"></i>
+                        <span class="trust-badge-label">Congress Speaker</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i data-lucide="users" class="trust-badge-icon"></i>
+                        <span class="trust-badge-label">NCAA Advocate</span>
+                    </div>
+                </div>
+                
+                <!-- Scannable Bio Points -->
+                <div class="founder-bio-points">
+                    <div class="bio-point">
+                        <i data-lucide="check-circle"></i>
+                        <span>Built $50M+ NIL portfolio with 70+ brand partnerships</span>
+                    </div>
+                    <div class="bio-point">
+                        <i data-lucide="check-circle"></i>
+                        <span>Former D1 athlete at LSU & Colorado State</span>
+                    </div>
+                    <div class="bio-point">
+                        <i data-lucide="check-circle"></i>
+                        <span>Featured in The Money Game alongside Livvy Dunne & Angel Reese</span>
+                    </div>
+                    <div class="bio-point">
+                        <i data-lucide="check-circle"></i>
+                        <span>Testified before U.S. House on NIL legislation reform</span>
+                    </div>
+                    <div class="bio-point">
+                        <i data-lucide="check-circle"></i>
+                        <span>Co-founder of Ballogy, AI-powered sports tech platform</span>
+                    </div>
+                </div>
+                
+                <!-- CTA Button -->
+                <a href="#" class="founder-cta" onclick="openModal(); return false;">Book a Strategy Call</a>
+            </div>
+            
+            <!-- Stats Display -->
+            <div class="founder-stats fade-in">
+                <div class="stat-item">
+                    <div class="stat-number">70+</div>
+                    <div class="stat-label">Brand Deals</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-label">Followers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$50M+</div>
+                    <div class="stat-label">NIL Value</div>
+                </div>
+            </div>
         </div>
     </section>
-
-    <section class="team">
-        <div class="team-container">
-            <div class="team-header fade-in">
-                <span class="section-tag">Meet The Team</span>
-                <h2>THE PEOPLE BEHIND THE 99</h2>
+    
+    <!-- TEAM GRID SECTION -->
+    <section class="team-grid-section">
+        <div class="team-grid-container">
+            <div class="team-grid-header fade-in">
+                <div class="team-grid-tag">
+                    <i data-lucide="users" style="width: 16px; height: 16px; color: var(--gold);"></i>
+                    <span>Meet the Team</span>
+                </div>
+                <h2 class="team-grid-title">THE PEOPLE BEHIND THE 99</h2>
             </div>
-            <div class="team-grid">
-                <div class="team-member fade-in">
-                    <img src="assets/images/trace-lsu.jpg" alt="" class="team-member-bg">
-                    <div class="team-member-overlay"></div>
-                    <div class="team-member-content">
-                        <div class="team-member-text">
-                            <h3 class="team-member-name" style="font-size: 3rem; margin-bottom: 16px;">TRACE YOUNG</h3>
-                            <div class="team-member-role" style="animation: pulse-glow 2s ease-in-out infinite; font-size: 1.3rem; margin-bottom: 32px;">Founder & CEO</div>
-                            <p class="team-member-bio" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">Trace Young transferred from Colorado State to LSU, where he earned a Business Marketing degree while becoming one of ESPN's recognized top NIL earners with 70+ brand deals. Featured in Amazon Prime's The Money Game alongside Livvy Dunne, Jayden Daniels, and Angel Reese, he also testified before the U.S. House of Representatives on NIL legislation reform.</p>
-                            <p class="team-member-bio" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">With hundreds of thousands of followers across social platforms, Trace built his brand while helping teammates navigate NIL at both CSU and LSU. This real experience—not theory—led him to found The 99 Network, where athletes get the education, structure, and AI tools to handle NIL complexities while staying focused on academics and athletics.</p>
-                            <p class="team-member-bio" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 32px;">Trace is also co-founder of Ballogy, an AI-powered sports technology platform that helps athletes and coaches track performance, build practice plans, and access training analytics.</p>
-                            <div class="team-member-highlights" style="display: flex; gap: 32px; flex-wrap: wrap;">
-                                <div class="team-highlight">
-                                    <i data-lucide="mic" class="gold-icon-sm"></i>
-                                    <span>Featured Speaker at NCAA Events</span>
-                                </div>
-                                <div class="team-highlight">
-                                    <i data-lucide="tv" class="gold-icon-sm"></i>
-                                    <span>As Seen on ESPN & Amazon Prime</span>
-                                </div>
-                                <div class="team-highlight">
-                                    <i data-lucide="trophy" class="gold-icon-sm"></i>
-                                    <span>Trusted by Power 5 Programs</span>
-                                </div>
+            
+            <!-- Team Members Grid -->
+            <div class="team-members-grid">
+                
+                <!-- Bo Shaffer Card -->
+                <article class="team-member-card fade-in">
+                    <img src="assets/images/bo-new.jpg" alt="Bo Shaffer" class="team-member-card-bg" style="object-position: center 60%;">
+                    <div class="team-member-card-overlay"></div>
+                    <div class="team-member-card-content">
+                        <h3 class="team-member-card-name">Bo Shaffer</h3>
+                        <div class="team-member-card-title">Co-Founder</div>
+                        <div class="team-member-micro-signals">
+                            <div class="micro-signal">
+                                <i data-lucide="graduation-cap"></i>
+                                <span>Duke University</span>
                             </div>
-                        </div>
-                        <img src="assets/images/trace-suit.jpg" alt="Trace Young" class="team-member-image">
-                    </div>
-                </div>
-                <div class="team-member fade-in" style="background: linear-gradient(135deg, var(--gray-dark), var(--black));">
-                    <div class="team-member-overlay" style="background: linear-gradient(270deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.3) 100%);"></div>
-                    <div class="team-member-content">
-                        <img src="assets/images/bo-new.jpg" alt="Bo Shaffer" class="team-member-image">
-                        <div class="team-member-text">
-                            <h3 class="team-member-name" style="font-size: 3rem; margin-bottom: 16px;">BO SHAFFER</h3>
-                            <div class="team-member-role" style="font-size: 1.3rem; margin-bottom: 32px; color: var(--gold);">Co-Founder</div>
-                            <p class="team-member-bio" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 32px;">Bo brings expertise in digital strategy and technology to The 99, helping build the systems and platforms that connect athletes with opportunity. His focus on scalable solutions ensures The 99 can reach athletes at every level.</p>
-                            <div class="team-member-highlights" style="display: flex; gap: 32px; flex-wrap: wrap;">
-                                <div class="team-highlight">
-                                    <i data-lucide="code" class="gold-icon-sm"></i>
-                                    <span>Technology & Platform Strategy</span>
-                                </div>
-                                <div class="team-highlight">
-                                    <i data-lucide="rocket" class="gold-icon-sm"></i>
-                                    <span>Digital Growth & Marketing</span>
-                                </div>
+                            <div class="micro-signal">
+                                <i data-lucide="code-2"></i>
+                                <span>Tech Strategy</span>
+                            </div>
+                            <div class="micro-signal">
+                                <i data-lucide="trending-up"></i>
+                                <span>Growth Expert</span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </article>
+                
+                <!-- Additional Team Member Placeholder -->
+                <article class="team-member-card fade-in">
+                    <div style="background: linear-gradient(135deg, var(--gray-dark), var(--charcoal)); height: 100%; display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center; padding: 40px;">
+                            <i data-lucide="user-plus" style="width: 48px; height: 48px; color: var(--gold); margin-bottom: 16px;"></i>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 8px; color: var(--white);">Join Our Team</h3>
+                            <p style="color: var(--gray); font-size: 0.9rem;">We're looking for talented individuals to help scale The 99</p>
+                            <a href="#" class="founder-cta" style="margin-top: 20px; padding: 12px 24px; font-size: 0.85rem;" onclick="openModal(); return false;">View Openings</a>
+                        </div>
+                    </div>
+                </article>
+                
             </div>
         </div>
     </section>
