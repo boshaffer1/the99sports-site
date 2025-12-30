@@ -452,9 +452,7 @@
                 justify-content: center;
             }
 
-            .nav-links a:not(.nav-cta):not(.active) {
-                display: none;
-            }
+            /* Removed - handled by mobile menu now */
         }
 
         /* Animations */
@@ -504,6 +502,48 @@
             font-size: 1.4rem;
             cursor: pointer;
         }
+    
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                padding: 20px;
+                transition: right 0.3s ease;
+                z-index: 999;
+                border-left: 1px solid rgba(255,255,255,0.08);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                display: block !important;
+                padding: 12px;
+                border-radius: 8px;
+                margin-bottom: 8px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -511,12 +551,15 @@
         <a href="index.html" class="navbar-logo">
             <img src="assets/images/font-logos.png" alt="The 99">
         </a>
-        <div class="nav-links">
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i data-lucide="menu"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="athletes.html">Athletes</a>
             <a href="universities.html">Schools</a>
             <a href="brands.html">Brands</a>
             <a href="team-profiles.html" class="active">Our Story</a>
-            <a href="#" class="nav-cta" onclick="openModal(); return false;">Contact</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
         </div>
     </nav>
 
