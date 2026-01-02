@@ -678,7 +678,7 @@
                         </div>
                         
                         <!-- CTA -->
-                        <a href="#" class="card-cta" onclick="openModal(); return false;" ontouchstart="">Contact Trace</a>
+                        <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="card-cta" >Contact Trace</a>
                     </div>
                 </article>
                 
@@ -743,7 +743,7 @@
                         </div>
                         
                         <!-- CTA -->
-                        <a href="#" class="card-cta" onclick="openModal(); return false;" ontouchstart="">Contact Bo</a>
+                        <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="card-cta" >Contact Bo</a>
                     </div>
                 </article>
                 
@@ -825,6 +825,33 @@
 
         // Initialize Lucide Icons
         lucide.createIcons();
+    
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+            }
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            if (navLinks && mobileBtn && !navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>

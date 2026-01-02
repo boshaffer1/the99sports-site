@@ -1017,7 +1017,7 @@
             <h2 class="fade-in">Let's Build Something Together</h2>
             <p class="fade-in">Tell us about your brand and partnership goals. We'll follow up within 24 hours.</p>
             <div style="text-align: center; margin-top: 32px;">
-                <a href="#" onclick="openModal(); return false;" ontouchstart="" class="btn btn-gold btn-large" style="font-size: 1.2rem; padding: 20px 48px; display: inline-block;" role="button">
+                <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer"  class="btn btn-gold btn-large" style="font-size: 1.2rem; padding: 20px 48px; display: inline-block;" role="button">
                     Schedule Your Partnership Call
                 </a>
             </div>
@@ -1099,6 +1099,33 @@
 
         // Initialize Lucide Icons
         lucide.createIcons();
+    
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+            }
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            if (navLinks && mobileBtn && !navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>

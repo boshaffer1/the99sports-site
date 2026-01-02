@@ -682,7 +682,7 @@
         <div class="fade-in">
             <h2>READY TO WORK WITH US?</h2>
             <p>Let's discuss how The 99 can help your program, athletes, or brand succeed in the NIL era.</p>
-            <a href="#" class="btn btn-gold" onclick="openModal(); return false;" ontouchstart="" role="button">Unlock Your NIL Potential</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="btn btn-gold"  role="button">Unlock Your NIL Potential</a>
         </div>
     </section>
 
@@ -762,6 +762,33 @@
 
         // Initialize Lucide Icons
         lucide.createIcons();
+    
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+            }
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            if (navLinks && mobileBtn && !navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
