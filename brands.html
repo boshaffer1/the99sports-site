@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>For Brands | The 99 - Authentic Athlete Partnerships</title>
     <meta name="description" content="Connect with college athletes who align with your brand values. Strategic NIL partnerships that drive real engagement and results.">
 
@@ -733,7 +733,47 @@
                 margin-bottom: 8px;
             }
         }
+    
+        /* Additional Mobile Button Fixes */
+        @media (max-width: 768px) {
+            /* Ensure all CTAs work on mobile */
+            .nav-cta,
+            .hero-cta,
+            .cta-button,
+            .btn-gold,
+            .btn-outline,
+            .card-cta,
+            .founder-cta {
+                cursor: pointer !important;
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent;
+                user-select: none;
+            }
+            
+            /* Fix text sizing in hero sections */
+            .hero-content h1 {
+                font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+            }
+            
+            .hero-content p {
+                font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
+                margin-bottom: 24px;
+            }
+            
+            /* Fix spacing issues */
+            .hero {
+                padding: 100px 16px 60px !important;
+            }
+            
+            /* Ensure modals work on mobile */
+            .modal-content {
+                width: 95% !important;
+                max-width: none !important;
+                margin: 10px !important;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="mobile-optimize.css">
 </head>
 <body>
     <nav class="navbar">
@@ -748,7 +788,7 @@
             <a href="universities.html">Schools</a>
             <a href="brands.html" class="active">Brands</a>
             <a href="team-profiles.html">Our Story</a>
-            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
         </div>
     </nav>
 
@@ -761,7 +801,7 @@
             <div class="hero-content fade-in">
                 <h1>STOP CHASING <span>EVERY ATHLETE</span></h1>
                 <p>Turn your athlete partnerships from expensive experiments into a predictable revenue engine. We've already done the hard work—70+ brand deals, proven playbooks, athletes who actually convert.</p>
-                <a href="#form" class="btn btn-gold btn-large" style="margin-top: 32px;">Apply to Work With Us</a>
+                <a href="#form" class="btn btn-gold btn-large" style="margin-top: 32px;" role="button">Apply to Work With Us</a>
             </div>
         </div>
     </section>
@@ -855,7 +895,7 @@
             
             <div style="text-align: center; margin-top: 48px;">
                 <p style="font-size: 1.1rem; color: var(--white); margin-bottom: 24px;">Campaign ready in <span style="color: var(--gold); font-weight: 600;">72 hours</span> with dedicated support throughout</p>
-                <a href="#form" class="btn btn-gold btn-large">Start Your Campaign</a>
+                <a href="#form" class="btn btn-gold btn-large" role="button">Start Your Campaign</a>
             </div>
 
         </div>
@@ -954,7 +994,7 @@
             </div>
             
             <div style="text-align: center; margin-top: 48px;">
-                <a href="#form" class="btn btn-gold btn-large">Apply to Work With Us</a>
+                <a href="#form" class="btn btn-gold btn-large" role="button">Apply to Work With Us</a>
             </div>
         </div>
     </section>
@@ -977,7 +1017,7 @@
             <h2 class="fade-in">Let's Build Something Together</h2>
             <p class="fade-in">Tell us about your brand and partnership goals. We'll follow up within 24 hours.</p>
             <div style="text-align: center; margin-top: 32px;">
-                <a href="#" onclick="openModal(); return false;" class="btn btn-gold btn-large" style="font-size: 1.2rem; padding: 20px 48px; display: inline-block;">
+                <a href="#" onclick="openModal(); return false;" ontouchstart="" class="btn btn-gold btn-large" style="font-size: 1.2rem; padding: 20px 48px; display: inline-block;" role="button">
                     Schedule Your Partnership Call
                 </a>
             </div>

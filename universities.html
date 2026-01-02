@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>For Universities | The 99 - NIL Education & Consulting</title>
     <meta name="description" content="Comprehensive NIL education and consulting for athletic programs. Prepare your student-athletes for success while maintaining compliance.">
 
@@ -746,7 +746,47 @@
                 margin-bottom: 8px;
             }
         }
+    
+        /* Additional Mobile Button Fixes */
+        @media (max-width: 768px) {
+            /* Ensure all CTAs work on mobile */
+            .nav-cta,
+            .hero-cta,
+            .cta-button,
+            .btn-gold,
+            .btn-outline,
+            .card-cta,
+            .founder-cta {
+                cursor: pointer !important;
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent;
+                user-select: none;
+            }
+            
+            /* Fix text sizing in hero sections */
+            .hero-content h1 {
+                font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+            }
+            
+            .hero-content p {
+                font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
+                margin-bottom: 24px;
+            }
+            
+            /* Fix spacing issues */
+            .hero {
+                padding: 100px 16px 60px !important;
+            }
+            
+            /* Ensure modals work on mobile */
+            .modal-content {
+                width: 95% !important;
+                max-width: none !important;
+                margin: 10px !important;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="mobile-optimize.css">
 </head>
 <body>
     <nav class="navbar">
@@ -761,7 +801,7 @@
             <a href="universities.html" class="active">Schools</a>
             <a href="brands.html">Brands</a>
             <a href="team-profiles.html">Our Story</a>
-            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
         </div>
     </nav>
 
@@ -774,7 +814,7 @@
             <div class="hero-content fade-in">
                 <h1>CREATE A <span>WINNING</span> NIL CULTURE</h1>
                 <p><strong>Athletes are often media trained, but almost none are social media trained.</strong> They know how to talk to reporters, but they don't know how to build brands, reach out to businesses, or turn social media into income. That's where opportunities are made—and where your program's reputation can be ruined with one mistake. We protect your brand while building theirs.</p>
-                <a href="#form" class="btn btn-gold btn-large" style="margin-top: 32px;">Build Your Program's Future</a>
+                <a href="#form" class="btn btn-gold btn-large" style="margin-top: 32px;" role="button">Build Your Program's Future</a>
             </div>
         </div>
     </section>
@@ -851,7 +891,7 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 48px;">
-                <a href="#form" class="btn btn-gold btn-large">Schedule Your Consultation</a>
+                <a href="#form" class="btn btn-gold btn-large" role="button">Schedule Your Consultation</a>
             </div>
         </div>
     </section>
@@ -906,7 +946,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 48px;">
-                <a href="#form" class="btn btn-gold btn-large">Get Started Today</a>
+                <a href="#form" class="btn btn-gold btn-large" role="button">Get Started Today</a>
             </div>
         </div>
     </section>
@@ -917,7 +957,7 @@
             <h2 class="fade-in">Schedule a Consultation</h2>
             <p class="fade-in">Tell us about your program and we'll create a customized NIL education plan.</p>
             <div style="text-align: center; margin-top: 32px;">
-                <a href="#" onclick="openModal(); return false;" class="btn btn-gold btn-large" style="font-size: 1.2rem; padding: 20px 48px; display: inline-block;">
+                <a href="#" onclick="openModal(); return false;" ontouchstart="" class="btn btn-gold btn-large" style="font-size: 1.2rem; padding: 20px 48px; display: inline-block;" role="button">
                     Schedule Your Consultation
                 </a>
             </div>

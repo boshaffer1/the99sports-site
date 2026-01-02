@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Our Story | The 99 - Meet The Team</title>
     <meta name="description" content="Meet the team behind The 99. Founded by former collegiate athlete Trace Young, we're on a mission to help every athlete succeed in the NIL era.">
 
@@ -559,7 +559,47 @@
                 margin-bottom: 8px;
             }
         }
+    
+        /* Additional Mobile Button Fixes */
+        @media (max-width: 768px) {
+            /* Ensure all CTAs work on mobile */
+            .nav-cta,
+            .hero-cta,
+            .cta-button,
+            .btn-gold,
+            .btn-outline,
+            .card-cta,
+            .founder-cta {
+                cursor: pointer !important;
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent;
+                user-select: none;
+            }
+            
+            /* Fix text sizing in hero sections */
+            .hero-content h1 {
+                font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+            }
+            
+            .hero-content p {
+                font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
+                margin-bottom: 24px;
+            }
+            
+            /* Fix spacing issues */
+            .hero {
+                padding: 100px 16px 60px !important;
+            }
+            
+            /* Ensure modals work on mobile */
+            .modal-content {
+                width: 95% !important;
+                max-width: none !important;
+                margin: 10px !important;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="mobile-optimize.css">
 </head>
 <body>
     <nav class="navbar">
@@ -574,7 +614,7 @@
             <a href="universities.html">Schools</a>
             <a href="brands.html">Brands</a>
             <a href="team-profiles.html" class="active">Our Story</a>
-            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
         </div>
     </nav>
 
@@ -642,7 +682,7 @@
         <div class="fade-in">
             <h2>READY TO WORK WITH US?</h2>
             <p>Let's discuss how The 99 can help your program, athletes, or brand succeed in the NIL era.</p>
-            <a href="#" class="btn btn-gold" onclick="openModal(); return false;">Unlock Your NIL Potential</a>
+            <a href="#" class="btn btn-gold" onclick="openModal(); return false;" ontouchstart="" role="button">Unlock Your NIL Potential</a>
         </div>
     </section>
 

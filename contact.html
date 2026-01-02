@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Contact | The 99 - Get In Touch</title>
     <meta name="description" content="Get in touch with The 99 for NIL consulting, workshops, speaking engagements, and brand partnerships.">
 
@@ -465,7 +465,47 @@
                 margin-bottom: 8px;
             }
         }
+    
+        /* Additional Mobile Button Fixes */
+        @media (max-width: 768px) {
+            /* Ensure all CTAs work on mobile */
+            .nav-cta,
+            .hero-cta,
+            .cta-button,
+            .btn-gold,
+            .btn-outline,
+            .card-cta,
+            .founder-cta {
+                cursor: pointer !important;
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent;
+                user-select: none;
+            }
+            
+            /* Fix text sizing in hero sections */
+            .hero-content h1 {
+                font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+            }
+            
+            .hero-content p {
+                font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
+                margin-bottom: 24px;
+            }
+            
+            /* Fix spacing issues */
+            .hero {
+                padding: 100px 16px 60px !important;
+            }
+            
+            /* Ensure modals work on mobile */
+            .modal-content {
+                width: 95% !important;
+                max-width: none !important;
+                margin: 10px !important;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="mobile-optimize.css">
 </head>
 <body>
     <nav class="navbar">

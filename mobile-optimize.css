@@ -1,0 +1,240 @@
+/* Mobile Typography and Button Optimization */
+
+/* Mobile Typography - Ensure readability */
+@media (max-width: 768px) {
+    /* Hero Sections */
+    .hero h1, 
+    .hero-title {
+        font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+        line-height: 1.2 !important;
+        padding: 0 10px;
+    }
+    
+    .hero p, 
+    .hero-subtitle {
+        font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
+        line-height: 1.5 !important;
+        padding: 0 10px;
+    }
+    
+    /* Section Headers */
+    h2, .section-title {
+        font-size: clamp(1.5rem, 4vw, 2rem) !important;
+        line-height: 1.3 !important;
+        margin-bottom: 16px !important;
+    }
+    
+    h3 {
+        font-size: clamp(1.25rem, 3.5vw, 1.75rem) !important;
+        line-height: 1.3 !important;
+    }
+    
+    h4 {
+        font-size: clamp(1.1rem, 3vw, 1.5rem) !important;
+    }
+    
+    /* Body Text */
+    p, .body-text {
+        font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* Section Tags */
+    .section-tag {
+        font-size: 0.65rem !important;
+    }
+    
+    /* Lists and Features */
+    .feature-title,
+    .benefit-title,
+    .step-title {
+        font-size: 1.1rem !important;
+    }
+    
+    .feature-description,
+    .benefit-description,
+    .step-description {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Buttons - Ensure they're tappable */
+    .btn,
+    .btn-gold,
+    .btn-outline,
+    .btn-primary,
+    .btn-secondary,
+    .cta-button,
+    button,
+    a[class*="btn"] {
+        min-height: 48px !important;
+        padding: 14px 24px !important;
+        font-size: 0.95rem !important;
+        touch-action: manipulation;
+        cursor: pointer;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    /* Nav CTA Button */
+    .nav-cta {
+        padding: 10px 16px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Cards and Grid Items */
+    .card-title,
+    .team-member-name {
+        font-size: 1.25rem !important;
+    }
+    
+    .card-description,
+    .team-member-bio {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Stats and Numbers */
+    .stat-number {
+        font-size: clamp(1.5rem, 4vw, 2rem) !important;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Padding and Spacing */
+    section {
+        padding: 60px 16px !important;
+    }
+    
+    .container,
+    .section-container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+    
+    /* Fix overlapping elements */
+    .navbar {
+        z-index: 1000 !important;
+    }
+    
+    .modal-overlay {
+        z-index: 2000 !important;
+    }
+    
+    /* Ensure text doesn't get cut off */
+    * {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    /* Profile specific optimizations */
+    .profile-name,
+    .founder-name {
+        font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+    }
+    
+    .profile-title,
+    .founder-title {
+        font-size: clamp(1rem, 3vw, 1.3rem) !important;
+    }
+    
+    .bio-text,
+    .bio-point {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+    }
+    
+    /* Trust badges and signals */
+    .trust-badge-label,
+    .trust-label {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Fix button spacing in groups */
+    .profile-actions,
+    .cta-buttons,
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .profile-actions a,
+    .cta-buttons a,
+    .button-group a {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Footer optimizations */
+    .footer-links {
+        font-size: 0.85rem !important;
+    }
+    
+    .footer-copy {
+        font-size: 0.65rem !important;
+    }
+    
+    /* Ensure images don't overflow */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Fix horizontal scroll issues */
+    body {
+        overflow-x: hidden !important;
+    }
+    
+    .row, 
+    .container-fluid {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* Small phones (iPhone SE, etc.) */
+@media (max-width: 375px) {
+    .hero h1,
+    .hero-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .hero p,
+    .hero-subtitle {
+        font-size: 0.9rem !important;
+    }
+    
+    h2, .section-title {
+        font-size: 1.3rem !important;
+    }
+    
+    h3 {
+        font-size: 1.1rem !important;
+    }
+    
+    p {
+        font-size: 0.85rem !important;
+    }
+    
+    .btn,
+    button,
+    a[class*="btn"] {
+        padding: 12px 20px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    section {
+        padding: 40px 12px !important;
+    }
+}
+
+/* Ensure clickable areas for mobile */
+@media (pointer: coarse) {
+    a, button, .btn, [role="button"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}

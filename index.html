@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>The 99 | NIL Consulting</title>
     <meta name="description" content="Elite NIL consulting for athletic programs, athletes, and brands. Build athletes' futures with The 99.">
 
@@ -1638,7 +1638,47 @@
                 margin-bottom: 8px;
             }
         }
+    
+        /* Additional Mobile Button Fixes */
+        @media (max-width: 768px) {
+            /* Ensure all CTAs work on mobile */
+            .nav-cta,
+            .hero-cta,
+            .cta-button,
+            .btn-gold,
+            .btn-outline,
+            .card-cta,
+            .founder-cta {
+                cursor: pointer !important;
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent;
+                user-select: none;
+            }
+            
+            /* Fix text sizing in hero sections */
+            .hero-content h1 {
+                font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+            }
+            
+            .hero-content p {
+                font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
+                margin-bottom: 24px;
+            }
+            
+            /* Fix spacing issues */
+            .hero {
+                padding: 100px 16px 60px !important;
+            }
+            
+            /* Ensure modals work on mobile */
+            .modal-content {
+                width: 95% !important;
+                max-width: none !important;
+                margin: 10px !important;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="mobile-optimize.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -1654,7 +1694,7 @@
             <a href="universities.html">Schools</a>
             <a href="brands.html">Brands</a>
             <a href="team-profiles.html">Our Story</a>
-            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
         </div>
     </nav>
 
@@ -1669,7 +1709,7 @@
             <h1 style="white-space: nowrap;"><span>The Future of NIL</span></h1>
             <p style="font-family: 'Unbounded', sans-serif; font-size: 2.2rem; font-weight: 500; margin-top: -10px; margin-bottom: 30px; letter-spacing: 0.02em; color: var(--white); text-transform: uppercase;">For Athletes, Schools, and Brands.</p>
             <div class="hero-cta" style="margin-top: 32px;">
-                <a href="#" class="btn btn-gold" onclick="openModal(); return false;">Unlock Your NIL Potential</a>
+                <a href="#" class="btn btn-gold" onclick="openModal(); return false;" ontouchstart="" role="button">Unlock Your NIL Potential</a>
             </div>
         </div>
         <div class="scroll-indicator"><span></span></div>
@@ -2573,7 +2613,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="team-profiles.html" class="btn btn-outline" style="margin-top: 32px; display: inline-block;">Meet the Team</a>
+                    <a href="team-profiles.html" class="btn btn-outline" style="margin-top: 32px; display: inline-block;" role="button">Meet the Team</a>
                 </div>
         </div>
         </div>
@@ -2670,8 +2710,8 @@
             <h2>Ready to Get Started?</h2>
             <p>Let's discuss how The 99 can help your program, athletes, or brand succeed in the NIL era.</p>
             <div class="cta-buttons">
-                <a href="#" class="btn btn-gold" onclick="openModal(); return false;">Unlock Your NIL Potential</a>
-                <a href="mailto:team@the99sports.com" class="btn btn-outline">Email Us</a>
+                <a href="#" class="btn btn-gold" onclick="openModal(); return false;" ontouchstart="" role="button">Unlock Your NIL Potential</a>
+                <a href="mailto:team@the99sports.com" class="btn btn-outline" role="button">Email Us</a>
             </div>
         </div>
     </section>
