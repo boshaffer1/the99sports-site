@@ -504,6 +504,52 @@
                 margin: 10px !important;
             }
         }
+    
+        /* Mobile Button Touch Fix */
+        @media (max-width: 768px) {
+            /* Make all buttons/CTAs touchable */
+            a.btn,
+            a.btn-gold,
+            a.btn-outline,
+            a.btn-primary,
+            a.nav-cta,
+            button,
+            .cta-button,
+            a[class*="btn"] {
+                display: inline-block !important;
+                min-height: 44px !important;
+                padding: 12px 24px !important;
+                cursor: pointer !important;
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent !important;
+                text-decoration: none !important;
+                position: relative !important;
+                z-index: 10 !important;
+            }
+            
+            /* Ensure nav CTA is clickable */
+            .nav-cta {
+                pointer-events: auto !important;
+                z-index: 1001 !important;
+            }
+            
+            /* Fix button containers */
+            .hero-buttons,
+            .cta-buttons,
+            .button-group {
+                position: relative;
+                z-index: 10;
+            }
+        }
+        
+        /* Touch device specific */
+        @media (pointer: coarse) {
+            a[href],
+            button {
+                cursor: pointer !important;
+                touch-action: manipulation !important;
+            }
+        }
     </style>
     <link rel="stylesheet" href="mobile-optimize.css">
 </head>
