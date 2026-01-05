@@ -788,6 +788,44 @@
     
         
     
+        /* Mobile Accordion Styles */
+        .accordion-toggle {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--white);
+            text-align: left;
+            padding: 0;
+            font-family: inherit;
+            font-size: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .accordion-content.expanded {
+            max-height: 1000px;
+        }
+        
+        .accordion-icon {
+            transition: transform 0.3s ease;
+            width: 20px;
+            height: 20px;
+            color: var(--gold);
+        }
+        
+        .accordion-toggle.expanded .accordion-icon {
+            transform: rotate(180deg);
+        }
+
         /* Clean Mobile Fixes */
         @media (max-width: 768px) {
             /* Prevent horizontal scroll */
@@ -795,39 +833,102 @@
                 overflow-x: hidden;
             }
             
-            /* Fix hero sections */
+            /* Reduce all section padding to 40px */
             .hero {
-                padding: 120px 20px 60px;
+                padding: 100px 20px 40px;
+                min-height: 75vh;
             }
             
+            .benefits,
+            .services,
+            .programs,
+            .form-section,
+            .partners-section,
+            section {
+                padding: 40px 20px !important;
+            }
+            
+            /* Optimize hero text for mobile readability */
             .hero h1 {
-                font-size: 2rem;
-                line-height: 1.2;
+                font-size: 1.8rem;
+                line-height: 1.3;
+                margin-bottom: 16px;
             }
             
             .hero p {
-                font-size: 1rem;
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: 24px;
             }
             
-            /* Fix grid layouts */
-            .features-grid,
+            /* Optimize section titles */
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 24px;
+                line-height: 1.3;
+            }
+            
+            /* Reduce grid gaps and optimize spacing */
             .benefits-grid,
-            .process-grid {
+            .services-grid,
+            .programs-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 16px;
             }
             
-            /* Fix sections */
-            section {
-                padding: 60px 20px;
+            /* Compact benefit cards with accordion functionality */
+            .benefit-card,
+            .program-card {
+                padding: 20px 16px;
             }
             
-            /* Fix buttons */
+            .benefit-card h3,
+            .program-card h3 {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+            
+            .benefit-card p,
+            .program-card p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+            
+            /* Optimize button sizing */
             .btn,
             .btn-gold,
             .btn-outline {
-                padding: 14px 24px;
+                padding: 12px 20px;
+                font-size: 0.85rem;
+                min-height: 44px;
+            }
+            
+            /* Compact university benefits layout */
+            div[style*="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr"] {
+                display: block !important;
+            }
+            
+            div[style*="margin-bottom: 32px"] {
+                margin-bottom: 20px !important;
+            }
+            
+            div[style*="font-size: 1.3rem"] {
+                font-size: 1.1rem !important;
+            }
+            
+            /* Compact form section */
+            .form-container {
+                padding: 24px 16px;
+            }
+            
+            .form-container h2 {
+                font-size: 1.4rem;
+                margin-bottom: 12px;
+            }
+            
+            .form-container p {
                 font-size: 0.9rem;
+                margin-bottom: 20px;
             }
             
             /* Hide overflow on cards */
@@ -1007,39 +1108,69 @@
             <div class="benefits-grid">
                 <div class="benefit-card fade-in">
                     <div class="benefit-icon"><i data-lucide="mic" class="gold-icon-lg"></i></div>
-                    <h3>On-Campus Speaking & NIL Education</h3>
-                    <p style="font-weight: 600; margin-bottom: 8px;">Bring Powerful NIL Leadership Directly to Your Athletes</p>
-                    <p>We come to campus and speak directly to your athletic programs, delivering engaging, high-impact NIL education rooted in real experience, not theory. Athletes leave motivated, informed, and prepared to represent your school with professionalism, confidence, and purpose… while seeing NIL as opportunity, not distraction.</p>
+                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+                        <h3>On-Campus Speaking & NIL Education</h3>
+                        <i data-lucide="chevron-down" class="accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p style="font-weight: 600; margin-bottom: 8px;">Bring Powerful NIL Leadership Directly to Your Athletes</p>
+                        <p>We come to campus and speak directly to your athletic programs, delivering engaging, high-impact NIL education rooted in real experience, not theory. Athletes leave motivated, informed, and prepared to represent your school with professionalism, confidence, and purpose… while seeing NIL as opportunity, not distraction.</p>
+                    </div>
                 </div>
                 <div class="benefit-card fade-in">
                     <div class="benefit-icon"><i data-lucide="graduation-cap" class="gold-icon-lg"></i></div>
-                    <h3>NIL Workshops</h3>
-                    <p style="font-weight: 600; margin-bottom: 8px;">Hands-On Training That Builds Responsible, Prepared, Brand-Safe Athletes</p>
-                    <p>Structured workshops that teach athletes exactly how to build their brands the right way. This means smarter content, better decision-making, and responsible online behavior, all supporting your athletic culture and institutional reputation. Schools that invest in real NIL development instantly separate themselves.</p>
+                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+                        <h3>NIL Workshops</h3>
+                        <i data-lucide="chevron-down" class="accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p style="font-weight: 600; margin-bottom: 8px;">Hands-On Training That Builds Responsible, Prepared, Brand-Safe Athletes</p>
+                        <p>Structured workshops that teach athletes exactly how to build their brands the right way. This means smarter content, better decision-making, and responsible online behavior, all supporting your athletic culture and institutional reputation. Schools that invest in real NIL development instantly separate themselves.</p>
+                    </div>
                 </div>
                 <div class="benefit-card fade-in">
                     <div class="benefit-icon"><i data-lucide="handshake" class="gold-icon-lg"></i></div>
-                    <h3>Exclusive Brand Partnerships</h3>
-                    <p style="font-weight: 600; margin-bottom: 8px;">Direct Access to Verified Brand Opportunities with Professional Tools</p>
-                    <p>Through The 99 Network, your athletes get matched with brands actively seeking partnerships. Our AI-powered tools handle professional outreach with compliant messaging and structured partnership proposals. From simple paid posts to long-term sponsorships, every athlete—from stars to walk-ons—can access real deals with instant payment. This isn't random influencer culture, it's structured NIL that develops leaders, not liabilities.</p>
+                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+                        <h3>Exclusive Brand Partnerships</h3>
+                        <i data-lucide="chevron-down" class="accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p style="font-weight: 600; margin-bottom: 8px;">Direct Access to Verified Brand Opportunities with Professional Tools</p>
+                        <p>Through The 99 Network, your athletes get matched with brands actively seeking partnerships. Our AI-powered tools handle professional outreach with compliant messaging and structured partnership proposals. From simple paid posts to long-term sponsorships, every athlete—from stars to walk-ons—can access real deals with instant payment. This isn't random influencer culture, it's structured NIL that develops leaders, not liabilities.</p>
+                    </div>
                 </div>
                 <div class="benefit-card fade-in">
                     <div class="benefit-icon"><i data-lucide="book-open" class="gold-icon-lg"></i></div>
-                    <h3>The 99 NIL Playbook</h3>
-                    <p style="font-weight: 600; margin-bottom: 8px;">A Proven System for Athlete Growth That Strengthens Your University Image</p>
-                    <p>A complete NIL roadmap crafted from real success, showing athletes how to build their brand across Instagram, TikTok, YouTube, Snapchat, and more, all while reinforcing discipline, maturity, and professionalism. When athletes win in NIL the right way, your school wins in visibility, recruiting, and credibility.</p>
+                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+                        <h3>The 99 NIL Playbook</h3>
+                        <i data-lucide="chevron-down" class="accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p style="font-weight: 600; margin-bottom: 8px;">A Proven System for Athlete Growth That Strengthens Your University Image</p>
+                        <p>A complete NIL roadmap crafted from real success, showing athletes how to build their brand across Instagram, TikTok, YouTube, Snapchat, and more, all while reinforcing discipline, maturity, and professionalism. When athletes win in NIL the right way, your school wins in visibility, recruiting, and credibility.</p>
+                    </div>
                 </div>
                 <div class="benefit-card fade-in">
                     <div class="benefit-icon"><i data-lucide="users" class="gold-icon-lg"></i></div>
-                    <h3>Exclusive Athlete Community</h3>
-                    <p style="font-weight: 600; margin-bottom: 8px;">A Connected, Supportive Growth Network Under Your School's Umbrella</p>
-                    <p>Your athletes get access to an exclusive creator community where they collaborate, support each other, share strategies, and help amplify positive content. This builds unity, accountability, and shared momentum, elevating not just individuals, but your entire athletic program.</p>
+                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+                        <h3>Exclusive Athlete Community</h3>
+                        <i data-lucide="chevron-down" class="accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p style="font-weight: 600; margin-bottom: 8px;">A Connected, Supportive Growth Network Under Your School's Umbrella</p>
+                        <p>Your athletes get access to an exclusive creator community where they collaborate, support each other, share strategies, and help amplify positive content. This builds unity, accountability, and shared momentum, elevating not just individuals, but your entire athletic program.</p>
+                    </div>
                 </div>
                 <div class="benefit-card fade-in">
                     <div class="benefit-icon"><i data-lucide="shield" class="gold-icon-lg"></i></div>
-                    <h3>Social Media Training & Reputation Protection</h3>
-                    <p style="font-weight: 600; margin-bottom: 8px;">Athletes Are Media Trained, But Almost None Are Social Media Trained</p>
-                    <p>Your athletes are representing your university every time they post. We teach them how to create positive, professional, brand-safe content while eliminating the risk of harmful posts that damage programs, recruiters, donors, and public trust. Strong, responsible athlete brands build stronger university brands.</p>
+                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+                        <h3>Social Media Training & Reputation Protection</h3>
+                        <i data-lucide="chevron-down" class="accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p style="font-weight: 600; margin-bottom: 8px;">Athletes Are Media Trained, But Almost None Are Social Media Trained</p>
+                        <p>Your athletes are representing your university every time they post. We teach them how to create positive, professional, brand-safe content while eliminating the risk of harmful posts that damage programs, recruiters, donors, and public trust. Strong, responsible athlete brands build stronger university brands.</p>
+                    </div>
                 </div>
             </div>
 
@@ -1137,6 +1268,20 @@
 
         // Initialize Lucide Icons
         lucide.createIcons();
+
+        // Accordion functionality
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.accordion-icon');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                button.classList.remove('expanded');
+            } else {
+                content.classList.add('expanded');
+                button.classList.add('expanded');
+            }
+        }
     
         // Mobile menu functionality
         function toggleMobileMenu() {
