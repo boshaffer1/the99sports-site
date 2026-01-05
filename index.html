@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>The 99 | NIL Consulting</title>
     <meta name="description" content="Elite NIL consulting for athletic programs, athletes, and brands. Build athletes' futures with The 99.">
 
@@ -66,6 +66,10 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+
+        html {
+            overflow-x: hidden;
+        }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -144,7 +148,17 @@
 
         @media (max-width: 768px) {
             .navbar {
+                position: static;
                 padding: 8px 16px;
+                width: 100%;
+                max-width: none;
+                transform: none;
+                left: auto;
+                top: auto;
+                background: rgba(10, 10, 10, 0.95);
+                border: none;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
             }
             .nav-links a {
                 padding: 6px 10px;
@@ -1441,6 +1455,7 @@
             .hero {
                 min-height: 100vh;
                 min-height: 100dvh;
+                padding-top: 0;
             }
 
             .hero-content {
@@ -1615,13 +1630,13 @@
             
             .nav-links {
                 position: fixed;
-                top: 60px;
+                top: 0;
                 right: -100%;
                 width: 250px;
                 height: 100vh;
                 background: rgba(10, 10, 10, 0.98);
                 flex-direction: column;
-                padding: 20px;
+                padding: 80px 20px 20px 20px;
                 transition: right 0.3s ease;
                 z-index: 999;
                 border-left: 1px solid rgba(255,255,255,0.08);

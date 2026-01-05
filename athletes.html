@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>For Athletes | The 99 - Build Your Brand</title>
     <meta name="description" content="Stop leaving money on the table. Learn how to build your personal brand, negotiate deals, and maximize your NIL potential with The 99.">
 
@@ -56,11 +56,16 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
+        html {
+            overflow-x: hidden;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--black);
             color: var(--white);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4 {
@@ -120,6 +125,26 @@
             background: var(--gold) !important;
             color: var(--black) !important;
             font-weight: 600 !important;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                position: static;
+                padding: 8px 16px;
+                width: 100%;
+                max-width: none;
+                transform: none;
+                left: auto;
+                top: auto;
+                background: rgba(10, 10, 10, 0.95);
+                border: none;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+            }
+            .nav-links a {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
         }
 
         /* Hero */
@@ -671,13 +696,13 @@
             
             .nav-links {
                 position: fixed;
-                top: 60px;
+                top: 0;
                 right: -100%;
                 width: 250px;
                 height: 100vh;
                 background: rgba(10, 10, 10, 0.98);
                 flex-direction: column;
-                padding: 20px;
+                padding: 80px 20px 20px 20px;
                 transition: right 0.3s ease;
                 z-index: 999;
                 border-left: 1px solid rgba(255,255,255,0.08);
@@ -747,7 +772,7 @@
             
             /* Fix hero sections */
             .hero {
-                padding: 120px 20px 60px;
+                padding: 60px 20px;
             }
             
             .hero h1 {
