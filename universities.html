@@ -297,6 +297,15 @@
             gap: 24px;
         }
 
+        /* Desktop: Force 2 rows x 3 columns for service cards */
+        @media (min-width: 769px) {
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+                max-width: 1200px !important;
+                margin: 0 auto !important;
+            }
+        }
+
         .benefit-card {
             padding: 32px 24px;
             background: rgba(255,255,255,0.03);
@@ -580,7 +589,13 @@
             .hero-image { order: -1; }
 
             .benefits-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .benefits-grid {
+                grid-template-columns: 1fr !important;
             }
         }
 
@@ -1052,7 +1067,7 @@
         <div class="hero-container">
             <div class="hero-content fade-in">
                 <h1>CREATE A <span>WINNING</span> NIL CULTURE</h1>
-                <p><strong>Athletes are often media trained, but almost none are social media trained.</strong> They know how to talk to reporters, but they don't know how to build brands, reach out to businesses, or turn social media into income. That's where opportunities are made—and where your program's reputation can be ruined with one mistake. We protect your brand while building theirs.</p>
+                <p>Athletes are often media trained, but almost none are social media trained. They know how to talk to reporters, but they don't know how to build brands, reach out to businesses, or turn social media into income. That's where opportunities are made—and where your program's reputation can be ruined with one mistake. We protect your brand while building theirs.</p>
                 <a href="#form" class="btn btn-gold btn-large" style="margin-top: 32px;" role="button">Build Your Program's Future</a>
             </div>
         </div>
@@ -1153,7 +1168,6 @@
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
                     <div class="accordion-content">
-                        <p style="font-weight: 600; margin-bottom: 8px;">Bring Powerful NIL Leadership Directly to Your Athletes</p>
                         <p>We come to campus and speak directly to your athletic programs, delivering engaging, high-impact NIL education rooted in real experience, not theory. Athletes leave motivated, informed, and prepared to represent your school with professionalism, confidence, and purpose… while seeing NIL as opportunity, not distraction.</p>
                     </div>
                 </div>
@@ -1164,7 +1178,6 @@
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
                     <div class="accordion-content">
-                        <p style="font-weight: 600; margin-bottom: 8px;">Hands-On Training That Builds Responsible, Prepared, Brand-Safe Athletes</p>
                         <p>Structured workshops that teach athletes exactly how to build their brands the right way. This means smarter content, better decision-making, and responsible online behavior, all supporting your athletic culture and institutional reputation. Schools that invest in real NIL development instantly separate themselves.</p>
                     </div>
                 </div>
@@ -1175,7 +1188,6 @@
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
                     <div class="accordion-content">
-                        <p style="font-weight: 600; margin-bottom: 8px;">Direct Access to Verified Brand Opportunities with Professional Tools</p>
                         <p>Through The 99 Network, your athletes get matched with brands actively seeking partnerships. Our AI-powered tools handle professional outreach with compliant messaging and structured partnership proposals. From simple paid posts to long-term sponsorships, every athlete—from stars to walk-ons—can access real deals with instant payment. This isn't random influencer culture, it's structured NIL that develops leaders, not liabilities.</p>
                     </div>
                 </div>
@@ -1186,7 +1198,6 @@
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
                     <div class="accordion-content">
-                        <p style="font-weight: 600; margin-bottom: 8px;">A Proven System for Athlete Growth That Strengthens Your University Image</p>
                         <p>A complete NIL roadmap crafted from real success, showing athletes how to build their brand across Instagram, TikTok, YouTube, Snapchat, and more, all while reinforcing discipline, maturity, and professionalism. When athletes win in NIL the right way, your school wins in visibility, recruiting, and credibility.</p>
                     </div>
                 </div>
@@ -1197,7 +1208,6 @@
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
                     <div class="accordion-content">
-                        <p style="font-weight: 600; margin-bottom: 8px;">A Connected, Supportive Growth Network Under Your School's Umbrella</p>
                         <p>Your athletes get access to an exclusive creator community where they collaborate, support each other, share strategies, and help amplify positive content. This builds unity, accountability, and shared momentum, elevating not just individuals, but your entire athletic program.</p>
                     </div>
                 </div>
@@ -1208,7 +1218,6 @@
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
                     <div class="accordion-content">
-                        <p style="font-weight: 600; margin-bottom: 8px;">Athletes Are Media Trained, But Almost None Are Social Media Trained</p>
                         <p>Your athletes are representing your university every time they post. We teach them how to create positive, professional, brand-safe content while eliminating the risk of harmful posts that damage programs, recruiters, donors, and public trust. Strong, responsible athlete brands build stronger university brands.</p>
                     </div>
                 </div>
