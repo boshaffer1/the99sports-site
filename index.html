@@ -1319,7 +1319,7 @@
             }
             .marquee-container::before,
             .marquee-container::after {
-                width: 60px;
+                display: none;
             }
             .author-school-logo {
                 display: none;
@@ -1582,12 +1582,46 @@
             }
 
             /* Cards and grid refinements */
+            .value-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
             .value-card {
                 padding: 24px 16px;
             }
 
+            /* Center animated/person figure properly on mobile */
+            .value-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 auto 16px;
+            }
+
             .testimonial-card {
                 padding: 20px;
+            }
+
+            /* Our Story section - fix 3 column layout on mobile */
+            .about-highlights {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+                text-align: center;
+            }
+
+            .about-highlights img {
+                height: 150px !important;
+                width: auto;
+                max-width: 200px;
+                margin: 0 auto;
+            }
+
+            .about-highlights span {
+                font-size: 0.9rem !important;
+                line-height: 1.4;
+                color: var(--gray);
+                text-align: center;
             }
 
             /* Services tabs horizontal scroll */
@@ -2261,14 +2295,14 @@
                     text-align: center;
                 }
                 .people-grid-3d {
-                    grid-template-columns: repeat(5, 1fr);
-                    gap: 6px;
-                    max-width: 200px;
+                    grid-template-columns: repeat(10, 1fr);
+                    gap: 3px;
+                    max-width: 300px;
                     margin: 0 auto 20px;
                 }
                 .person-3d {
-                    width: 32px;
-                    height: 48px;
+                    width: 24px;
+                    height: 36px;
                 }
                 .people-viz-wrapper {
                     display: flex;
