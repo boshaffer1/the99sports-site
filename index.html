@@ -1603,25 +1603,26 @@
                 padding: 20px;
             }
 
-            /* Our Story section - fix 3 column layout on mobile */
+            /* Our Story section - keep 3 column layout on mobile */
             .about-highlights {
-                grid-template-columns: 1fr !important;
-                gap: 40px !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 20px !important;
                 text-align: center;
             }
 
             .about-highlights img {
-                height: 150px !important;
+                height: 120px !important;
                 width: auto;
-                max-width: 200px;
+                max-width: 120px;
                 margin: 0 auto;
             }
 
             .about-highlights span {
-                font-size: 0.9rem !important;
-                line-height: 1.4;
+                font-size: 0.7rem !important;
+                line-height: 1.3;
                 color: var(--gray);
                 text-align: center;
+                display: block;
             }
 
             /* Services tabs horizontal scroll */
@@ -2279,6 +2280,9 @@
                     gap: 40px; 
                     justify-content: center;
                     align-items: center;
+                    display: flex;
+                    margin: 0 auto;
+                    text-align: center;
                 }
                 .nil-cup-visual { width: 90px; height: 110px; }
                 .nil-viz-container { 
@@ -2286,13 +2290,22 @@
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    justify-content: center;
                 }
                 .nil-cup-amount { 
                     font-size: 1rem;
                     text-align: center;
+                    margin: 0 auto;
                 }
                 .nil-cup-label {
                     text-align: center;
+                    margin: 0 auto;
+                }
+                .nil-cup {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
                 }
                 .people-grid-3d {
                     grid-template-columns: repeat(10, 1fr);
