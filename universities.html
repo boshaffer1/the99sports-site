@@ -122,23 +122,70 @@
             font-weight: 600 !important;
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1002;
+        }
+        
+        /* Mobile overlay */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        .mobile-overlay.active {
+            display: block;
+        }
+        
         @media (max-width: 768px) {
             .navbar {
-                position: static;
-                padding: 8px 16px;
-                width: 100%;
-                max-width: none;
-                transform: none;
-                left: auto;
-                top: auto;
-                background: rgba(10, 10, 10, 0.95);
-                border: none;
-                border-radius: 0;
-                border-bottom: 1px solid rgba(255,255,255,0.08);
+                display: none;
             }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1002;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                padding: 80px 20px 20px 20px;
+                transition: right 0.3s ease;
+                z-index: 1001;
+                border-left: 1px solid rgba(255,255,255,0.08);
+                overflow-y: auto;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
             .nav-links a {
-                padding: 6px 10px;
-                font-size: 12px;
+                display: block !important;
+                padding: 12px;
+                border-radius: 8px;
+                margin-bottom: 8px;
             }
         }
 
@@ -1084,21 +1131,38 @@
     <link rel="stylesheet" href="mobile-optimize.css">
 </head>
 <body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        ☰
+    </button>
+    
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Navigation -->
     <nav class="navbar">
         <a href="index.html" class="navbar-logo">
             <img src="assets/images/font-logos.png" alt="The 99">
         </a>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-            <i data-lucide="menu"></i>
-        </button>
-        <div class="nav-links" id="navLinks">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
             <a href="athletes.html">Athletes</a>
             <a href="universities.html" class="active">Schools</a>
             <a href="brands.html">Brands</a>
             <a href="team-profiles.html">Our Story</a>
-            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
         </div>
     </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="athletes.html">Athletes</a>
+        <a href="universities.html" class="active">Schools</a>
+        <a href="brands.html">Brands</a>
+        <a href="team-profiles.html">Our Story</a>
+        <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
+    </div>
 
     <section class="hero">
         <video class="hero-video" autoplay muted loop playsinline>
@@ -1331,6 +1395,42 @@
     </script>
 
     <script>
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navLinks');
+            const overlay = document.getElementById('mobileOverlay');
+            const toggle = document.querySelector('.mobile-menu-btn');
+            
+            if (menu && overlay && toggle) {
+                if (menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    overlay.classList.remove('active');
+                    toggle.innerHTML = '☰';
+                } else {
+                    menu.classList.add('active');
+                    overlay.classList.add('active');
+                    toggle.innerHTML = '✕';
+                }
+            }
+        }
+        
+        function closeMobileMenu() {
+            const menu = document.getElementById('navLinks');
+            const overlay = document.getElementById('mobileOverlay');
+            const toggle = document.querySelector('.mobile-menu-btn');
+            
+            if (menu && overlay && toggle) {
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+                toggle.innerHTML = '☰';
+            }
+        }
+        
+        // Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.replace();
+        }
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
