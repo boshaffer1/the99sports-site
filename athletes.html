@@ -65,6 +65,70 @@
             min-width: fit-content;
         }
 
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 80px 20px 20px;
+            transition: right 0.3s ease;
+            z-index: 1000;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: var(--muted-white);
+            text-decoration: none;
+            padding: 16px 0;
+            font-size: 18px;
+            font-weight: 500;
+            border-bottom: 1px solid var(--white-subtle);
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-menu a.active {
+            color: var(--white);
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .mobile-overlay.active {
+            display: block;
+        }
+
         nav a {
             color: var(--muted-white);
             text-decoration: none;
@@ -662,6 +726,19 @@
                 overflow-x: auto;
             }
 
+            /* Show mobile menu toggle and hide desktop nav links */
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav a {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
             .testimonial-text {
                 font-size: 18px;
                 padding: 25px 15px; /* More padding on mobile */
@@ -842,8 +919,9 @@
             /* People diagram mobile adjustments */
             .people-grid {
                 grid-template-columns: repeat(10, 1fr) !important; /* 10 per row on mobile */
-                gap: 6px !important;
+                gap: 4px !important;
                 max-width: 100% !important;
+                padding: 0 10px !important;
             }
 
             .people-diagram-section {
@@ -857,7 +935,18 @@
 
             /* Adjust people figure sizes for mobile */
             .people-grid div {
-                font-size: 16px !important;
+                font-size: 14px !important;
+                line-height: 1 !important;
+            }
+
+            /* Fix people diagram alignment on mobile */
+            .people-diagram-section h3 {
+                text-align: center !important;
+                padding: 0 20px !important;
+            }
+
+            .people-diagram-section .container {
+                padding: 0 20px !important;
             }
         }
 
@@ -914,7 +1003,22 @@
         <a href="/programs">For Programs</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            ☰
+        </button>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="/">Home</a>
+        <a href="/athletes" class="active">For Athletes</a>
+        <a href="/programs">For Programs</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1438,6 +1542,33 @@
                 icon.textContent = '−';
                 icon.classList.add('expanded');
             }
+        }
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const menu = document.querySelector('.mobile-menu');
+            const overlay = document.querySelector('.mobile-overlay');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+                toggle.innerHTML = '☰';
+            } else {
+                menu.classList.add('active');
+                overlay.classList.add('active');
+                toggle.innerHTML = '✕';
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.querySelector('.mobile-menu');
+            const overlay = document.querySelector('.mobile-overlay');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+            toggle.innerHTML = '☰';
         }
     </script>
 </body>
