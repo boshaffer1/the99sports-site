@@ -867,6 +867,17 @@
         
         /* Mobile: Show accordion functionality */
         @media (max-width: 768px) {
+            /* Make dropdown containers smaller on mobile */
+            .benefit-card {
+                padding: 16px 12px !important;
+            }
+            
+            /* Change dropdowns to 2 columns on mobile */
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+            }
+            
             .accordion-toggle {
                 width: 100%;
                 background: none;
@@ -875,13 +886,13 @@
                 text-align: left;
                 padding: 0;
                 font-family: inherit;
-                font-size: inherit;
+                font-size: 0.9rem;
                 font-weight: 700;
                 cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: 12px;
+                margin-bottom: 8px;
             }
             
             .accordion-content {
@@ -894,10 +905,15 @@
                 max-height: 1000px;
             }
             
+            .accordion-content p {
+                font-size: 0.8rem !important;
+                line-height: 1.3;
+            }
+            
             .accordion-icon {
                 transition: transform 0.3s ease;
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
                 color: var(--gold);
             }
             

@@ -2276,6 +2276,12 @@
                 }
             }
             @media (max-width: 768px) {
+                /* Hide people diagram and cups visualization on mobile */
+                .people-viz-wrapper,
+                .nil-viz-wrapper {
+                    display: none !important;
+                }
+                
                 .nil-cups { 
                     gap: 0; 
                     justify-content: space-between;
