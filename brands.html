@@ -328,6 +328,8 @@
         .benefit-card h3 {
             font-size: 1.1rem;
             margin-bottom: 8px;
+            color: var(--white);
+            font-weight: 700;
         }
 
         .benefit-card p {
@@ -819,6 +821,28 @@
                 max-height: none !important;
                 overflow: visible !important;
             }
+            
+            /* Show h3 headlines on desktop */
+            .benefit-card .accordion-toggle h3 {
+                display: block !important;
+                position: relative;
+                margin-bottom: 12px;
+                color: var(--white);
+                font-weight: 700;
+                font-size: 1.1rem;
+            }
+            
+            /* Create visible headline before accordion content on desktop */
+            .benefit-card .accordion-content::before {
+                content: attr(data-title);
+                display: block;
+                font-family: 'Unbounded', sans-serif;
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--white);
+                margin-bottom: 12px;
+                line-height: 1.2;
+            }
         }
         
         /* Mobile: Show accordion functionality */
@@ -832,6 +856,7 @@
                 padding: 0;
                 font-family: inherit;
                 font-size: inherit;
+                font-weight: 700;
                 cursor: pointer;
                 display: flex;
                 align-items: center;
@@ -1099,7 +1124,7 @@
                         <h3>Curated Matching</h3>
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content" data-title="Curated Matching">
                         <p>We connect you with athletes who authentically fit your brand—from Power 5 programs to rising stars, focusing on real alignment over just follower counts.</p>
                     </div>
                 </div>
@@ -1109,7 +1134,7 @@
                         <h3>Measurable Results</h3>
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content" data-title="Measurable Results">
                         <p>Track campaign performance with clear metrics and ROI reporting on every partnership.</p>
                     </div>
                 </div>
@@ -1119,7 +1144,7 @@
                         <h3>Hands-Off For You</h3>
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content" data-title="Hands-Off For You">
                         <p>Our athletes are trained to create great content. You get results without the back-and-forth.</p>
                     </div>
                 </div>
@@ -1129,7 +1154,7 @@
                         <h3>Campaign Strategy</h3>
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content" data-title="Campaign Strategy">
                         <p>Leverage our expertise to create campaigns that resonate with Gen Z audiences.</p>
                     </div>
                 </div>

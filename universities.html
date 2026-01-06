@@ -327,6 +327,8 @@
         .benefit-card h3 {
             font-size: 1.1rem;
             margin-bottom: 8px;
+            color: var(--white);
+            font-weight: 700;
         }
 
         .benefit-card p {
@@ -839,6 +841,28 @@
                 max-height: none !important;
                 overflow: visible !important;
             }
+            
+            /* Show h3 headlines on desktop */
+            .benefit-card .accordion-toggle h3 {
+                display: block !important;
+                position: relative;
+                margin-bottom: 12px;
+                color: var(--white);
+                font-weight: 700;
+                font-size: 1.1rem;
+            }
+            
+            /* Create visible headline before accordion content on desktop */
+            .benefit-card .accordion-content::before {
+                content: attr(data-title);
+                display: block;
+                font-family: 'Unbounded', sans-serif;
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--white);
+                margin-bottom: 12px;
+                line-height: 1.2;
+            }
         }
         
         /* Mobile: Show accordion functionality */
@@ -852,6 +876,7 @@
                 padding: 0;
                 font-family: inherit;
                 font-size: inherit;
+                font-weight: 700;
                 cursor: pointer;
                 display: flex;
                 align-items: center;
@@ -1167,7 +1192,7 @@
                         <h3>On-Campus Speaking & NIL Education</h3>
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content" data-title="On-Campus Speaking & NIL Education">
                         <p>We come to campus and speak directly to your athletic programs, delivering engaging, high-impact NIL education rooted in real experience, not theory. Athletes leave motivated, informed, and prepared to represent your school with professionalism, confidence, and purpose… while seeing NIL as opportunity, not distraction.</p>
                     </div>
                 </div>
@@ -1177,7 +1202,7 @@
                         <h3>NIL Workshops</h3>
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content" data-title="NIL Workshops">
                         <p>Structured workshops that teach athletes exactly how to build their brands the right way. This means smarter content, better decision-making, and responsible online behavior, all supporting your athletic culture and institutional reputation. Schools that invest in real NIL development instantly separate themselves.</p>
                     </div>
                 </div>
@@ -1187,7 +1212,7 @@
                         <h3>Exclusive Brand Partnerships</h3>
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content" data-title="Exclusive Brand Partnerships">
                         <p>Through The 99 Network, your athletes get matched with brands actively seeking partnerships. Our AI-powered tools handle professional outreach with compliant messaging and structured partnership proposals. From simple paid posts to long-term sponsorships, every athlete—from stars to walk-ons—can access real deals with instant payment. This isn't random influencer culture, it's structured NIL that develops leaders, not liabilities.</p>
                     </div>
                 </div>
@@ -1197,7 +1222,7 @@
                         <h3>The 99 NIL Playbook</h3>
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content" data-title="The 99 NIL Playbook">
                         <p>A complete NIL roadmap crafted from real success, showing athletes how to build their brand across Instagram, TikTok, YouTube, Snapchat, and more, all while reinforcing discipline, maturity, and professionalism. When athletes win in NIL the right way, your school wins in visibility, recruiting, and credibility.</p>
                     </div>
                 </div>
@@ -1207,7 +1232,7 @@
                         <h3>Exclusive Athlete Community</h3>
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content" data-title="Exclusive Athlete Community">
                         <p>Your athletes get access to an exclusive creator community where they collaborate, support each other, share strategies, and help amplify positive content. This builds unity, accountability, and shared momentum, elevating not just individuals, but your entire athletic program.</p>
                     </div>
                 </div>
@@ -1217,7 +1242,7 @@
                         <h3>Social Media Training & Reputation Protection</h3>
                         <i data-lucide="chevron-down" class="accordion-icon"></i>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content" data-title="Social Media Training & Reputation Protection">
                         <p>Your athletes are representing your university every time they post. We teach them how to create positive, professional, brand-safe content while eliminating the risk of harmful posts that damage programs, recruiters, donors, and public trust. Strong, responsible athlete brands build stronger university brands.</p>
                     </div>
                 </div>
