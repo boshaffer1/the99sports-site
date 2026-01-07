@@ -126,7 +126,21 @@
 
         @media (max-width: 768px) {
             .navbar {
-                display: none;
+                position: static;
+                padding: 8px 16px;
+                width: 100%;
+                max-width: none;
+                transform: none;
+                left: auto;
+                top: auto;
+                background: rgba(10, 10, 10, 0.95);
+                border: none;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+            }
+            .nav-links a {
+                padding: 6px 10px;
+                font-size: 12px;
             }
         }
 
@@ -724,29 +738,9 @@
             padding: 8px;
         }
         
-        /* Mobile overlay */
-        .mobile-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-        
-        .mobile-overlay.active {
-            display: block;
-        }
-        
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 1002;
             }
             
             .nav-links {
@@ -759,9 +753,8 @@
                 flex-direction: column;
                 padding: 80px 20px 20px 20px;
                 transition: right 0.3s ease;
-                z-index: 1001;
+                z-index: 999;
                 border-left: 1px solid rgba(255,255,255,0.08);
-                overflow-y: auto;
             }
             
             .nav-links.active {
@@ -1133,38 +1126,21 @@
     <link rel="stylesheet" href="mobile-optimize.css">
 </head>
 <body>
-    <!-- Mobile Menu Button -->
-    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-        ☰
-    </button>
-    
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
-    
-    <!-- Navigation -->
     <nav class="navbar">
         <a href="index.html" class="navbar-logo">
             <img src="assets/images/font-logos.png" alt="The 99">
         </a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i data-lucide="menu"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="athletes.html">Athletes</a>
             <a href="universities.html">Schools</a>
             <a href="brands.html" class="active">Brands</a>
             <a href="team-profiles.html">Our Story</a>
-            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
         </div>
     </nav>
-    
-    <!-- Mobile Menu -->
-    <div class="nav-links" id="navLinks">
-        <a href="index.html">Home</a>
-        <a href="athletes.html">Athletes</a>
-        <a href="universities.html">Schools</a>
-        <a href="brands.html" class="active">Brands</a>
-        <a href="team-profiles.html">Our Story</a>
-        <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
-    </div>
 
     <section class="hero">
         <video class="hero-video" autoplay muted loop playsinline>
@@ -1508,36 +1484,32 @@
             }
         }
     
-        // Mobile menu functions
+        // Mobile menu functionality
         function toggleMobileMenu() {
-            const menu = document.getElementById('navLinks');
-            const overlay = document.getElementById('mobileOverlay');
-            const toggle = document.querySelector('.mobile-menu-btn');
-            
-            if (menu && overlay && toggle) {
-                if (menu.classList.contains('active')) {
-                    menu.classList.remove('active');
-                    overlay.classList.remove('active');
-                    toggle.innerHTML = '☰';
-                } else {
-                    menu.classList.add('active');
-                    overlay.classList.add('active');
-                    toggle.innerHTML = '✕';
-                }
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
             }
         }
         
-        function closeMobileMenu() {
-            const menu = document.getElementById('navLinks');
-            const overlay = document.getElementById('mobileOverlay');
-            const toggle = document.querySelector('.mobile-menu-btn');
-            
-            if (menu && overlay && toggle) {
-                menu.classList.remove('active');
-                overlay.classList.remove('active');
-                toggle.innerHTML = '☰';
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            if (navLinks && mobileBtn && !navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
             }
-        }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
