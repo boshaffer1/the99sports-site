@@ -2555,8 +2555,7 @@
                     }
                     const landsLeft = b.x < centerX;
 
-                    // Left cup = white (1%), Right cup = gold (99%)
-                    burst(b.x, landY, landsLeft ? '#fff' : '#D4AF37', landsLeft ? 8 : 6);
+                    // Ball simply disappears when it lands in the cup (no burst effect)
 
                     if (landsLeft) {
                         // White cup (1%) - gets 95 balls
