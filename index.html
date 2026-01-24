@@ -449,15 +449,11 @@
             border: 1px solid rgba(212, 175, 55, 0.2);
             box-shadow: 0 0 60px rgba(212, 175, 55, 0.1);
             position: relative;
-            padding-top: 56.25%; /* 16:9 aspect ratio */
         }
-        .vsl-video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .vsl-video-container wistia-player {
+            display: block;
             width: 100%;
-            height: 100%;
-            border: none;
+            border-radius: 24px;
         }
         @media (max-width: 768px) {
             .vsl-section {
@@ -1788,6 +1784,18 @@
         }
     </style>
     <link rel="stylesheet" href="mobile-optimize.css">
+    
+    <!-- Wistia Player Scripts -->
+    <script src="https://fast.wistia.com/player.js" async></script>
+    <script src="https://fast.wistia.com/embed/wqy851xwff.js" async type="module"></script>
+    <style>
+        wistia-player[media-id='wqy851xwff']:not(:defined) { 
+            background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/wqy851xwff/swatch'); 
+            display: block; 
+            filter: blur(5px); 
+            padding-top: 56.25%; 
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -1831,15 +1839,7 @@
             <p class="vsl-subheadline">Built by one of the world's top NIL earners who's redefining opportunity for the 99% of athletes, not just the stars.</p>
         </div>
         <div class="vsl-video-container fade-in" id="vsl-container">
-            <iframe
-                id="vsl-video"
-                src="https://www.youtube.com/embed/I6h5VbMGqUs"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-            </iframe>
+            <wistia-player media-id="wqy851xwff" seo="false" aspect="1.7777777777777777"></wistia-player>
         </div>
     </section>
 
