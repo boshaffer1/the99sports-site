@@ -124,21 +124,64 @@
 
         @media (max-width: 768px) {
             .navbar {
-                position: static;
-                padding: 8px 16px;
+                position: fixed;
+                top: 0;
+                left: 0;
                 width: 100%;
                 max-width: none;
                 transform: none;
-                left: auto;
-                top: auto;
                 background: rgba(10, 10, 10, 0.95);
                 border: none;
                 border-radius: 0;
                 border-bottom: 1px solid rgba(255,255,255,0.08);
+                padding: 16px;
+                z-index: 1000;
             }
+            
+            .mobile-menu-btn {
+                display: block !important;
+                z-index: 1001;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 280px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 24px;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                border-left: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
             .nav-links a {
-                padding: 6px 10px;
-                font-size: 12px;
+                color: var(--white);
+                font-size: 18px;
+                font-weight: 500;
+                padding: 16px 24px;
+                border-radius: 12px;
+                width: 200px;
+                text-align: center;
+                transition: all 0.2s ease;
+            }
+            
+            .nav-links a:hover {
+                background: rgba(255,255,255,0.1);
+            }
+            
+            .hero {
+                padding-top: 80px;
             }
         }
 
