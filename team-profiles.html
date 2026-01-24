@@ -261,11 +261,14 @@
 
         /* Profile Card - LinkedIn/Twitter Style */
         .profile-card {
+            position: relative;
             background: var(--charcoal);
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--border);
             transition: all 0.3s ease;
+            background-size: cover;
+            background-position: center;
         }
 
         .profile-card:hover {
@@ -274,41 +277,18 @@
             border-color: rgba(212, 175, 55, 0.2);
         }
 
-        /* Banner Background */
-        .profile-banner {
-            position: relative;
-            height: 280px;
-            background: var(--charcoal);
-            overflow: hidden;
-        }
-        
-        @media (max-width: 768px) {
-            .profile-banner {
-                height: 220px;
-            }
-        }
-
-        .profile-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-        
-        /* Responsive image positioning */
-        @media (max-width: 768px) {
-            .profile-banner img {
-                object-position: center center;
-            }
-        }
-
-        .profile-banner-overlay {
+        /* Background Overlay for text readability */
+        .profile-background-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.4) 100%);
+            background: linear-gradient(180deg, 
+                rgba(28, 28, 28, 0.85) 0%, 
+                rgba(28, 28, 28, 0.9) 50%,
+                rgba(28, 28, 28, 0.95) 100%);
+            z-index: 1;
         }
 
         /* University Badge on Banner */
@@ -337,8 +317,8 @@
         /* Profile Avatar - Circular */
         .profile-avatar-container {
             position: relative;
-            margin-top: -50px;
-            padding: 0 24px;
+            z-index: 2;
+            padding: 40px 24px 0;
         }
         
         @media (max-width: 768px) {
@@ -377,7 +357,9 @@
 
         /* Profile Content */
         .profile-content {
-            padding: 20px 24px 32px;
+            position: relative;
+            z-index: 2;
+            padding: 40px 24px 32px;
         }
 
         .profile-header {
@@ -796,15 +778,13 @@
         <div class="profiles-container">
             
             <!-- Trace Young Profile -->
-            <article class="profile-card fade-in">
-                <!-- Banner with LSU Stadium or action shot -->
-                <div class="profile-banner">
-                    <img src="assets/images/trace-lsu.jpg" alt="LSU Stadium" style="object-fit: cover; object-position: center 25%; width: 100%; height: 100%;">
-                    <div class="profile-banner-overlay"></div>
-                    <div class="university-badge">
-                        <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
-                        <span>LSU</span>
-                    </div>
+            <article class="profile-card fade-in" style="background-image: url('assets/images/trace-lsu.jpg'); background-position: center 25%;">
+                <div class="profile-background-overlay"></div>
+                
+                <!-- University Badge -->
+                <div class="university-badge" style="position: absolute; top: 20px; right: 20px; z-index: 3;">
+                    <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
+                    <span>LSU</span>
                 </div>
                 
                 <!-- Circular Avatar -->
@@ -863,15 +843,13 @@
             </article>
             
             <!-- Bo Shaffer Profile -->
-            <article class="profile-card fade-in">
-                <!-- Banner with Duke basketball player -->
-                <div class="profile-banner">
-                    <img src="assets/images/duke-player.jpg" alt="Duke Basketball" style="object-fit: cover; object-position: center 35%; width: 100%; height: 100%;">
-                    <div class="profile-banner-overlay"></div>
-                    <div class="university-badge">
-                        <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
-                        <span>Duke</span>
-                    </div>
+            <article class="profile-card fade-in" style="background-image: url('assets/images/duke-player.jpg'); background-position: center 35%;">
+                <div class="profile-background-overlay"></div>
+                
+                <!-- University Badge -->
+                <div class="university-badge" style="position: absolute; top: 20px; right: 20px; z-index: 3;">
+                    <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
+                    <span>Duke</span>
                 </div>
                 
                 <!-- Circular Avatar -->
