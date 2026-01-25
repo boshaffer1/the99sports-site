@@ -149,16 +149,22 @@
         @media (max-width: 768px) {
             .navbar {
                 position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                width: calc(100% - 20px);
                 max-width: none;
                 transform: none;
                 background: rgba(10, 10, 10, 0.95);
-                border: none;
-                border-radius: 0;
-                border-bottom: 1px solid rgba(255,255,255,0.08);
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 16px;
                 padding: 16px;
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
+            
+            .navbar.hidden {
+                transform: translateY(-120%);
             }
             
             .mobile-menu-btn {
@@ -2868,7 +2874,7 @@
             <p>Let's discuss how The 99 can help your program, athletes, or brand succeed in the NIL era.</p>
             <div class="cta-buttons">
                 <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="btn btn-gold"  role="button">Unlock Your NIL Potential</a>
-                <a href="mailto:team@the99sports.com" class="btn btn-outline" role="button">Email Us</a>
+                <a href="mailto:bo@the99network.com" class="btn btn-outline" role="button">bo@the99network.com</a>
             </div>
         </div>
     </section>
@@ -3032,6 +3038,34 @@
 
         // Initialize Lucide Icons
         lucide.createIcons();
+    
+        // Mobile scroll hide/show navbar
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        
+        function updateNavbar() {
+            const navbar = document.querySelector('.navbar');
+            if (!navbar) return;
+            
+            if (window.innerWidth <= 768) {
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                    // Scrolling down
+                    navbar.classList.add('hidden');
+                } else {
+                    // Scrolling up
+                    navbar.classList.remove('hidden');
+                }
+            }
+            lastScrollY = window.scrollY;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
     
         // Mobile menu functionality
         function toggleMobileMenu() {
