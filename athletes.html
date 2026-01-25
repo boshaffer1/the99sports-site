@@ -583,6 +583,36 @@
                 gap: 30px !important;
             }
             
+            /* Fix photo container on mobile */
+            .transformation-photos {
+                position: relative !important;
+                height: auto !important;
+                margin: 40px 0 !important;
+                padding-bottom: 60px !important;
+            }
+            
+            /* Adjust photo positions on mobile */
+            .transformation-photos > div:first-child {
+                position: relative !important;
+                left: 0 !important;
+                top: 0 !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .transformation-photos > div:last-child {
+                position: relative !important;
+                right: 0 !important;
+                bottom: 0 !important;
+            }
+            
+            .transformation-photos img {
+                width: 100% !important;
+                max-width: 300px !important;
+                height: auto !important;
+                margin: 0 auto !important;
+                display: block !important;
+            }
+            
             /* Stack 99 Playbook items vertically */
             div[style*="grid-template-columns: repeat(3, 1fr)"] {
                 grid-template-columns: 1fr !important;
