@@ -127,17 +127,22 @@
         @media (max-width: 768px) {
             .navbar {
                 position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
+                top: 16px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 32px);
                 max-width: none;
-                transform: none;
                 background: rgba(10, 10, 10, 0.95);
-                border: none;
-                border-radius: 0;
-                border-bottom: 1px solid rgba(255,255,255,0.08);
-                padding: 16px;
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 100px;
+                padding: 16px 24px;
+                transition: transform 0.3s ease, opacity 0.3s ease;
                 z-index: 1000;
+            }
+            
+            .navbar.hidden {
+                transform: translateX(-50%) translateY(-120%);
+                opacity: 0;
             }
             
             .mobile-menu-btn {
@@ -982,6 +987,69 @@
             }
         }
 
+        /* How It Works Mobile Layout */
+        @media (max-width: 768px) {
+            .how-it-works-steps {
+                position: relative;
+                padding-left: 40px !important;
+            }
+            
+            .how-it-works-steps > div {
+                margin: 0 !important;
+                max-width: 100% !important;
+                min-width: 100% !important;
+                text-align: left !important;
+                position: relative !important;
+                margin-bottom: 40px !important;
+            }
+            
+            .how-it-works-steps > div:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                left: -30px;
+                top: 60px;
+                height: calc(100% + 20px);
+                width: 2px;
+                background: repeating-linear-gradient(
+                    to bottom,
+                    var(--gold) 0,
+                    var(--gold) 6px,
+                    transparent 6px,
+                    transparent 12px
+                );
+                opacity: 0.5;
+            }
+            
+            .how-it-works-steps > div > div:first-child {
+                position: absolute !important;
+                left: -50px !important;
+                top: 0 !important;
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 18px !important;
+            }
+            
+            .how-it-works-steps > div > div:first-child i {
+                width: 20px !important;
+                height: 20px !important;
+            }
+            
+            .how-it-works-steps > div h3 {
+                margin-left: 0 !important;
+                margin-top: 0 !important;
+                font-size: 0.95rem !important;
+            }
+            
+            .how-it-works-steps > div p {
+                margin-left: 0 !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .how-it-works-steps > div > div[style*="position: absolute"] {
+                display: none !important;
+            }
+        }
+        
         /* Clean Mobile Fixes */
         @media (max-width: 768px) {
             /* Prevent horizontal scroll */
@@ -1266,7 +1334,7 @@
             <div style="text-align: center;"><h2 class="section-title fade-in">From Onboarding to Revenue</h2></div>
             
             <!-- Horizontal Step Layout -->
-            <div style="display: flex; gap: 30px; justify-content: center; margin-top: 60px; flex-wrap: wrap; padding: 20px 0;">
+            <div class="how-it-works-steps" style="display: flex; gap: 30px; justify-content: center; margin-top: 60px; flex-wrap: wrap; padding: 20px 0;">
                 <!-- Step 1 -->
                 <div style="flex: 1; min-width: 160px; max-width: 180px; text-align: center; position: relative;">
                     <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--gold), #F4D03F); color: var(--black); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 24px; font-weight: 700; box-shadow: 0 0 30px rgba(212,175,55,0.5);">
@@ -1523,6 +1591,34 @@
 
         // Initialize Lucide Icons
         lucide.createIcons();
+
+        // Mobile scroll hide/show navbar
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        
+        function updateNavbar() {
+            const navbar = document.querySelector('.navbar');
+            if (!navbar) return;
+            
+            if (window.innerWidth <= 768) {
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                    // Scrolling down
+                    navbar.classList.add('hidden');
+                } else {
+                    // Scrolling up
+                    navbar.classList.remove('hidden');
+                }
+            }
+            lastScrollY = window.scrollY;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
 
         // Accordion functionality
         function toggleAccordion(button) {

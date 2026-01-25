@@ -149,22 +149,22 @@
         @media (max-width: 768px) {
             .navbar {
                 position: fixed;
-                top: 10px;
-                left: 10px;
-                right: 10px;
-                width: calc(100% - 20px);
+                top: 16px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 32px);
                 max-width: none;
-                transform: none;
                 background: rgba(10, 10, 10, 0.95);
                 border: 1px solid rgba(255,255,255,0.08);
-                border-radius: 16px;
-                padding: 16px;
-                transition: transform 0.3s ease;
+                border-radius: 100px;
+                padding: 16px 24px;
+                transition: transform 0.3s ease, opacity 0.3s ease;
                 z-index: 1000;
             }
             
             .navbar.hidden {
-                transform: translateY(-120%);
+                transform: translateX(-50%) translateY(-120%);
+                opacity: 0;
             }
             
             .mobile-menu-btn {

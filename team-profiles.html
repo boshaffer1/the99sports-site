@@ -110,17 +110,22 @@
         @media (max-width: 768px) {
             .navbar {
                 position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
+                top: 16px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 32px);
                 max-width: none;
-                transform: none;
                 background: rgba(10, 10, 10, 0.95);
-                border: none;
-                border-radius: 0;
-                border-bottom: 1px solid rgba(255,255,255,0.08);
-                padding: 16px;
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 100px;
+                padding: 16px 24px;
+                transition: transform 0.3s ease, opacity 0.3s ease;
                 z-index: 1000;
+            }
+            
+            .navbar.hidden {
+                transform: translateX(-50%) translateY(-120%);
+                opacity: 0;
             }
             
             .mobile-menu-btn {
@@ -593,12 +598,13 @@
         @media (max-width: 768px) {
             /* Fix hero header visibility on mobile */
             .hero-header {
-                padding: 100px 24px 40px !important;
+                padding: 100px 24px 20px !important;
                 margin-top: 0;
+                margin-bottom: 10px;
             }
             
             .hero-title {
-                font-size: 2rem !important;
+                font-size: 1.8rem !important;
                 color: var(--white) !important;
                 font-weight: 800 !important;
             }
@@ -616,34 +622,51 @@
             .profile-card {
                 flex-direction: column;
                 text-align: center;
-                padding: 40px 0;
-                margin: 0 -20px;
-                width: calc(100% + 40px);
-                min-height: 600px;
+                padding: 30px 0;
+                margin: 0;
+                width: 100%;
+                min-height: auto;
                 background-repeat: no-repeat !important;
-                background-size: cover !important;
+                background-size: 150% auto !important;
                 background-position: center center !important;
             }
             
             .profile-card .profile-content {
                 padding: 0 20px;
+                overflow: visible !important;
             }
             
             .profile-card .profile-avatar-container {
                 padding: 0 20px;
+                margin-bottom: 10px !important;
+                margin-top: 10px !important;
             }
             
-            /* Ensure backgrounds don't repeat on mobile */
+            .profile-name {
+                margin-top: 5px !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .profile-title {
+                margin-bottom: 15px !important;
+            }
+            
+            .bio-text {
+                font-size: 1.2rem !important;
+                padding: 0 10px;
+            }
+            
+            /* Zoom out backgrounds on mobile */
             .profile-card:first-child {
                 background-repeat: no-repeat !important;
-                background-size: cover !important;
-                background-position: center 20% !important;
+                background-size: 140% auto !important;
+                background-position: center 25% !important;
             }
             
             .profile-card:last-child {
                 background-repeat: no-repeat !important;
-                background-size: cover !important;
-                background-position: 50% 30% !important;
+                background-size: 135% auto !important;
+                background-position: center 35% !important;
             }
             
             .profile-content {
@@ -1053,7 +1076,33 @@
         // Initialize Lucide Icons
         lucide.createIcons();
         
+        // Mobile scroll hide/show navbar
+        let lastScrollY = window.scrollY;
+        let ticking = false;
         
+        function updateNavbar() {
+            const navbar = document.querySelector('.navbar');
+            if (!navbar) return;
+            
+            if (window.innerWidth <= 768) {
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                    // Scrolling down
+                    navbar.classList.add('hidden');
+                } else {
+                    // Scrolling up
+                    navbar.classList.remove('hidden');
+                }
+            }
+            lastScrollY = window.scrollY;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
     
         // Mobile menu functionality
         function toggleMobileMenu() {
