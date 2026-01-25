@@ -248,48 +248,24 @@
 
         /* Profiles Section */
         .profiles-section {
-            padding: 0;
-            margin-top: -20px;
+            padding: 40px 24px 100px;
         }
 
         .profiles-container {
-            max-width: 100%;
-            margin: 0;
+            max-width: 95%;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 0;
-            align-items: stretch;
+            gap: 40px;
         }
 
-        /* Profile Card - Full Width Style */
+        /* Profile Card - LinkedIn/Twitter Style */
         .profile-card {
-            width: 100%;
-            min-height: 550px;
-            position: relative;
-            overflow: visible;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 60px 80px;
-            gap: 60px;
-        }
-        
-        /* Basketball photos as backgrounds - darker overlay for readability */
-        .profile-card:first-child {
-            background: linear-gradient(to right, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.8) 70%, rgba(10, 10, 10, 0.65) 100%),
-                        url('assets/images/trace-lsu.jpg');
-            background-size: 110% auto;
-            background-position: center 30%;
-            background-repeat: no-repeat;
-        }
-        
-        .profile-card:last-child {
-            background: linear-gradient(to right, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.8) 70%, rgba(10, 10, 10, 0.65) 100%),
-                        url('assets/images/duke-player.jpg');
-            background-size: 100% auto;
-            background-position: 70% 40%;
-            background-repeat: no-repeat;
+            background: var(--charcoal);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
 
         .profile-card:hover {
@@ -298,6 +274,42 @@
             border-color: rgba(212, 175, 55, 0.2);
         }
 
+        /* Banner Background */
+        .profile-banner {
+            position: relative;
+            height: 280px;
+            background: var(--charcoal);
+            overflow: hidden;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-banner {
+                height: 220px;
+            }
+        }
+
+        .profile-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+        
+        /* Responsive image positioning */
+        @media (max-width: 768px) {
+            .profile-banner img {
+                object-position: center center;
+            }
+        }
+
+        .profile-banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.4) 100%);
+        }
 
         /* University Badge on Banner */
         .university-badge {
@@ -325,7 +337,8 @@
         /* Profile Avatar - Circular */
         .profile-avatar-container {
             position: relative;
-            flex-shrink: 0;
+            margin-top: -80px;
+            padding: 0 24px;
         }
         
         @media (max-width: 768px) {
@@ -335,13 +348,13 @@
         }
 
         .profile-avatar {
-            width: 380px;
-            height: 440px;
-            border-radius: 12px;
-            border: 4px solid rgba(255, 255, 255, 0.9);
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            border: 4px solid var(--charcoal);
             overflow: hidden;
             background: var(--gray-dark);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         .profile-avatar img {
@@ -353,24 +366,18 @@
         /* Mobile avatar adjustments */
         @media (max-width: 768px) {
             .profile-avatar {
-                width: 280px;
-                height: 320px;
+                width: 100px;
+                height: 100px;
             }
             
             .profile-avatar-container {
-                margin-bottom: 20px;
+                margin-top: -50px;
             }
         }
 
         /* Profile Content */
         .profile-content {
-            text-align: left;
-            max-width: none;
-            width: 100%;
-            color: white;
-            z-index: 2;
-            padding-left: 20px;
-            flex: 1;
+            padding: 20px 24px 32px;
         }
 
         .profile-header {
@@ -378,19 +385,16 @@
         }
 
         .profile-name {
-            font-size: 3.5rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            margin-bottom: 16px;
-            color: white;
-            text-transform: uppercase;
+            margin-bottom: 4px;
         }
 
         .profile-title {
-            color: white;
-            font-size: 2rem;
+            color: var(--gold);
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 28px;
-            opacity: 0.95;
+            margin-bottom: 12px;
         }
 
         .profile-stats {
@@ -451,10 +455,10 @@
         }
 
         .bio-text {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.6rem;
+            color: var(--gray-light);
+            font-size: 0.95rem;
             line-height: 1.7;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         /* Key Achievements */
@@ -463,7 +467,12 @@
         }
 
         .achievement-item {
-            display: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: var(--gray-light);
+            font-size: 0.9rem;
         }
 
         .achievement-item i {
@@ -530,22 +539,22 @@
         }
 
         .social-link {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
             border-radius: 50%;
-            color: white;
+            color: var(--gray-light);
             transition: all 0.3s ease;
         }
 
         .social-link:hover {
-            background: rgba(255,255,255,0.25);
-            border-color: white;
-            transform: scale(1.1);
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold);
+            color: var(--gold);
         }
 
         .social-link i {
@@ -591,47 +600,8 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            /* Fix hero header visibility on mobile */
-            .hero-header {
-                padding: 100px 24px 40px !important;
-                margin-top: 0;
-            }
-            
-            .hero-title {
-                font-size: 2rem !important;
-                color: var(--white) !important;
-                font-weight: 800 !important;
-            }
-            
             .profiles-container {
-                flex-direction: column;
-            }
-            
-            .profile-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 40px 20px;
-                min-height: 600px;
-                background-repeat: no-repeat !important;
-                background-size: cover !important;
-                background-position: center center !important;
-            }
-            
-            /* Ensure backgrounds don't repeat on mobile */
-            .profile-card:first-child {
-                background-repeat: no-repeat !important;
-                background-size: cover !important;
-                background-position: center 20% !important;
-            }
-            
-            .profile-card:last-child {
-                background-repeat: no-repeat !important;
-                background-size: cover !important;
-                background-position: 50% 30% !important;
-            }
-            
-            .profile-content {
-                text-align: center;
+                grid-template-columns: 1fr;
             }
 
             .profile-stats {
@@ -806,7 +776,6 @@
             <i data-lucide="menu"></i>
         </button>
         <div class="nav-links" id="navLinks">
-            <a href="index.html">Home</a>
             <a href="athletes.html">Athletes</a>
             <a href="universities.html">Schools</a>
             <a href="brands.html">Brands</a>
@@ -828,10 +797,20 @@
             
             <!-- Trace Young Profile -->
             <article class="profile-card fade-in">
+                <!-- Banner with LSU Stadium or action shot -->
+                <div class="profile-banner">
+                    <img src="assets/images/trace-lsu.jpg" alt="LSU Stadium" style="object-fit: cover; object-position: center 25%; width: 100%; height: 100%;">
+                    <div class="profile-banner-overlay"></div>
+                    <div class="university-badge">
+                        <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
+                        <span>LSU</span>
+                    </div>
+                </div>
+                
                 <!-- Circular Avatar -->
                 <div class="profile-avatar-container">
                     <div class="profile-avatar">
-                        <img src="assets/images/trace-suit.jpg" alt="Trace Young" style="object-position: center 20%; transform: scale(1.3);">
+                        <img src="assets/images/trace-suit.jpg" alt="Trace Young" style="object-position: center 20%;">
                     </div>
                 </div>
                 
@@ -850,9 +829,6 @@
                         </p>
                         <p class="bio-text" style="margin-top: 12px;">
                             Trace has grown a social media following of hundreds of thousands, leading to numerous high ticket brand deals. He helped guide teammates and friends through the NIL landscape, ultimately founding The 99 Network.
-                        </p>
-                        <p class="bio-text" style="margin-top: 12px;">
-                            The 99 Network was born from real experience, not theory. On the other side, he worked directly with brands, understanding what they truly value, what drives revenue, and what actually makes partnerships work. Bringing those worlds together, he created The 99 Network as a place where athletes get education, structure, and powerful AI tools to handle the complicated NIL details for them, so they can stay focused on academics and athletics.
                         </p>
                     </div>
                     
@@ -888,10 +864,20 @@
             
             <!-- Bo Shaffer Profile -->
             <article class="profile-card fade-in">
+                <!-- Banner with Duke basketball player -->
+                <div class="profile-banner">
+                    <img src="assets/images/duke-player.jpg" alt="Duke Basketball" style="object-fit: cover; object-position: center 35%; width: 100%; height: 100%;">
+                    <div class="profile-banner-overlay"></div>
+                    <div class="university-badge">
+                        <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
+                        <span>Duke</span>
+                    </div>
+                </div>
+                
                 <!-- Circular Avatar -->
                 <div class="profile-avatar-container">
                     <div class="profile-avatar">
-                        <img src="assets/images/bo-new.jpg" alt="Bo Shaffer" style="object-position: center 75%; transform: scale(2.0);">
+                        <img src="assets/images/bo-new.jpg" alt="Bo Shaffer" style="object-position: center 50%; transform: scale(1.3);">
                     </div>
                 </div>
                 

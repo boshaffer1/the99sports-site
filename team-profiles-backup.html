@@ -214,7 +214,7 @@
 
         /* Hero Header */
         .hero-header {
-            padding: 140px 24px 60px;
+            padding: 180px 24px 100px;
             text-align: center;
             max-width: 900px;
             margin: 0 auto;
@@ -248,48 +248,45 @@
 
         /* Profiles Section */
         .profiles-section {
-            padding: 0;
-            margin-top: -20px;
+            padding: 40px 24px 100px;
         }
 
         .profiles-container {
-            max-width: 100%;
-            margin: 0;
+            max-width: 900px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 0;
-            align-items: stretch;
-        }
-
-        /* Profile Card - Full Width Style */
-        .profile-card {
-            width: 100%;
-            min-height: 550px;
-            position: relative;
-            overflow: visible;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 60px 80px;
             gap: 60px;
         }
-        
-        /* Basketball photos as backgrounds - darker overlay for readability */
-        .profile-card:first-child {
-            background: linear-gradient(to right, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.8) 70%, rgba(10, 10, 10, 0.65) 100%),
-                        url('assets/images/trace-lsu.jpg');
-            background-size: 110% auto;
-            background-position: center 30%;
-            background-repeat: no-repeat;
+
+        /* Profile Card - Vertical Layout */
+        .profile-card {
+            position: relative;
+            background: var(--charcoal);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: auto;
+            background-size: cover;
+            background-position: center;
         }
         
-        .profile-card:last-child {
-            background: linear-gradient(to right, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.8) 70%, rgba(10, 10, 10, 0.65) 100%),
-                        url('assets/images/duke-player.jpg');
-            background-size: 100% auto;
-            background-position: 70% 40%;
-            background-repeat: no-repeat;
+        /* Background overlay for entire card */
+        .card-background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right,
+                rgba(28, 28, 28, 0.7) 0%,
+                rgba(28, 28, 28, 0.85) 35%,
+                rgba(28, 28, 28, 0.92) 100%);
+            z-index: 1;
         }
 
         .profile-card:hover {
@@ -298,79 +295,84 @@
             border-color: rgba(212, 175, 55, 0.2);
         }
 
+        /* Profile Photo Section - Top */
+        .profile-photo-section {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            background-size: cover;
+            background-position: center 20%;
+            z-index: 2;
+        }
+        
+        .profile-photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(0, 0, 0, 0) 0%, 
+                rgba(0, 0, 0, 0.4) 100%);
+        }
 
         /* University Badge on Banner */
         .university-badge {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            background: rgba(10,10,10,0.8);
+            bottom: 12px;
+            left: 12px;
+            background: rgba(10,10,10,0.9);
             backdrop-filter: blur(10px);
-            padding: 8px 16px;
+            padding: 4px 10px;
             border-radius: 100px;
-            border: 1px solid var(--gold);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
 
         .university-badge span {
-            font-size: 0.85rem;
-            font-weight: 700;
+            font-size: 0.7rem;
+            font-weight: 600;
             color: var(--gold);
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.05em;
         }
 
         /* Profile Avatar - Circular */
-        .profile-avatar-container {
-            position: relative;
-            flex-shrink: 0;
-        }
-        
-        @media (max-width: 768px) {
-            .profile-avatar-container {
-                margin-top: -60px;
-            }
-        }
 
-        .profile-avatar {
-            width: 380px;
-            height: 440px;
-            border-radius: 12px;
-            border: 4px solid rgba(255, 255, 255, 0.9);
-            overflow: hidden;
-            background: var(--gray-dark);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-        }
-
-        .profile-avatar img {
+        /* Profile Content - Bottom */
+        .profile-content {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            text-align: center;
         }
         
-        /* Mobile avatar adjustments */
+        /* Mobile responsive - stack vertically */
         @media (max-width: 768px) {
-            .profile-avatar {
-                width: 280px;
-                height: 320px;
+            .profile-card {
+                flex-direction: column;
+                min-height: auto;
             }
             
-            .profile-avatar-container {
-                margin-bottom: 20px;
+            .profile-photo-section {
+                flex: none;
+                height: 250px;
             }
-        }
-
-        /* Profile Content */
-        .profile-content {
-            text-align: left;
-            max-width: none;
-            width: 100%;
-            color: white;
-            z-index: 2;
-            padding-left: 20px;
-            flex: 1;
+            
+            .profile-content {
+                flex: none;
+                padding: 20px;
+            }
+            
+            .profile-name {
+                font-size: 1.8rem;
+            }
         }
 
         .profile-header {
@@ -378,19 +380,19 @@
         }
 
         .profile-name {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 16px;
-            color: white;
+            margin-bottom: 8px;
             text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: var(--white);
         }
 
         .profile-title {
-            color: white;
-            font-size: 2rem;
+            color: var(--gold);
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 28px;
-            opacity: 0.95;
+            margin-bottom: 12px;
         }
 
         .profile-stats {
@@ -451,10 +453,10 @@
         }
 
         .bio-text {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.6rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
         }
 
         /* Key Achievements */
@@ -463,7 +465,12 @@
         }
 
         .achievement-item {
-            display: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: var(--gray-light);
+            font-size: 0.9rem;
         }
 
         .achievement-item i {
@@ -530,22 +537,22 @@
         }
 
         .social-link {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
             border-radius: 50%;
-            color: white;
+            color: var(--gray-light);
             transition: all 0.3s ease;
         }
 
         .social-link:hover {
-            background: rgba(255,255,255,0.25);
-            border-color: white;
-            transform: scale(1.1);
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold);
+            color: var(--gold);
         }
 
         .social-link i {
@@ -591,47 +598,8 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            /* Fix hero header visibility on mobile */
-            .hero-header {
-                padding: 100px 24px 40px !important;
-                margin-top: 0;
-            }
-            
-            .hero-title {
-                font-size: 2rem !important;
-                color: var(--white) !important;
-                font-weight: 800 !important;
-            }
-            
             .profiles-container {
-                flex-direction: column;
-            }
-            
-            .profile-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 40px 20px;
-                min-height: 600px;
-                background-repeat: no-repeat !important;
-                background-size: cover !important;
-                background-position: center center !important;
-            }
-            
-            /* Ensure backgrounds don't repeat on mobile */
-            .profile-card:first-child {
-                background-repeat: no-repeat !important;
-                background-size: cover !important;
-                background-position: center 20% !important;
-            }
-            
-            .profile-card:last-child {
-                background-repeat: no-repeat !important;
-                background-size: cover !important;
-                background-position: 50% 30% !important;
-            }
-            
-            .profile-content {
-                text-align: center;
+                grid-template-columns: 1fr;
             }
 
             .profile-stats {
@@ -806,7 +774,6 @@
             <i data-lucide="menu"></i>
         </button>
         <div class="nav-links" id="navLinks">
-            <a href="index.html">Home</a>
             <a href="athletes.html">Athletes</a>
             <a href="universities.html">Schools</a>
             <a href="brands.html">Brands</a>
@@ -827,15 +794,19 @@
         <div class="profiles-container">
             
             <!-- Trace Young Profile -->
-            <article class="profile-card fade-in">
-                <!-- Circular Avatar -->
-                <div class="profile-avatar-container">
-                    <div class="profile-avatar">
-                        <img src="assets/images/trace-suit.jpg" alt="Trace Young" style="object-position: center 20%; transform: scale(1.3);">
+            <article class="profile-card fade-in" style="background-image: url('assets/images/trace-lsu.jpg'); background-size: cover; background-position: right -100px center;">
+                <div class="card-background-overlay"></div>
+                <!-- Left Side - Photo -->
+                <div class="profile-photo-section" style="background-image: url('assets/images/trace-suit.jpg'); background-position: center 20%;">
+                    <div class="profile-photo-overlay"></div>
+                    <!-- University Badge -->
+                    <div class="university-badge">
+                        <i data-lucide="graduation-cap" style="width: 14px; height: 14px;"></i>
+                        <span>LSU</span>
                     </div>
                 </div>
                 
-                <!-- Profile Content -->
+                <!-- Right Side - Content -->
                 <div class="profile-content">
                     <div class="profile-header">
                         <h2 class="profile-name">Trace Young</h2>
@@ -850,9 +821,6 @@
                         </p>
                         <p class="bio-text" style="margin-top: 12px;">
                             Trace has grown a social media following of hundreds of thousands, leading to numerous high ticket brand deals. He helped guide teammates and friends through the NIL landscape, ultimately founding The 99 Network.
-                        </p>
-                        <p class="bio-text" style="margin-top: 12px;">
-                            The 99 Network was born from real experience, not theory. On the other side, he worked directly with brands, understanding what they truly value, what drives revenue, and what actually makes partnerships work. Bringing those worlds together, he created The 99 Network as a place where athletes get education, structure, and powerful AI tools to handle the complicated NIL details for them, so they can stay focused on academics and athletics.
                         </p>
                     </div>
                     
@@ -887,15 +855,19 @@
             </article>
             
             <!-- Bo Shaffer Profile -->
-            <article class="profile-card fade-in">
-                <!-- Circular Avatar -->
-                <div class="profile-avatar-container">
-                    <div class="profile-avatar">
-                        <img src="assets/images/bo-new.jpg" alt="Bo Shaffer" style="object-position: center 75%; transform: scale(2.0);">
+            <article class="profile-card fade-in" style="background-image: url('assets/images/duke-player.jpg'); background-size: cover; background-position: right -100px center;">
+                <div class="card-background-overlay"></div>
+                <!-- Left Side - Photo -->
+                <div class="profile-photo-section" style="background-image: url('assets/images/bo-new.jpg'); background-position: center 50%;">
+                    <div class="profile-photo-overlay"></div>
+                    <!-- University Badge -->
+                    <div class="university-badge">
+                        <i data-lucide="graduation-cap" style="width: 14px; height: 14px;"></i>
+                        <span>Duke</span>
                     </div>
                 </div>
                 
-                <!-- Profile Content -->
+                <!-- Right Side - Content -->
                 <div class="profile-content">
                     <div class="profile-header">
                         <h2 class="profile-name">Bo Shaffer</h2>
