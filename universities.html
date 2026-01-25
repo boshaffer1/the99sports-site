@@ -858,167 +858,150 @@
     
         
     
-        /* Mobile Accordion Styles */
-        /* Desktop: Hide accordion toggles and show content */
+        /* Playbook Dropdown Styles - Desktop */
         @media (min-width: 769px) {
-            .accordion-toggle {
-                display: none !important;
-            }
-            
-            .accordion-content {
-                max-height: none !important;
-                overflow: visible !important;
-            }
-            
-            /* Show h3 headlines on desktop */
-            .benefit-card .accordion-toggle h3 {
-                display: block !important;
-                position: relative;
-                margin-bottom: 12px;
-                color: var(--white);
-                font-weight: 700;
-                font-size: 1.1rem;
-            }
-            
-            /* Create visible headline before accordion content on desktop */
-            .benefit-card .accordion-content::before {
-                content: attr(data-title);
-                display: block;
-                font-family: 'Unbounded', sans-serif;
-                font-size: 1.1rem;
-                font-weight: 700;
-                color: var(--white);
-                margin-bottom: 12px;
-                line-height: 1.2;
-            }
-        }
-        
-        /* Mobile: Show accordion functionality */
-        @media (max-width: 768px) {
-            /* Make dropdown containers smaller on mobile */
-            .benefit-card {
-                padding: 12px 8px !important;
-                min-height: auto !important;
-            }
-            
-            /* Stack services in single column to prevent cut-off */
-            .benefits-grid {
-                grid-template-columns: 1fr !important;
-                gap: 8px !important;
-                padding: 0 8px !important;
-            }
-            
-            .accordion-toggle {
-                width: 100%;
+            .playbook-toggle {
                 background: none;
                 border: none;
                 color: var(--white);
-                text-align: left;
-                padding: 0;
-                font-family: inherit;
-                font-size: 0.85rem;
-                font-weight: 700;
                 cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: 4px;
+                width: 100%;
+                padding: 0;
+                text-align: left;
+                margin-bottom: 16px;
             }
             
-            .accordion-content {
+            .playbook-toggle h3 {
+                font-size: 1.1rem;
+                margin: 0;
+                flex: 1;
+                line-height: 1.2;
+                color: var(--white);
+                font-weight: 700;
+            }
+            
+            .playbook-arrow {
+                width: 20px;
+                height: 20px;
+                color: var(--gold);
+                flex-shrink: 0;
+                transition: transform 0.3s ease;
+            }
+            
+            .playbook-toggle.expanded .playbook-arrow {
+                transform: rotate(180deg);
+            }
+            
+            .playbook-content {
                 max-height: 0;
                 overflow: hidden;
                 transition: max-height 0.3s ease;
+                margin-top: 0;
             }
             
-            .accordion-content.expanded {
-                max-height: 1000px;
+            .playbook-content.expanded {
+                max-height: 500px;
+                margin-top: 8px;
             }
             
-            .accordion-content p {
-                font-size: 0.8rem !important;
-                line-height: 1.3;
+            .playbook-content p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+                color: var(--gray);
+                margin: 0;
             }
-            
-            /* Our Services Mobile Layout - Icon next to text in one line */
-            .benefit-card {
-                display: flex !important;
-                align-items: flex-start !important;
-                gap: 10px !important;
-                padding: 12px !important;
-                background: rgba(212,175,55,0.015) !important;
-                border: 1px solid rgba(212,175,55,0.08) !important;
-                border-radius: 8px !important;
-            }
-            
-            .benefit-card .benefit-icon {
-                display: flex !important;
-                margin: 0 !important;
-                flex-shrink: 0 !important;
-                align-items: center !important;
-                margin-top: 2px !important;
-            }
-            
-            .benefit-card .benefit-icon i {
-                width: 18px !important;
-                height: 18px !important;
-                color: var(--gold) !important;
-                filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.4)) !important;
-            }
-            
-            .benefit-card .accordion-toggle {
-                display: flex !important;
-                align-items: flex-start !important;
-                justify-content: space-between !important;
-                width: 100% !important;
-                background: none !important;
-                border: none !important;
-                padding: 0 !important;
-                text-align: left !important;
-                cursor: pointer !important;
+        }
+        
+        /* Mobile: Show playbook dropdown functionality (same as athletes page) */
+        @media (max-width: 768px) {
+            /* Stack services in single column and make them compact dropdowns */
+            .benefits-grid,
+            .services-grid {
+                grid-template-columns: 1fr !important;
                 gap: 8px !important;
             }
             
-            .benefit-card .accordion-toggle h3 {
-                margin: 0 !important;
-                line-height: 1.2 !important;
-                font-size: 0.9rem !important;
-                color: var(--white) !important;
-                font-weight: 600 !important;
-                flex: 1 !important;
+            .playbook-item {
+                padding: 8px 12px !important;
+                margin-bottom: 0 !important;
+                background: rgba(212,175,55,0.08) !important;
+                border-radius: 8px !important;
+                border: 1px solid rgba(212,175,55,0.15) !important;
             }
             
-            /* Make dropdown arrow visible on mobile */
-            .benefit-card .accordion-icon {
-                display: block !important;
+            .playbook-header {
+                display: flex !important;
+                align-items: center !important;
+                gap: 8px !important;
+            }
+            
+            .playbook-header .benefit-icon {
+                width: 24px !important;
+                height: 24px !important;
+                margin: 0 !important;
+                font-size: 12px !important;
+                flex-shrink: 0 !important;
+                box-shadow: 0 0 8px rgba(212,175,55,0.4) !important;
+            }
+            
+            .playbook-header .benefit-icon i {
+                width: 24px !important;
+                height: 24px !important;
+            }
+            
+            .playbook-toggle {
+                background: none !important;
+                border: none !important;
+                color: var(--white) !important;
+                cursor: pointer !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                width: 100% !important;
+                padding: 0 !important;
+                text-align: left !important;
+            }
+            
+            .playbook-toggle h3 {
+                font-size: 0.85rem !important;
+                margin: 0 !important;
+                flex: 1 !important;
+                line-height: 1.2 !important;
+            }
+            
+            .playbook-arrow {
                 width: 16px !important;
                 height: 16px !important;
                 color: var(--gold) !important;
                 flex-shrink: 0 !important;
                 transition: transform 0.3s ease !important;
-                margin-top: 1px !important;
             }
             
-            .accordion-content {
-                margin-left: 22px !important;
-                padding-top: 1px !important;
+            .playbook-toggle.expanded .playbook-arrow {
+                transform: rotate(180deg) !important;
             }
             
-            .accordion-content p {
-                font-size: 0.72rem !important;
-                line-height: 1.25 !important;
-                color: rgba(255,255,255,0.65) !important;
+            .playbook-content {
+                max-height: 0 !important;
+                overflow: hidden !important;
+                transition: max-height 0.3s ease !important;
+                margin-top: 0 !important;
             }
             
-            .accordion-icon {
-                transition: transform 0.3s ease;
-                width: 18px;
-                height: 18px;
-                color: var(--gold);
+            .playbook-content.expanded {
+                max-height: 200px !important;
+                margin-top: 8px !important;
             }
             
-            .accordion-toggle.expanded .accordion-icon {
-                transform: rotate(180deg);
+            .playbook-content p {
+                font-size: 0.75rem !important;
+                line-height: 1.3 !important;
+                color: rgba(255,255,255,0.8) !important;
+                margin: 0 !important;
+                padding-left: 32px !important;
             }
         }
 
@@ -1301,64 +1284,76 @@
             <p style="text-align: center; font-size: 1.2rem; color: var(--gray); margin: -20px auto 48px; max-width: 800px;">
                 Athletes are often media trained, but almost none are social media trained. We bridge that gap.
             </p>
-            <div class="benefits-grid">
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon"><i data-lucide="mic" class="gold-icon-lg"></i></div>
-                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
-                        <h3>On-Campus Speaking & NIL Education</h3>
-                        <i data-lucide="chevron-down" class="accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content" data-title="On-Campus Speaking & NIL Education">
+            <div class="benefits-grid services-grid" style="grid-template-columns: repeat(3, 1fr); gap: 32px;">
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="mic" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>On-Campus Speaking & NIL Education</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
                         <p>We come to campus and speak directly to your athletic programs, delivering engaging, high-impact NIL education rooted in real experience, not theory. Athletes leave motivated, informed, and prepared to represent your school with professionalism, confidence, and purpose… while seeing NIL as opportunity, not distraction.</p>
                     </div>
                 </div>
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon"><i data-lucide="graduation-cap" class="gold-icon-lg"></i></div>
-                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
-                        <h3>NIL Workshops</h3>
-                        <i data-lucide="chevron-down" class="accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content" data-title="NIL Workshops">
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="graduation-cap" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>NIL Workshops</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
                         <p>Structured workshops that teach athletes exactly how to build their brands the right way. This means smarter content, better decision-making, and responsible online behavior, all supporting your athletic culture and institutional reputation. Schools that invest in real NIL development instantly separate themselves.</p>
                     </div>
                 </div>
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon"><i data-lucide="handshake" class="gold-icon-lg"></i></div>
-                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
-                        <h3>Exclusive Brand Partnerships</h3>
-                        <i data-lucide="chevron-down" class="accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content" data-title="Exclusive Brand Partnerships">
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="handshake" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>Exclusive Brand Partnerships</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
                         <p>Through The 99 Network, your athletes get matched with brands actively seeking partnerships. Our AI-powered tools handle professional outreach with compliant messaging and structured partnership proposals. From simple paid posts to long-term sponsorships, every athlete—from stars to walk-ons—can access real deals with instant payment. This isn't random influencer culture, it's structured NIL that develops leaders, not liabilities.</p>
                     </div>
                 </div>
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon"><i data-lucide="book-open" class="gold-icon-lg"></i></div>
-                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
-                        <h3>The 99 NIL Playbook</h3>
-                        <i data-lucide="chevron-down" class="accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content" data-title="The 99 NIL Playbook">
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="book-open" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>The 99 NIL Playbook</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
                         <p>A complete NIL roadmap crafted from real success, showing athletes how to build their brand across Instagram, TikTok, YouTube, Snapchat, and more, all while reinforcing discipline, maturity, and professionalism. When athletes win in NIL the right way, your school wins in visibility, recruiting, and credibility.</p>
                     </div>
                 </div>
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon"><i data-lucide="users" class="gold-icon-lg"></i></div>
-                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
-                        <h3>Exclusive Athlete Community</h3>
-                        <i data-lucide="chevron-down" class="accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content" data-title="Exclusive Athlete Community">
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="users" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>Exclusive Athlete Community</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
                         <p>Your athletes get access to an exclusive creator community where they collaborate, support each other, share strategies, and help amplify positive content. This builds unity, accountability, and shared momentum, elevating not just individuals, but your entire athletic program.</p>
                     </div>
                 </div>
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon"><i data-lucide="shield" class="gold-icon-lg"></i></div>
-                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
-                        <h3>Social Media Training & Reputation Protection</h3>
-                        <i data-lucide="chevron-down" class="accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content" data-title="Social Media Training & Reputation Protection">
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="shield" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>Social Media Training & Reputation Protection</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
                         <p>Your athletes are representing your university every time they post. We teach them how to create positive, professional, brand-safe content while eliminating the risk of harmful posts that damage programs, recruiters, donors, and public trust. Strong, responsible athlete brands build stronger university brands.</p>
                     </div>
                 </div>
@@ -1487,10 +1482,10 @@
             }
         });
 
-        // Accordion functionality
-        function toggleAccordion(button) {
-            const content = button.nextElementSibling;
-            const icon = button.querySelector('.accordion-icon');
+        // Playbook dropdown functionality (same as athletes page)
+        function togglePlaybook(button) {
+            const content = button.closest('.playbook-item').querySelector('.playbook-content');
+            const arrow = button.querySelector('.playbook-arrow');
             
             if (content.classList.contains('expanded')) {
                 content.classList.remove('expanded');

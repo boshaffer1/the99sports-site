@@ -635,7 +635,8 @@
             }
             
             /* Stack 99 Playbook items vertically and make them compact dropdowns */
-            .playbook-grid {
+            .playbook-grid,
+            .inside-network-grid {
                 grid-template-columns: 1fr !important;
                 gap: 8px !important;
             }
@@ -965,48 +966,90 @@
                 <h2 class="section-title fade-in" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 20px;">HERE'S EXACTLY WHAT YOU GET</h2>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-bottom: 60px;">
+            <div class="benefits-grid inside-network-grid" style="grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 60px;">
                 
                 <!-- Exclusive Brand Opportunities -->
-                <div class="fade-in" style="background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02)); border-radius: 16px; padding: 40px; border: 2px solid rgba(212,175,55,0.3);">
-                    <div style="margin-bottom: 20px;"><i data-lucide="handshake" class="gold-icon-lg" style="width: 48px; height: 48px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"></i></div>
-                    <h3 style="font-size: 1.6rem; margin-bottom: 16px; color: var(--gold);">Exclusive Brand Partnerships</h3>
-                    <p style="font-size: 1.05rem; line-height: 1.7;">Priority access to exclusive brand deals through our Fortune 500 and emerging brand partnerships.</p>
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="handshake" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>Exclusive Brand Partnerships</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
+                        <p>Priority access to exclusive brand deals through our Fortune 500 and emerging brand partnerships.</p>
+                    </div>
                 </div>
 
                 <!-- AI Deal Engine -->
-                <div class="fade-in" style="background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02)); border-radius: 16px; padding: 40px; border: 2px solid rgba(212,175,55,0.3);">
-                    <div style="margin-bottom: 20px;"><i data-lucide="sparkles" class="gold-icon-lg" style="width: 48px; height: 48px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"></i></div>
-                    <h3 style="font-size: 1.6rem; margin-bottom: 16px; color: var(--gold);">AI Deal Engine</h3>
-                    <p style="font-size: 1.05rem; line-height: 1.7;">Automated brand outreach with professional pitches and follow-ups. Land deals while you focus on your sport.</p>
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="sparkles" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>AI Deal Engine</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
+                        <p>Automated brand outreach with professional pitches and follow-ups. Land deals while you focus on your sport.</p>
+                    </div>
                 </div>
 
                 <!-- Smart Content Calendar -->
-                <div class="fade-in" style="background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02)); border-radius: 16px; padding: 40px; border: 2px solid rgba(212,175,55,0.3);">
-                    <div style="margin-bottom: 20px;"><i data-lucide="calendar" class="gold-icon-lg" style="width: 48px; height: 48px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"></i></div>
-                    <h3 style="font-size: 1.6rem; margin-bottom: 16px; color: var(--gold);">Smart Content Calendar</h3>
-                    <p style="font-size: 1.05rem; line-height: 1.7;">Custom content calendar with trending ideas and proven templates. Never run out of engaging content.</p>
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="calendar" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>Smart Content Calendar</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
+                        <p>Custom content calendar with trending ideas and proven templates. Never run out of engaging content.</p>
+                    </div>
                 </div>
 
                 <!-- NIL Workshops & Coaching -->
-                <div class="fade-in" style="background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02)); border-radius: 16px; padding: 40px; border: 2px solid rgba(212,175,55,0.3);">
-                    <div style="margin-bottom: 20px;"><i data-lucide="graduation-cap" class="gold-icon-lg" style="width: 48px; height: 48px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"></i></div>
-                    <h3 style="font-size: 1.6rem; margin-bottom: 16px; color: var(--gold);">NIL Workshops & Coaching</h3>
-                    <p style="font-size: 1.05rem; line-height: 1.7;">Direct coaching from elite NIL experts with personalized feedback and accountability.</p>
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="graduation-cap" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>NIL Workshops & Coaching</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
+                        <p>Direct coaching from elite NIL experts with personalized feedback and accountability.</p>
+                    </div>
                 </div>
 
                 <!-- Exclusive Athlete Creator Community -->
-                <div class="fade-in" style="background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02)); border-radius: 16px; padding: 40px; border: 2px solid rgba(212,175,55,0.3);">
-                    <div style="margin-bottom: 20px;"><i data-lucide="users" class="gold-icon-lg" style="width: 48px; height: 48px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"></i></div>
-                    <h3 style="font-size: 1.6rem; margin-bottom: 16px; color: var(--gold);">Exclusive Athlete Creator Community</h3>
-                    <p style="font-size: 1.05rem; line-height: 1.7;">Private network of successful athlete-creators sharing strategies and amplifying each other's growth.</p>
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="users" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>Exclusive Athlete Creator Community</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
+                        <p>Private network of successful athlete-creators sharing strategies and amplifying each other's growth.</p>
+                    </div>
                 </div>
 
                 <!-- The 99 Playbook -->
-                <div class="fade-in" style="background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02)); border-radius: 16px; padding: 40px; border: 2px solid rgba(212,175,55,0.3);">
-                    <div style="margin-bottom: 20px;"><i data-lucide="book-open" class="gold-icon-lg" style="width: 48px; height: 48px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"></i></div>
-                    <h3 style="font-size: 1.6rem; margin-bottom: 16px; color: var(--gold);">The 99 Playbook</h3>
-                    <p style="font-size: 1.05rem; line-height: 1.7;">Step-by-step system to monetize Instagram, TikTok, YouTube, and more. Real strategies, proven results.</p>
+                <div class="benefit-card playbook-item fade-in" style="text-align: center;">
+                    <div class="playbook-header">
+                        <div class="benefit-icon" style="width: 48px; height: 48px; background: none; color: var(--gold); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));"><i data-lucide="book-open" style="width: 48px; height: 48px;"></i></div>
+                        <button class="playbook-toggle" onclick="togglePlaybook(this)">
+                            <h3>The 99 Playbook</h3>
+                            <i data-lucide="chevron-down" class="playbook-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="playbook-content">
+                        <p>Step-by-step system to monetize Instagram, TikTok, YouTube, and more. Real strategies, proven results.</p>
+                    </div>
                 </div>
             </div>
 
