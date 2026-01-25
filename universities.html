@@ -940,71 +940,58 @@
                 line-height: 1.3;
             }
             
-            /* Our Services Mobile Layout - Icon beside text on same line */
+            /* Our Services Mobile Layout - Normal layout with proper spacing */
             .benefit-card {
-                display: flex !important;
-                align-items: flex-start !important;
-                gap: 8px !important;
-                flex-direction: row !important;
+                padding: 16px !important;
+                background: rgba(212,175,55,0.015) !important;
+                border: 1px solid rgba(212,175,55,0.08) !important;
+                border-radius: 8px !important;
             }
             
             .benefit-card .benefit-icon {
-                display: inline-flex !important;
-                margin: 0 !important;
-                flex-shrink: 0 !important;
-                position: relative !important;
-                top: 2px !important;
+                display: block !important;
+                margin-bottom: 8px !important;
+                text-align: center !important;
             }
             
             .benefit-card .benefit-icon i {
-                width: 18px !important;
-                height: 18px !important;
+                width: 24px !important;
+                height: 24px !important;
                 color: var(--gold) !important;
                 filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.4)) !important;
             }
             
             .benefit-card .accordion-toggle {
                 display: flex !important;
-                align-items: flex-start !important;
-                gap: 6px !important;
-                margin-bottom: 0 !important;
-                flex: 1 !important;
+                align-items: center !important;
+                justify-content: space-between !important;
                 width: 100% !important;
                 background: none !important;
                 border: none !important;
                 padding: 0 !important;
                 text-align: left !important;
                 cursor: pointer !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .benefit-card .accordion-toggle h3 {
+                margin: 0 !important;
+                line-height: 1.3 !important;
+                font-size: 1rem !important;
+                color: var(--white) !important;
+                font-weight: 600 !important;
+                flex: 1 !important;
+                padding-right: 10px !important;
             }
             
             /* Make dropdown arrow visible on mobile */
             .benefit-card .accordion-icon {
                 display: block !important;
-                width: 16px !important;
-                height: 16px !important;
+                width: 18px !important;
+                height: 18px !important;
                 color: var(--gold) !important;
                 flex-shrink: 0 !important;
-                margin-top: 2px !important;
                 transition: transform 0.3s ease !important;
-            }
-            
-            .benefit-card .accordion-toggle h3 {
-                flex: 1 !important;
-                margin: 0 !important;
-                padding-right: 8px !important;
-                line-height: 1.2 !important;
-                font-size: 0.9rem !important;
-                white-space: normal !important;
-                overflow: visible !important;
-                color: var(--white) !important;
-                font-weight: 600 !important;
-            }
-            
-            .benefit-card {
-                padding: 8px 10px !important;
-                min-height: auto !important;
-                background: rgba(212,175,55,0.015) !important;
-                border: 1px solid rgba(212,175,55,0.08) !important;
             }
             
             .accordion-content {
