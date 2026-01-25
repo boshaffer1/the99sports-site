@@ -526,6 +526,15 @@
         }
 
         @media (max-width: 768px) {
+            .navbar {
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+            
+            .navbar.hidden {
+                transform: translateX(-50%) translateY(-120%);
+                opacity: 0;
+            }
+            
             .mobile-menu-btn {
                 display: block;
             }
@@ -1002,6 +1011,34 @@
 
         // Initialize Lucide Icons
         lucide.createIcons();
+        
+        // Mobile scroll hide/show navbar
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        
+        function updateNavbar() {
+            const navbar = document.querySelector('.navbar');
+            if (!navbar) return;
+            
+            if (window.innerWidth <= 768) {
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                    // Scrolling down
+                    navbar.classList.add('hidden');
+                } else {
+                    // Scrolling up
+                    navbar.classList.remove('hidden');
+                }
+            }
+            lastScrollY = window.scrollY;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
     </script>
 </body>
 </html>
