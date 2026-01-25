@@ -965,22 +965,37 @@
             
             .benefit-card .accordion-toggle {
                 display: flex !important;
-                align-items: center !important;
+                align-items: flex-start !important;
                 gap: 6px !important;
                 margin-bottom: 0 !important;
                 flex: 1 !important;
                 width: 100% !important;
+                background: none !important;
+                border: none !important;
+                padding: 0 !important;
+                text-align: left !important;
+                cursor: pointer !important;
+            }
+            
+            /* Make dropdown arrow visible on mobile */
+            .benefit-card .accordion-icon {
+                display: block !important;
+                width: 16px !important;
+                height: 16px !important;
+                color: var(--gold) !important;
+                flex-shrink: 0 !important;
+                margin-top: 2px !important;
+                transition: transform 0.3s ease !important;
             }
             
             .benefit-card .accordion-toggle h3 {
                 flex: 1 !important;
                 margin: 0 !important;
                 padding-right: 8px !important;
-                line-height: 1.1 !important;
+                line-height: 1.2 !important;
                 font-size: 0.9rem !important;
-                white-space: nowrap !important;
+                white-space: normal !important;
                 overflow: visible !important;
-                text-overflow: clip !important;
                 color: var(--white) !important;
                 font-weight: 600 !important;
             }
