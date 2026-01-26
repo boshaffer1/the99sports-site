@@ -290,7 +290,7 @@
 
         .benefit-card {
             padding: 32px 24px;
-            background: rgba(255,255,255,0.03);
+            background: none;
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 12px;
             transition: all 0.3s ease;
@@ -595,24 +595,38 @@
                 display: block !important;
             }
             
-            .reality-text-photos > div {
-                flex-direction: column !important;
-                gap: 15px !important;
-                margin-bottom: 25px !important;
+            .reality-text-photos > div:first-child {
+                flex-direction: row !important;
+                gap: 10px !important;
+                margin-bottom: 20px !important;
             }
             
-            .reality-text-photos > div > div {
-                flex: none !important;
+            .reality-text-photos > div:first-child > div:first-child {
+                flex: 0 0 55% !important;
             }
             
-            .reality-text-photos img {
+            .reality-text-photos > div:first-child > div:last-child {
+                flex: 1 !important;
+            }
+            
+            .reality-text-photos > div:first-child img {
+                height: 200px !important;
+                width: 100% !important;
+                object-fit: cover !important;
+            }
+            
+            .reality-text-photos > div:not(:first-child) {
+                margin-bottom: 20px !important;
+            }
+            
+            .reality-text-photos > div:last-child img {
                 height: 180px !important;
                 width: 100% !important;
             }
             
             .reality-text-photos p {
-                font-size: 0.9rem !important;
-                line-height: 1.5 !important;
+                font-size: 0.85rem !important;
+                line-height: 1.4 !important;
             }
             
             /* Beautiful staggered photo layout on mobile */
@@ -859,6 +873,10 @@
                 background: none !important;
             }
             
+            .benefit-card {
+                background: none !important;
+            }
+            
             .playbook-item .playbook-toggle {
                 cursor: default !important;
                 pointer-events: none !important;
@@ -1021,7 +1039,7 @@
             <div class="benefits-grid playbook-grid" style="grid-template-columns: repeat(3, 1fr); gap: 32px;">
                 <div class="benefit-card playbook-item fade-in" style="text-align: center;">
                     <div class="playbook-header">
-                        <div class="benefit-icon" style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--gold), #F4D03F); color: var(--black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; font-family: 'Unbounded', sans-serif; margin: 0 auto 20px; box-shadow: 0 0 30px rgba(212,175,55,0.6), 0 0 60px rgba(212,175,55,0.3), inset 0 0 20px rgba(255,255,255,0.2); border: 2px solid rgba(244,208,63,0.5);">1</div>
+                        <div class="benefit-icon" style="width: 60px; height: 60px; background: none; color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; font-family: 'Unbounded', sans-serif; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212,175,55,0.8)); border: 2px solid var(--gold);">1</div>
                         <button class="playbook-toggle" onclick="togglePlaybook(this)">
                             <h3>Grow Your Following</h3>
                             <i data-lucide="chevron-down" class="playbook-arrow"></i>
@@ -1033,7 +1051,7 @@
                 </div>
                 <div class="benefit-card playbook-item fade-in" style="text-align: center;">
                     <div class="playbook-header">
-                        <div class="benefit-icon" style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--gold), #F4D03F); color: var(--black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; font-family: 'Unbounded', sans-serif; margin: 0 auto 20px; box-shadow: 0 0 30px rgba(212,175,55,0.6), 0 0 60px rgba(212,175,55,0.3), inset 0 0 20px rgba(255,255,255,0.2); border: 2px solid rgba(244,208,63,0.5);">2</div>
+                        <div class="benefit-icon" style="width: 60px; height: 60px; background: none; color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; font-family: 'Unbounded', sans-serif; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212,175,55,0.8)); border: 2px solid var(--gold);">2</div>
                         <button class="playbook-toggle" onclick="togglePlaybook(this)">
                             <h3>Land Numerous Deals</h3>
                             <i data-lucide="chevron-down" class="playbook-arrow"></i>
@@ -1045,7 +1063,7 @@
                 </div>
                 <div class="benefit-card playbook-item fade-in" style="text-align: center;">
                     <div class="playbook-header">
-                        <div class="benefit-icon" style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--gold), #F4D03F); color: var(--black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; font-family: 'Unbounded', sans-serif; margin: 0 auto 20px; box-shadow: 0 0 30px rgba(212,175,55,0.6), 0 0 60px rgba(212,175,55,0.3), inset 0 0 20px rgba(255,255,255,0.2); border: 2px solid rgba(244,208,63,0.5);">3</div>
+                        <div class="benefit-icon" style="width: 60px; height: 60px; background: none; color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; font-family: 'Unbounded', sans-serif; margin: 0 auto 20px; filter: drop-shadow(0 0 15px rgba(212,175,55,0.8)); border: 2px solid var(--gold);">3</div>
                         <button class="playbook-toggle" onclick="togglePlaybook(this)">
                             <h3>Turn One-Time Payouts Into Lifetime Opportunities</h3>
                             <i data-lucide="chevron-down" class="playbook-arrow"></i>
