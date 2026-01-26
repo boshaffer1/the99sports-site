@@ -592,6 +592,23 @@
                 gap: 30px !important;
             }
             
+            /* Mobile layout for reality text photos */
+            .reality-text-photos > div {
+                flex-direction: column !important;
+                gap: 20px !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .reality-text-photos > div > div {
+                flex: none !important;
+            }
+            
+            .reality-text-photos img {
+                height: 200px !important;
+                margin: 10px auto !important;
+                display: block !important;
+            }
+            
             /* Beautiful staggered photo layout on mobile */
             .transformation-photos {
                 position: relative !important;
@@ -829,6 +846,56 @@
             animation: pulseGlow 4s ease-in-out infinite;
             animation-delay: 2s;
         }
+
+        /* Desktop: Show all content, disable dropdown functionality */
+        @media (min-width: 769px) {
+            .playbook-item .playbook-toggle {
+                cursor: default !important;
+                pointer-events: none !important;
+            }
+            
+            .playbook-item .playbook-arrow {
+                display: none !important;
+            }
+            
+            .playbook-item .playbook-content {
+                max-height: none !important;
+                overflow: visible !important;
+                margin-top: 8px !important;
+                opacity: 1 !important;
+                display: block !important;
+            }
+            
+            .playbook-header {
+                margin-bottom: 16px !important;
+            }
+            
+            /* Responsive layout for reality text photos */
+            .reality-text-photos > div {
+                flex-direction: column !important;
+                gap: 20px !important;
+            }
+            
+            .reality-text-photos > div > div {
+                flex: none !important;
+            }
+            
+            .reality-text-photos img {
+                height: 250px !important;
+            }
+        }
+
+        /* Tablet adjustments */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .reality-text-photos > div {
+                flex-direction: column !important;
+                gap: 20px !important;
+            }
+            
+            .reality-text-photos img {
+                height: 200px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -873,28 +940,29 @@
                 <h2 class="section-title fade-in" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 48px;">THE ATHLETES GETTING PAID DON'T HAVE TO BE THE BEST PLAYERS</h2>
             </div>
             
-            <!-- New Two Column Layout -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
-                <!-- Left: The Truth Text -->
-                <div class="reality-content fade-in" style="padding-right: 20px;">
-                    <p style="font-size: 1.2rem; color: var(--white); margin-bottom: 24px; line-height: 1.8;">They're the ones who understand how to <span style="color: var(--gold);">build their brand.</span> I wasn't the most talented. I wasn't the most followed. But I treated NIL like a business, built a playbook, and turned it into real results — and now <span style="color: var(--gold);">any athlete can do the same.</span></p>
-                    
-                    <p style="font-size: 1.2rem; color: var(--white); margin-bottom: 24px; line-height: 1.8;">Regardless of what level you're at, You're standing in a golden window of opportunity. This is the moment to build connections, create income streams, and <span style="color: var(--gold);">lay the foundation for life</span>, not just the next few years. The truth is simple: the game ends for everyone. But your brand doesn't have to.</p>
-                    
-                    <p style="font-size: 1.2rem; color: var(--white); margin-bottom: 24px; line-height: 1.8;">Imagine moving on to the next chapter with real income, lasting relationships, and a personal brand that opens doors most athletes will never get to. While others are scrambling to figure out "what's next," you've already built it, while you were still playing.</p>
-                    
-                    <p style="font-size: 1.2rem; color: var(--white); margin-bottom: 24px; line-height: 1.8;">That's what <span style="color: var(--gold);">The 99 Sports</span> is designed to create: not just temporary money, <span style="color: var(--gold); text-transform: uppercase;">but a future.</span></p>
+            <!-- Integrated Text and Photos Layout -->
+            <div class="reality-text-photos" style="display: block;">
+                <!-- First section: Text with right-aligned photo -->
+                <div style="display: flex; align-items: start; gap: 40px; margin-bottom: 40px;">
+                    <div style="flex: 2;">
+                        <p style="font-size: 1.2rem; color: var(--white); margin-bottom: 24px; line-height: 1.8;">They're the ones who understand how to <span style="color: var(--gold);">build their brand.</span> I wasn't the most talented. I wasn't the most followed. But I treated NIL like a business, built a playbook, and turned it into real results — and now <span style="color: var(--gold);">any athlete can do the same.</span></p>
+                        
+                        <p style="font-size: 1.2rem; color: var(--white); margin-bottom: 24px; line-height: 1.8;">Regardless of what level you're at, You're standing in a golden window of opportunity. This is the moment to build connections, create income streams, and <span style="color: var(--gold);">lay the foundation for life</span>, not just the next few years.</p>
+                    </div>
+                    <div style="flex: 1;">
+                        <img src="assets/images/trace-lsu-basketball.jpg" alt="Trace Young at LSU Basketball Practice" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; box-shadow: 0 0 30px rgba(212,175,55,0.4), 0 20px 40px rgba(0,0,0,0.6);">
+                    </div>
                 </div>
                 
-                <!-- Right: Staggered Corner Overlay Photos -->
-                <div class="transformation-photos fade-in" style="position: relative; height: 520px; display: flex; align-items: center; justify-content: center;">
-                    <!-- LSU Photo (Background, moved up more) -->
-                    <div style="position: absolute; left: 0; top: -60px; z-index: 1;">
-                        <img src="assets/images/trace-lsu-basketball.jpg" alt="Trace Young at LSU Basketball Practice" style="width: 360px; height: 450px; object-fit: cover; border-radius: 12px; box-shadow: 0 0 30px rgba(212,175,55,0.4), 0 20px 40px rgba(0,0,0,0.6);">
+                <!-- Second section: Text with left-aligned photo -->
+                <div style="display: flex; align-items: start; gap: 40px;">
+                    <div style="flex: 1;">
+                        <img src="assets/images/trace-mercedes-partnership.jpg" alt="Trace Young Mercedes-Benz Partnership" style="width: 100%; height: 320px; object-fit: cover; object-position: center top; border-radius: 12px; box-shadow: 0 0 30px rgba(212,175,55,0.4), 0 30px 60px rgba(0,0,0,0.8);">
                     </div>
-                    <!-- Mercedes Photo (Foreground, moved down and right for minimal overlap) -->
-                    <div style="position: absolute; right: -40px; bottom: -180px; z-index: 2;">
-                        <img src="assets/images/trace-mercedes-partnership.jpg" alt="Trace Young Mercedes-Benz Partnership" style="width: 380px; height: 475px; object-fit: cover; object-position: center top; border-radius: 12px; box-shadow: 0 0 30px rgba(212,175,55,0.4), 0 30px 60px rgba(0,0,0,0.8);">
+                    <div style="flex: 2;">
+                        <p style="font-size: 1.2rem; color: var(--white); margin-bottom: 24px; line-height: 1.8;">The truth is simple: the game ends for everyone. But your brand doesn't have to. Imagine moving on to the next chapter with real income, lasting relationships, and a personal brand that opens doors most athletes will never get to.</p>
+                        
+                        <p style="font-size: 1.2rem; color: var(--white); margin-bottom: 24px; line-height: 1.8;">While others are scrambling to figure out "what's next," you've already built it, while you were still playing. That's what <span style="color: var(--gold);">The 99 Sports</span> is designed to create: not just temporary money, <span style="color: var(--gold); text-transform: uppercase;">but a future.</span></p>
                     </div>
                 </div>
             </div>
@@ -1174,17 +1242,20 @@
             }
         });
         
-        // Playbook dropdown functionality
+        // Playbook dropdown functionality (mobile only)
         function togglePlaybook(button) {
-            const content = button.closest('.playbook-item').querySelector('.playbook-content');
-            const arrow = button.querySelector('.playbook-arrow');
-            
-            if (content.classList.contains('expanded')) {
-                content.classList.remove('expanded');
-                button.classList.remove('expanded');
-            } else {
-                content.classList.add('expanded');
-                button.classList.add('expanded');
+            // Only allow dropdown on mobile
+            if (window.innerWidth <= 768) {
+                const content = button.closest('.playbook-item').querySelector('.playbook-content');
+                const arrow = button.querySelector('.playbook-arrow');
+                
+                if (content.classList.contains('expanded')) {
+                    content.classList.remove('expanded');
+                    button.classList.remove('expanded');
+                } else {
+                    content.classList.add('expanded');
+                    button.classList.add('expanded');
+                }
             }
         }
     </script>

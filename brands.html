@@ -837,54 +837,40 @@
     
         
     
-        /* Playbook Dropdown Styles - Desktop */
+        /* Desktop: Show all content, disable dropdown functionality */
         @media (min-width: 769px) {
-            .playbook-toggle {
+            .playbook-item .playbook-toggle {
                 background: none;
                 border: none;
                 color: var(--white);
                 padding: 0;
-                cursor: pointer;
+                cursor: default !important;
+                pointer-events: none !important;
                 width: 100%;
                 text-align: center;
                 font-family: inherit;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
+                display: block;
                 margin-bottom: 16px;
             }
             
             .playbook-toggle h3 {
                 font-size: 1.1rem;
                 margin: 0;
-                flex: 1;
                 color: var(--white);
                 font-weight: 700;
+                text-align: center;
             }
             
             .playbook-arrow {
-                width: 20px;
-                height: 20px;
-                color: var(--gold);
-                flex-shrink: 0;
-                transition: transform 0.3s ease;
-            }
-            
-            .playbook-toggle.expanded .playbook-arrow {
-                transform: rotate(180deg);
+                display: none !important;
             }
             
             .playbook-content {
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
-                margin-top: 0;
-            }
-            
-            .playbook-content.expanded {
-                max-height: 500px;
-                margin-top: 8px;
+                max-height: none !important;
+                overflow: visible !important;
+                margin-top: 8px !important;
+                opacity: 1 !important;
+                display: block !important;
             }
             
             .playbook-content p {
@@ -905,7 +891,7 @@
             }
             
             .playbook-item {
-                padding: 8px 12px !important;
+                padding: 10px 14px !important;
                 margin-bottom: 0 !important;
                 background: rgba(212,175,55,0.08) !important;
                 border-radius: 8px !important;
@@ -915,23 +901,24 @@
             .playbook-header {
                 display: flex !important;
                 align-items: center !important;
-                gap: 8px !important;
+                gap: 12px !important;
             }
             
             .playbook-header .benefit-icon {
-                width: 24px !important;
-                height: 24px !important;
+                width: 20px !important;
+                height: 20px !important;
                 margin: 0 !important;
                 background: none !important;
                 border-radius: 0 !important;
                 color: var(--gold) !important;
                 filter: drop-shadow(0 0 6px rgba(212,175,55,0.5)) !important;
-                box-shadow: 0 0 8px rgba(212,175,55,0.4) !important;
+                box-shadow: none !important;
+                flex-shrink: 0 !important;
             }
             
             .playbook-header .benefit-icon i {
-                width: 24px !important;
-                height: 24px !important;
+                width: 20px !important;
+                height: 20px !important;
             }
             
             .playbook-toggle {
@@ -1625,17 +1612,20 @@
             }
         });
 
-        // Playbook dropdown functionality (same as athletes page)
+        // Playbook dropdown functionality (mobile only)
         function togglePlaybook(button) {
-            const content = button.closest('.playbook-item').querySelector('.playbook-content');
-            const arrow = button.querySelector('.playbook-arrow');
-            
-            if (content.classList.contains('expanded')) {
-                content.classList.remove('expanded');
-                button.classList.remove('expanded');
-            } else {
-                content.classList.add('expanded');
-                button.classList.add('expanded');
+            // Only allow dropdown on mobile
+            if (window.innerWidth <= 768) {
+                const content = button.closest('.playbook-item').querySelector('.playbook-content');
+                const arrow = button.querySelector('.playbook-arrow');
+                
+                if (content.classList.contains('expanded')) {
+                    content.classList.remove('expanded');
+                    button.classList.remove('expanded');
+                } else {
+                    content.classList.add('expanded');
+                    button.classList.add('expanded');
+                }
             }
         }
     
