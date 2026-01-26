@@ -855,6 +855,10 @@
 
         /* Desktop: Show all content, disable dropdown functionality */
         @media (min-width: 769px) {
+            .playbook-item {
+                background: none !important;
+            }
+            
             .playbook-item .playbook-toggle {
                 cursor: default !important;
                 pointer-events: none !important;
@@ -972,24 +976,35 @@
             
             <!-- Mobile layout: Photos and text alternating -->
             <div class="reality-text-photos" style="display: none;">
-                <div style="display: flex; align-items: start; gap: 20px; margin-bottom: 20px;">
-                    <div style="flex: 1;">
-                        <img src="assets/images/trace-mercedes-partnership.jpg" alt="Trace Young Mercedes-Benz Partnership" style="width: 100%; height: 200px; object-fit: cover; object-position: center top; border-radius: 12px; box-shadow: 0 0 20px rgba(212,175,55,0.3);">
+                <!-- Large G-wagon photo with first paragraph to the right -->
+                <div style="display: flex; align-items: start; gap: 24px; margin-bottom: 32px;">
+                    <div style="flex: 1.5;">
+                        <img src="assets/images/trace-mercedes-partnership.jpg" alt="Trace Young Mercedes-Benz Partnership" style="width: 100%; height: 280px; object-fit: cover; object-position: center top; border-radius: 12px; box-shadow: 0 0 20px rgba(212,175,55,0.3);">
                     </div>
-                    <div style="flex: 2;">
-                        <p style="font-size: 1rem; color: var(--white); line-height: 1.6;">They're the ones who understand how to <span style="color: var(--gold);">build their brand.</span> I wasn't the most talented. I wasn't the most followed. But I treated NIL like a business, built a playbook, and turned it into real results — and now <span style="color: var(--gold);">any athlete can do the same.</span></p>
+                    <div style="flex: 1;">
+                        <p style="font-size: 1rem; color: var(--white); line-height: 1.6; margin-bottom: 0;">They're the ones who understand how to <span style="color: var(--gold);">build their brand.</span> I wasn't the most talented. I wasn't the most followed. But I treated NIL like a business, built a playbook, and turned it into real results — and now <span style="color: var(--gold);">any athlete can do the same.</span></p>
                     </div>
                 </div>
                 
-                <div style="display: flex; align-items: start; gap: 20px; margin-bottom: 20px;">
-                    <div style="flex: 1;">
-                        <img src="assets/images/trace-lsu-basketball.jpg" alt="Trace Young at LSU Basketball Practice" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; box-shadow: 0 0 20px rgba(212,175,55,0.3);">
-                    </div>
-                    <div style="flex: 2;">
-                        <p style="font-size: 1rem; color: var(--white); line-height: 1.6;">The truth is simple: the game ends for everyone. But your brand doesn't have to. Imagine moving on to the next chapter with real income, lasting relationships, and a personal brand that opens doors most athletes will never get to.</p>
-                    </div>
+                <!-- Remaining paragraphs below -->
+                <div style="margin-bottom: 24px;">
+                    <p style="font-size: 1rem; color: var(--white); line-height: 1.6; margin-bottom: 16px;">Regardless of what level you're at, You're standing in a golden window of opportunity. This is the moment to build connections, create income streams, and <span style="color: var(--gold);">lay the foundation for life</span>, not just the next few years.</p>
+                </div>
+                
+                <div style="margin-bottom: 24px;">
+                    <p style="font-size: 1rem; color: var(--white); line-height: 1.6; margin-bottom: 16px;">The truth is simple: the game ends for everyone. But your brand doesn't have to. Imagine moving on to the next chapter with real income, lasting relationships, and a personal brand that opens doors most athletes will never get to.</p>
+                </div>
+                
+                <div style="margin-bottom: 32px;">
+                    <p style="font-size: 1rem; color: var(--white); line-height: 1.6; margin-bottom: 16px;">While others are scrambling to figure out "what's next," you've already built it, while you were still playing. That's what <span style="color: var(--gold);">The 99 Sports</span> is designed to create: not just temporary money, <span style="color: var(--gold); text-transform: uppercase;">but a future.</span></p>
+                </div>
+                
+                <!-- Horizontal LSU photo to fill more width -->
+                <div style="width: 100%; margin-bottom: 20px;">
+                    <img src="assets/images/trace-lsu-basketball.jpg" alt="Trace Young at LSU Basketball Practice" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; box-shadow: 0 0 20px rgba(212,175,55,0.3);">
                 </div>
             </div>
+            
             <div style="text-align: center; margin-top: 60px;">
                 <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-large">Join Today</a>
             </div>
