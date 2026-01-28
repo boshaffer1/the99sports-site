@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Targeted Ads Preferences | The 99 Sports</title>
+    <meta name="description" content="Manage your targeted advertising preferences and control how your data is used for personalized ads.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'Unbounded';
+            src: url('assets/fonts/Unbounded.ttf') format('truetype');
+            font-weight: 100 900;
+            font-display: swap;
+        }
+
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --gray: #888888;
+            --gray-dark: #1A1A1A;
+            --gray-darker: #111111;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px;
+            width: 95%;
+            max-width: 1200px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .navbar-logo img { height: 28px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--black) !important;
+            font-weight: 600 !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 120px;
+            padding: 40px 24px 80px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: var(--gold);
+        }
+
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .content-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            margin-top: 24px;
+            color: var(--white);
+        }
+
+        .content-section p {
+            margin-bottom: 16px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .content-section ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+            color: var(--gray);
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            color: var(--white);
+            margin: 0;
+        }
+
+        .preferences-panel {
+            background: var(--gray-darker);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .preferences-panel h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .preference-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .preference-info {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .preference-info h4 {
+            color: var(--white);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .preference-info p {
+            color: var(--gray);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: .4s;
+            border-radius: 30px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: var(--white);
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--gold);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        .save-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .save-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        .partner-list {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 24px 0;
+        }
+
+        .partner-list h4 {
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .partner-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .partner-item:last-child {
+            border-bottom: none;
+        }
+
+        .partner-info span {
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .partner-info small {
+            color: var(--gray);
+            display: block;
+            margin-top: 4px;
+        }
+
+        .status-message {
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: 500;
+            display: none;
+        }
+
+        .status-success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+        }
+
+        .external-controls {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .external-controls h3 {
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .control-link {
+            display: inline-block;
+            color: var(--gold);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid var(--gold);
+            border-radius: 6px;
+            margin: 8px 8px 8px 0;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .control-link:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-logo img { height: 36px; }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-socials a:hover { color: var(--gold); }
+
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.7rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+            
+            .navbar.hidden {
+                transform: translateX(-50%) translateY(-120%);
+                opacity: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 80px 20px 20px;
+                gap: 12px;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                display: block !important;
+                padding: 12px;
+                border-radius: 8px;
+                margin-bottom: 8px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                margin-top: 100px;
+                padding: 20px 16px 60px;
+            }
+
+            .preferences-panel {
+                padding: 24px 20px;
+            }
+
+            .preference-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .preference-info {
+                margin-right: 0;
+            }
+
+            .external-controls {
+                padding: 20px 16px;
+            }
+
+            .control-link {
+                display: block;
+                margin: 8px 0;
+                text-align: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/images/font-logos.png" alt="The 99">
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i data-lucide="menu"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="athletes.html">Athletes</a>
+            <a href="brands.html">Brands</a>
+            <a href="universities.html">Schools</a>
+            <a href="team-profiles.html">Meet The Team</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Targeted Ads Preferences</h1>
+            <p class="subtitle">Control how your data is used for personalized advertising</p>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>Your Control:</strong> Customize your advertising experience by choosing which types of targeted ads you want to see and how your data is used for personalization.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>About Targeted Advertising</h2>
+            <p>Targeted advertising uses information about your interests, browsing behavior, and demographics to show you more relevant ads. This can include:</p>
+            <ul>
+                <li>Ads based on websites you've visited</li>
+                <li>Products or services related to your interests</li>
+                <li>Location-based promotions and offers</li>
+                <li>Demographic-targeted content</li>
+                <li>Remarketing from previous site visits</li>
+            </ul>
+            
+            <h3>Benefits of Targeted Ads</h3>
+            <ul>
+                <li>More relevant and useful advertisements</li>
+                <li>Discovery of products and services you might be interested in</li>
+                <li>Reduced irrelevant advertising content</li>
+                <li>Support for free content and services</li>
+            </ul>
+
+            <h3>Your Privacy</h3>
+            <p>We respect your privacy and give you control over your advertising preferences. You can opt out of targeted advertising while still seeing generic ads, or customize which types of targeting you're comfortable with.</p>
+        </div>
+
+        <!-- Preferences Panel -->
+        <div class="preferences-panel">
+            <h3>Manage Your Ad Preferences</h3>
+            <div id="statusMessage" class="status-message"></div>
+            
+            <div class="preference-item">
+                <div class="preference-info">
+                    <h4>Personalized Ads</h4>
+                    <p>Show ads based on your interests and browsing behavior. This includes remarketing and interest-based advertising.</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="personalizedAds" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="preference-item">
+                <div class="preference-info">
+                    <h4>Location-Based Ads</h4>
+                    <p>Show ads based on your approximate location, including local businesses and region-specific offers.</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="locationAds" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="preference-item">
+                <div class="preference-info">
+                    <h4>Demographic Targeting</h4>
+                    <p>Show ads based on general demographic information such as age range and interests categories.</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="demographicAds" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="preference-item">
+                <div class="preference-info">
+                    <h4>Cross-Device Tracking</h4>
+                    <p>Connect your activity across different devices to provide a consistent advertising experience.</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="crossDeviceAds">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="preference-item">
+                <div class="preference-info">
+                    <h4>Social Media Integration</h4>
+                    <p>Use your social media activity and connections to personalize ads and show social recommendations.</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="socialAds">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="preference-item">
+                <div class="preference-info">
+                    <h4>Sports & NIL Content</h4>
+                    <p>Show targeted ads related to sports, NIL opportunities, and athletic content based on your interests.</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="sportsAds" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <button class="save-btn" onclick="savePreferences()">Save Preferences</button>
+        </div>
+
+        <div class="content-section">
+            <h2>Third-Party Advertising Partners</h2>
+            <p>We work with various advertising partners to deliver personalized content. These partners may also collect and use information for advertising purposes.</p>
+            
+            <div class="partner-list">
+                <h4>Our Advertising Partners</h4>
+                
+                <div class="partner-item">
+                    <div class="partner-info">
+                        <span>Google Ads</span>
+                        <small>Search and display advertising, remarketing</small>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="googleAds" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="partner-item">
+                    <div class="partner-info">
+                        <span>Facebook/Meta Ads</span>
+                        <small>Social media advertising and custom audiences</small>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="facebookAds" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="partner-item">
+                    <div class="partner-info">
+                        <span>LinkedIn Ads</span>
+                        <small>Professional network advertising</small>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="linkedinAds">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="partner-item">
+                    <div class="partner-info">
+                        <span>Analytics Partners</span>
+                        <small>Website analytics and conversion tracking</small>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="analyticsAds" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Additional Controls</h2>
+            <p>For more comprehensive control over your advertising experience, you can also manage settings directly with major advertising platforms:</p>
+            
+            <div class="external-controls">
+                <h3>External Ad Controls</h3>
+                <a href="https://adssettings.google.com/" target="_blank" class="control-link">Google Ad Settings</a>
+                <a href="https://www.facebook.com/settings?tab=ads" target="_blank" class="control-link">Facebook Ad Preferences</a>
+                <a href="https://www.linkedin.com/psettings/advertising" target="_blank" class="control-link">LinkedIn Ad Settings</a>
+                <a href="https://optout.aboutads.info/" target="_blank" class="control-link">Industry Opt-Out</a>
+                <a href="https://optout.networkadvertising.org/" target="_blank" class="control-link">NAI Opt-Out</a>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Browser and Device Controls</h2>
+            
+            <h3>Browser Settings</h3>
+            <p>Most web browsers allow you to control cookies and tracking:</p>
+            <ul>
+                <li><strong>Chrome:</strong> Settings → Privacy and security → Cookies</li>
+                <li><strong>Firefox:</strong> Settings → Privacy & Security → Enhanced Tracking Protection</li>
+                <li><strong>Safari:</strong> Preferences → Privacy → Prevent cross-site tracking</li>
+                <li><strong>Edge:</strong> Settings → Privacy, search, and services → Tracking prevention</li>
+            </ul>
+
+            <h3>Mobile Device Settings</h3>
+            <ul>
+                <li><strong>iOS:</strong> Settings → Privacy & Security → Apple Advertising → Personalized Ads</li>
+                <li><strong>Android:</strong> Settings → Privacy → Ads → Opt out of Ads Personalization</li>
+            </ul>
+
+            <h3>Do Not Track</h3>
+            <p>You can enable "Do Not Track" in your browser settings. While not all websites honor this setting, we respect Do Not Track signals where technically feasible.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>What Happens When You Opt Out</h2>
+            
+            <h3>If You Disable Targeted Ads</h3>
+            <ul>
+                <li>You'll still see advertisements, but they won't be personalized</li>
+                <li>Ads may be less relevant to your interests</li>
+                <li>You might see the same ad multiple times</li>
+                <li>Some website features may be affected</li>
+            </ul>
+
+            <h3>If You Keep Targeted Ads Enabled</h3>
+            <ul>
+                <li>Ads will be more relevant to your interests</li>
+                <li>Better discovery of products and services you might like</li>
+                <li>Improved overall browsing experience</li>
+                <li>Support for free content through relevant advertising</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Data Used for Targeting</h2>
+            <p>When you have targeting enabled, we may use the following types of information:</p>
+            
+            <h3>Website Activity</h3>
+            <ul>
+                <li>Pages you visit on our site</li>
+                <li>Time spent on different sections</li>
+                <li>Actions taken (form submissions, downloads, etc.)</li>
+                <li>Search terms used on our site</li>
+            </ul>
+
+            <h3>Device and Browser Information</h3>
+            <ul>
+                <li>Device type and operating system</li>
+                <li>Browser type and version</li>
+                <li>Screen resolution and settings</li>
+                <li>Language preferences</li>
+            </ul>
+
+            <h3>General Location</h3>
+            <ul>
+                <li>Country and region (from IP address)</li>
+                <li>General location for local business ads</li>
+                <li>Time zone information</li>
+            </ul>
+
+            <p>We do not use sensitive personal information for ad targeting, including information about health, finances, religion, or political beliefs.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Questions About Ad Preferences?</h2>
+            <p>If you have questions about targeted advertising, your preferences, or how your data is used:</p>
+            
+            <div class="external-controls">
+                <h3>Get Help</h3>
+                <a href="mailto:privacy@the99sports.com" class="control-link">Email Privacy Team</a>
+                <a href="privacy-policy.html" class="control-link">Read Privacy Policy</a>
+                <a href="do-not-sell.html" class="control-link">Do Not Sell Request</a>
+                <a href="https://the99sports.typeform.com/contact" target="_blank" class="control-link">General Contact</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/font-logos.png" alt="The 99">
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="refund-policy.html">Refund Policy</a>
+                <a href="do-not-sell.html">Do Not Sell</a>
+                <a href="targeted-ads.html">Ad Preferences</a>
+            </div>
+            <div class="footer-socials" style="display: flex; gap: 16px; align-items: center;">
+                <a href="https://www.instagram.com/the99sports/" target="_blank" rel="noopener noreferrer" style="color: var(--gray); transition: color 0.3s ease;">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copy">© 2025 The 99. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            if (navLinks && mobileBtn && !navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile scroll hide/show navbar
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        
+        function updateNavbar() {
+            const navbar = document.querySelector('.navbar');
+            if (!navbar) return;
+            
+            if (window.innerWidth <= 768) {
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                    navbar.classList.add('hidden');
+                } else {
+                    navbar.classList.remove('hidden');
+                }
+            }
+            lastScrollY = window.scrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
+
+        // Load saved preferences
+        function loadPreferences() {
+            const preferences = {
+                personalizedAds: localStorage.getItem('personalizedAds') !== 'false',
+                locationAds: localStorage.getItem('locationAds') !== 'false',
+                demographicAds: localStorage.getItem('demographicAds') !== 'false',
+                crossDeviceAds: localStorage.getItem('crossDeviceAds') === 'true',
+                socialAds: localStorage.getItem('socialAds') === 'true',
+                sportsAds: localStorage.getItem('sportsAds') !== 'false',
+                googleAds: localStorage.getItem('googleAds') !== 'false',
+                facebookAds: localStorage.getItem('facebookAds') !== 'false',
+                linkedinAds: localStorage.getItem('linkedinAds') === 'true',
+                analyticsAds: localStorage.getItem('analyticsAds') !== 'false'
+            };
+
+            for (const [key, value] of Object.entries(preferences)) {
+                const toggle = document.getElementById(key);
+                if (toggle) {
+                    toggle.checked = value;
+                }
+            }
+        }
+
+        // Save preferences
+        function savePreferences() {
+            const toggles = [
+                'personalizedAds', 'locationAds', 'demographicAds', 'crossDeviceAds',
+                'socialAds', 'sportsAds', 'googleAds', 'facebookAds', 'linkedinAds', 'analyticsAds'
+            ];
+
+            toggles.forEach(id => {
+                const toggle = document.getElementById(id);
+                if (toggle) {
+                    localStorage.setItem(id, toggle.checked.toString());
+                }
+            });
+
+            // Show success message
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.className = 'status-message status-success';
+            statusMessage.textContent = '✓ Your advertising preferences have been saved successfully!';
+            statusMessage.style.display = 'block';
+
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                statusMessage.style.display = 'none';
+            }, 3000);
+
+            // Scroll to top of preferences panel
+            document.querySelector('.preferences-panel').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Initialize preferences on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPreferences();
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Terms & Conditions | The 99 Sports</title>
+    <meta name="description" content="Terms and Conditions for The 99 Sports NIL consulting services.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'Unbounded';
+            src: url('assets/fonts/Unbounded.ttf') format('truetype');
+            font-weight: 100 900;
+            font-display: swap;
+        }
+
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --gray: #888888;
+            --gray-dark: #1A1A1A;
+            --gray-darker: #111111;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px;
+            width: 95%;
+            max-width: 1200px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .navbar-logo img { height: 28px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--black) !important;
+            font-weight: 600 !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 120px;
+            padding: 40px 24px 80px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: var(--gold);
+        }
+
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .content-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            margin-top: 24px;
+            color: var(--white);
+        }
+
+        .content-section p {
+            margin-bottom: 16px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .content-section ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+            color: var(--gray);
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            color: var(--white);
+            margin: 0;
+        }
+
+        .contact-info {
+            background: var(--gray-darker);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .contact-info a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-logo img { height: 36px; }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-socials a:hover { color: var(--gold); }
+
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.7rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+            
+            .navbar.hidden {
+                transform: translateX(-50%) translateY(-120%);
+                opacity: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 80px 20px 20px;
+                gap: 12px;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                display: block !important;
+                padding: 12px;
+                border-radius: 8px;
+                margin-bottom: 8px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                margin-top: 100px;
+                padding: 20px 16px 60px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/images/font-logos.png" alt="The 99">
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i data-lucide="menu"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="athletes.html">Athletes</a>
+            <a href="brands.html">Brands</a>
+            <a href="universities.html">Schools</a>
+            <a href="team-profiles.html">Meet The Team</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Terms & Conditions</h1>
+            <p class="subtitle">Legal agreement governing the use of our NIL consulting services</p>
+            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 12px;">Last updated: January 28, 2025</p>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>Agreement Overview:</strong> By using The 99 Sports services, you agree to these terms and conditions. Please read them carefully before using our NIL consulting platform.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing or using The 99 Sports website and services, you agree to be bound by these Terms and Conditions and our <a href="privacy-policy.html" style="color: var(--gold);">Privacy Policy</a>. If you do not agree to these terms, please do not use our services.</p>
+            <p>These terms apply to all users of the service, including athletes, brands, universities, and other organizations.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>2. Description of Services</h2>
+            <p>The 99 Sports provides Name, Image, and Likeness (NIL) consulting services, including but not limited to:</p>
+            <ul>
+                <li>NIL deal facilitation and consultation</li>
+                <li>Brand partnership opportunities</li>
+                <li>Educational resources and compliance guidance</li>
+                <li>Marketing and promotional support</li>
+                <li>Contract review and negotiation assistance</li>
+                <li>Platform access for connecting athletes and brands</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>3. User Accounts and Registration</h2>
+            <h3>Account Creation</h3>
+            <p>To access certain services, you may need to create an account. You agree to:</p>
+            <ul>
+                <li>Provide accurate, current, and complete information</li>
+                <li>Maintain the security of your account credentials</li>
+                <li>Update your information as needed</li>
+                <li>Notify us immediately of any unauthorized use</li>
+            </ul>
+
+            <h3>Account Responsibilities</h3>
+            <p>You are responsible for all activities that occur under your account. We reserve the right to suspend or terminate accounts that violate these terms.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>4. Fees and Payment</h2>
+            <h3>Service Fees</h3>
+            <p>Our fees vary based on the type and scope of services provided. All fees will be clearly communicated before services begin.</p>
+
+            <h3>Payment Terms</h3>
+            <ul>
+                <li>Payment is due as specified in your service agreement</li>
+                <li>We accept major credit cards and bank transfers</li>
+                <li>All fees are non-refundable unless otherwise stated</li>
+                <li>Late payments may incur additional charges</li>
+            </ul>
+
+            <h3>Refunds</h3>
+            <p>Refund policies are outlined in our separate <a href="refund-policy.html" style="color: var(--gold);">Refund Policy</a>.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>5. User Conduct and Prohibited Activities</h2>
+            <p>You agree not to:</p>
+            <ul>
+                <li>Violate any applicable laws, regulations, or NCAA rules</li>
+                <li>Provide false or misleading information</li>
+                <li>Interfere with the operation of our services</li>
+                <li>Attempt to gain unauthorized access to our systems</li>
+                <li>Share account credentials with others</li>
+                <li>Use our services for any illegal or unauthorized purpose</li>
+                <li>Harass, abuse, or harm other users</li>
+                <li>Distribute spam or unsolicited communications</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>6. Intellectual Property</h2>
+            <h3>Our Content</h3>
+            <p>The 99 Sports retains all rights to our website content, logos, trademarks, and proprietary materials. You may not use our intellectual property without written permission.</p>
+
+            <h3>User Content</h3>
+            <p>By submitting content to our platform, you grant us a non-exclusive license to use, modify, and distribute such content for business purposes related to our services.</p>
+
+            <h3>Athlete NIL Rights</h3>
+            <p>We respect athletes' Name, Image, and Likeness rights. All NIL usage must comply with applicable laws and regulations.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>7. Privacy and Data Protection</h2>
+            <p>Your privacy is important to us. Our collection and use of personal information is governed by our <a href="privacy-policy.html" style="color: var(--gold);">Privacy Policy</a>, which is incorporated into these terms by reference.</p>
+            
+            <p>Key privacy points:</p>
+            <ul>
+                <li>We protect your personal information with industry-standard security</li>
+                <li>We do not sell personal information to third parties</li>
+                <li>You can control your privacy settings and preferences</li>
+                <li>We comply with applicable data protection laws</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>8. Disclaimers and Limitations</h2>
+            <h3>Service Disclaimer</h3>
+            <p>Our services are provided "as is" without warranties of any kind. We do not guarantee:</p>
+            <ul>
+                <li>Specific results or outcomes from our services</li>
+                <li>The availability or reliability of third-party services</li>
+                <li>That our services will be uninterrupted or error-free</li>
+                <li>The accuracy or completeness of information provided</li>
+            </ul>
+
+            <h3>Limitation of Liability</h3>
+            <p>To the maximum extent permitted by law, The 99 Sports shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of our services.</p>
+
+            <h3>NCAA Compliance</h3>
+            <p>While we provide guidance on NIL compliance, ultimate responsibility for NCAA and institutional rule compliance rests with the athlete and their institution.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>9. Indemnification</h2>
+            <p>You agree to indemnify and hold harmless The 99 Sports from any claims, damages, or expenses arising from:</p>
+            <ul>
+                <li>Your use of our services</li>
+                <li>Your violation of these terms</li>
+                <li>Your violation of any third-party rights</li>
+                <li>Any content you submit or transmit through our services</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>10. Termination</h2>
+            <h3>Termination by You</h3>
+            <p>You may terminate your account at any time by contacting us. Termination does not relieve you of obligations incurred before termination.</p>
+
+            <h3>Termination by Us</h3>
+            <p>We may suspend or terminate your access to our services if you:</p>
+            <ul>
+                <li>Violate these terms and conditions</li>
+                <li>Engage in prohibited activities</li>
+                <li>Fail to pay required fees</li>
+                <li>Provide false or misleading information</li>
+            </ul>
+
+            <h3>Effect of Termination</h3>
+            <p>Upon termination, your right to use our services ceases immediately. We may retain certain information as required by law or for legitimate business purposes.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>11. Dispute Resolution</h2>
+            <h3>Governing Law</h3>
+            <p>These terms are governed by the laws of the state where The 99 Sports is incorporated, without regard to conflict of law principles.</p>
+
+            <h3>Arbitration</h3>
+            <p>Any disputes arising from these terms or your use of our services shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association.</p>
+
+            <h3>Class Action Waiver</h3>
+            <p>You agree to resolve disputes on an individual basis and waive any right to participate in class action lawsuits.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>12. Changes to Terms</h2>
+            <p>We reserve the right to modify these terms at any time. We will notify users of significant changes by:</p>
+            <ul>
+                <li>Posting updated terms on our website</li>
+                <li>Updating the "Last Updated" date</li>
+                <li>Sending email notifications for material changes</li>
+            </ul>
+            <p>Continued use of our services after changes constitutes acceptance of the new terms.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>13. General Provisions</h2>
+            <h3>Severability</h3>
+            <p>If any provision of these terms is found to be unenforceable, the remaining provisions will continue in full force and effect.</p>
+
+            <h3>Entire Agreement</h3>
+            <p>These terms, together with our Privacy Policy, constitute the entire agreement between you and The 99 Sports.</p>
+
+            <h3>Force Majeure</h3>
+            <p>We are not liable for any failure to perform due to circumstances beyond our reasonable control.</p>
+        </div>
+
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p>For questions about these Terms & Conditions, please contact us:</p>
+            <p><strong>Email:</strong> <a href="mailto:legal@the99sports.com">legal@the99sports.com</a></p>
+            <p><strong>General Contact:</strong> <a href="https://the99sports.typeform.com/contact" target="_blank">Contact Form</a></p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/font-logos.png" alt="The 99">
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="refund-policy.html">Refund Policy</a>
+                <a href="do-not-sell.html">Do Not Sell</a>
+                <a href="targeted-ads.html">Ad Preferences</a>
+            </div>
+            <div class="footer-socials" style="display: flex; gap: 16px; align-items: center;">
+                <a href="https://www.instagram.com/the99sports/" target="_blank" rel="noopener noreferrer" style="color: var(--gray); transition: color 0.3s ease;">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copy">© 2025 The 99. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            if (navLinks && mobileBtn && !navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile scroll hide/show navbar
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        
+        function updateNavbar() {
+            const navbar = document.querySelector('.navbar');
+            if (!navbar) return;
+            
+            if (window.innerWidth <= 768) {
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                    navbar.classList.add('hidden');
+                } else {
+                    navbar.classList.remove('hidden');
+                }
+            }
+            lastScrollY = window.scrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

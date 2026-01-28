@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Do Not Sell My Information | The 99 Sports</title>
+    <meta name="description" content="Exercise your right to opt out of the sale of personal information under California privacy laws.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'Unbounded';
+            src: url('assets/fonts/Unbounded.ttf') format('truetype');
+            font-weight: 100 900;
+            font-display: swap;
+        }
+
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --gray: #888888;
+            --gray-dark: #1A1A1A;
+            --gray-darker: #111111;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px;
+            width: 95%;
+            max-width: 1200px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .navbar-logo img { height: 28px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--black) !important;
+            font-weight: 600 !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 120px;
+            padding: 40px 24px 80px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: var(--gold);
+        }
+
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .content-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            margin-top: 24px;
+            color: var(--white);
+        }
+
+        .content-section p {
+            margin-bottom: 16px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .content-section ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+            color: var(--gray);
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            color: var(--white);
+            margin: 0;
+        }
+
+        .opt-out-form {
+            background: var(--gray-darker);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .opt-out-form h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            font-size: 16px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 4px;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .submit-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .contact-info a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .status-indicator {
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+        }
+
+        .status-info {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #3b82f6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-logo img { height: 36px; }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-socials a:hover { color: var(--gold); }
+
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.7rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+            
+            .navbar.hidden {
+                transform: translateX(-50%) translateY(-120%);
+                opacity: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 80px 20px 20px;
+                gap: 12px;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                display: block !important;
+                padding: 12px;
+                border-radius: 8px;
+                margin-bottom: 8px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                margin-top: 100px;
+                padding: 20px 16px 60px;
+            }
+
+            .opt-out-form {
+                padding: 24px 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/images/font-logos.png" alt="The 99">
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i data-lucide="menu"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="athletes.html">Athletes</a>
+            <a href="brands.html">Brands</a>
+            <a href="universities.html">Schools</a>
+            <a href="team-profiles.html">Meet The Team</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Do Not Sell My Information</h1>
+            <p class="subtitle">Exercise your right to opt out of the sale of personal information</p>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>Your Privacy Rights:</strong> Under California law (CCPA), you have the right to opt out of the sale of your personal information. We respect your privacy and make it easy to exercise this right.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>What This Means</h2>
+            <p>The California Consumer Privacy Act (CCPA) gives California residents the right to opt out of the "sale" of their personal information. Under the CCPA, "sale" has a broad definition that may include sharing information for advertising purposes.</p>
+            
+            <h3>Our Current Practices</h3>
+            <p><strong>We do not sell your personal information for monetary consideration.</strong> However, like many websites, we may share certain information with partners for advertising and analytics purposes, which could be considered a "sale" under the broad CCPA definition.</p>
+            
+            <h3>What Information Might Be Shared</h3>
+            <ul>
+                <li>Website usage data and analytics</li>
+                <li>Device and browser information</li>
+                <li>IP address and location data</li>
+                <li>Advertising identifiers and cookies</li>
+                <li>Demographic and interest information</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>How to Opt Out</h2>
+            <p>You can exercise your right to opt out in the following ways:</p>
+            
+            <h3>Option 1: Online Form (Recommended)</h3>
+            <p>Use the form below to submit your opt-out request. This is the fastest way to process your request.</p>
+            
+            <h3>Option 2: Email</h3>
+            <p>Send an email to <a href="mailto:privacy@the99sports.com" style="color: var(--gold);">privacy@the99sports.com</a> with "Do Not Sell Request" in the subject line.</p>
+            
+            <h3>Option 3: Contact Form</h3>
+            <p>Use our general <a href="https://the99sports.typeform.com/contact" target="_blank" style="color: var(--gold);">contact form</a> and specify that you want to opt out of the sale of your information.</p>
+        </div>
+
+        <!-- Opt-Out Form -->
+        <div class="opt-out-form">
+            <h3>Submit Your Opt-Out Request</h3>
+            <div id="form-status"></div>
+            
+            <form id="optOutForm" onsubmit="submitOptOutRequest(event)">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number (Optional)</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="relationship">Your Relationship with The 99 Sports</label>
+                    <select id="relationship" name="relationship">
+                        <option value="">Please select</option>
+                        <option value="athlete">Athlete</option>
+                        <option value="parent">Parent/Guardian</option>
+                        <option value="brand">Brand Representative</option>
+                        <option value="university">University Representative</option>
+                        <option value="visitor">Website Visitor</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="additionalInfo">Additional Information (Optional)</label>
+                    <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Any additional details about your request..."></textarea>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="verifyIdentity" name="verifyIdentity" required>
+                    <label for="verifyIdentity">I verify that I am the person whose information I am requesting to opt out, or I am authorized to make this request on their behalf.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="confirmUnderstanding" name="confirmUnderstanding" required>
+                    <label for="confirmUnderstanding">I understand that this opt-out request applies to the sale of my personal information and that I can learn more about our data practices in the <a href="privacy-policy.html" style="color: var(--gold);">Privacy Policy</a>.</label>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Opt-Out Request</button>
+            </form>
+        </div>
+
+        <div class="content-section">
+            <h2>What Happens Next</h2>
+            
+            <h3>Processing Time</h3>
+            <p>We will process your opt-out request within:</p>
+            <ul>
+                <li><strong>Immediate:</strong> Automated opt-out for most advertising</li>
+                <li><strong>48 hours:</strong> Manual review and additional opt-outs</li>
+                <li><strong>15 days:</strong> Complete processing (as required by law)</li>
+            </ul>
+
+            <h3>Confirmation</h3>
+            <p>You will receive an email confirmation once we have processed your request. This email will include:</p>
+            <ul>
+                <li>Confirmation that your request has been processed</li>
+                <li>Details about what actions we took</li>
+                <li>Information about how to contact us with questions</li>
+            </ul>
+
+            <h3>Future Data Collection</h3>
+            <p>Your opt-out applies to future sale of your information. We may still:</p>
+            <ul>
+                <li>Collect information necessary to provide our services</li>
+                <li>Use information for internal business purposes</li>
+                <li>Share information as required by law</li>
+                <li>Share information with service providers (not considered a sale)</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Global Privacy Controls</h2>
+            <p>If your browser supports Global Privacy Control (GPC), we will automatically honor this signal as an opt-out request. No additional action is needed if you have GPC enabled.</p>
+            
+            <h3>Enabling GPC</h3>
+            <p>GPC is available in some browsers and browser extensions. Check your browser settings or privacy extensions to see if this feature is available.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Other Privacy Rights</h2>
+            <p>In addition to the right to opt out of sales, you may have other privacy rights under applicable laws:</p>
+            
+            <ul>
+                <li><strong>Right to Know:</strong> Request information about how we collect and use your data</li>
+                <li><strong>Right to Delete:</strong> Request deletion of your personal information</li>
+                <li><strong>Right to Correct:</strong> Request correction of inaccurate information</li>
+                <li><strong>Right to Non-Discrimination:</strong> You cannot be discriminated against for exercising your rights</li>
+            </ul>
+            
+            <p>To exercise these rights, please visit our <a href="privacy-policy.html" style="color: var(--gold);">Privacy Policy</a> or contact us using the information below.</p>
+        </div>
+
+        <div class="contact-info">
+            <h3>Questions or Need Help?</h3>
+            <p>If you have questions about this process or need assistance with your request:</p>
+            <p><strong>Privacy Team:</strong> <a href="mailto:privacy@the99sports.com">privacy@the99sports.com</a></p>
+            <p><strong>Subject Line:</strong> Include "Do Not Sell Question"</p>
+            <p><strong>Response Time:</strong> We respond within 24 hours</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/font-logos.png" alt="The 99">
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="refund-policy.html">Refund Policy</a>
+                <a href="do-not-sell.html">Do Not Sell</a>
+                <a href="targeted-ads.html">Ad Preferences</a>
+            </div>
+            <div class="footer-socials" style="display: flex; gap: 16px; align-items: center;">
+                <a href="https://www.instagram.com/the99sports/" target="_blank" rel="noopener noreferrer" style="color: var(--gray); transition: color 0.3s ease;">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copy">© 2025 The 99. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            if (navLinks && mobileBtn && !navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile scroll hide/show navbar
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        
+        function updateNavbar() {
+            const navbar = document.querySelector('.navbar');
+            if (!navbar) return;
+            
+            if (window.innerWidth <= 768) {
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                    navbar.classList.add('hidden');
+                } else {
+                    navbar.classList.remove('hidden');
+                }
+            }
+            lastScrollY = window.scrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
+
+        // Form submission handler
+        function submitOptOutRequest(event) {
+            event.preventDefault();
+            
+            const formStatus = document.getElementById('form-status');
+            const submitBtn = event.target.querySelector('.submit-btn');
+            
+            // Show processing message
+            formStatus.innerHTML = '<div class="status-info">Processing your request...</div>';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            
+            // Simulate form processing (replace with actual form submission)
+            setTimeout(() => {
+                formStatus.innerHTML = '<div class="status-success">✓ Your opt-out request has been submitted successfully! You will receive a confirmation email within 24 hours.</div>';
+                submitBtn.textContent = 'Request Submitted';
+                
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    event.target.reset();
+                    formStatus.innerHTML = '';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Opt-Out Request';
+                }, 3000);
+            }, 2000);
+        }
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

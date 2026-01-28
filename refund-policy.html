@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Refund Policy | The 99 Sports</title>
+    <meta name="description" content="Refund Policy for The 99 Sports NIL consulting services.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'Unbounded';
+            src: url('assets/fonts/Unbounded.ttf') format('truetype');
+            font-weight: 100 900;
+            font-display: swap;
+        }
+
+        :root {
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --gray: #888888;
+            --gray-dark: #1A1A1A;
+            --gray-darker: #111111;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px;
+            width: 95%;
+            max-width: 1200px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .navbar-logo img { height: 28px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--black) !important;
+            font-weight: 600 !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 120px;
+            padding: 40px 24px 80px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: var(--gold);
+        }
+
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .content-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            margin-top: 24px;
+            color: var(--white);
+        }
+
+        .content-section p {
+            margin-bottom: 16px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .content-section ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+            color: var(--gray);
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            color: var(--white);
+            margin: 0;
+        }
+
+        .refund-table {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 24px 0;
+        }
+
+        .refund-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .refund-table th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--white);
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .refund-table td {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+        }
+
+        .refund-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .contact-info {
+            background: var(--gray-darker);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .contact-info a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-logo img { height: 36px; }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-socials a:hover { color: var(--gold); }
+
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.7rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+            
+            .navbar.hidden {
+                transform: translateX(-50%) translateY(-120%);
+                opacity: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 80px 20px 20px;
+                gap: 12px;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                display: block !important;
+                padding: 12px;
+                border-radius: 8px;
+                margin-bottom: 8px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                margin-top: 100px;
+                padding: 20px 16px 60px;
+            }
+
+            .refund-table {
+                font-size: 0.9rem;
+            }
+
+            .refund-table th,
+            .refund-table td {
+                padding: 12px 8px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/images/font-logos.png" alt="The 99">
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i data-lucide="menu"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="athletes.html">Athletes</a>
+            <a href="brands.html">Brands</a>
+            <a href="universities.html">Schools</a>
+            <a href="team-profiles.html">Meet The Team</a>
+            <a href="https://the99sports.typeform.com/contact" target="_blank" rel="noopener noreferrer" class="nav-cta">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Refund Policy</h1>
+            <p class="subtitle">Our commitment to fair and transparent refund practices</p>
+            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 12px;">Last updated: January 28, 2025</p>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>Our Commitment:</strong> We strive to deliver exceptional NIL consulting services. If you're not satisfied with our services, we offer refunds under specific conditions outlined below.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>1. General Refund Policy</h2>
+            <p>At The 99 Sports, we are committed to providing high-quality NIL consulting services. We understand that sometimes services may not meet your expectations, and we have established this refund policy to ensure fair treatment for all clients.</p>
+            
+            <h3>Refund Eligibility</h3>
+            <p>Refunds may be available in the following circumstances:</p>
+            <ul>
+                <li>Services were not delivered as promised in the service agreement</li>
+                <li>Technical issues prevented access to paid services</li>
+                <li>Services were cancelled within the specified cancellation window</li>
+                <li>Duplicate charges or billing errors</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>2. Service-Specific Refund Terms</h2>
+            
+            <div class="refund-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service Type</th>
+                            <th>Refund Window</th>
+                            <th>Refund Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Consultation Services</td>
+                            <td>48 hours before scheduled session</td>
+                            <td>100% refund</td>
+                        </tr>
+                        <tr>
+                            <td>Monthly Packages</td>
+                            <td>7 days from start date</td>
+                            <td>Prorated refund</td>
+                        </tr>
+                        <tr>
+                            <td>Educational Resources</td>
+                            <td>14 days from purchase</td>
+                            <td>Full refund if not accessed</td>
+                        </tr>
+                        <tr>
+                            <td>Platform Access</td>
+                            <td>30 days from signup</td>
+                            <td>Prorated refund</td>
+                        </tr>
+                        <tr>
+                            <td>Custom Projects</td>
+                            <td>Varies by agreement</td>
+                            <td>As specified in contract</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>3. Refund Process</h2>
+            
+            <h3>How to Request a Refund</h3>
+            <p>To request a refund, please follow these steps:</p>
+            <ul>
+                <li>Contact our support team within the eligible refund window</li>
+                <li>Provide your order number and reason for the refund request</li>
+                <li>Include any relevant documentation or details</li>
+                <li>Allow up to 5 business days for review and response</li>
+            </ul>
+
+            <h3>Refund Processing Time</h3>
+            <p>Once approved, refunds will be processed as follows:</p>
+            <ul>
+                <li><strong>Credit Card:</strong> 5-10 business days</li>
+                <li><strong>Bank Transfer:</strong> 3-7 business days</li>
+                <li><strong>Digital Wallet:</strong> 1-3 business days</li>
+            </ul>
+
+            <h3>Refund Method</h3>
+            <p>Refunds will be issued to the original payment method used for the purchase. If the original payment method is unavailable, we will work with you to find an alternative solution.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>4. Non-Refundable Services</h2>
+            <p>The following services are generally not eligible for refunds:</p>
+            <ul>
+                <li>Completed consultation sessions</li>
+                <li>Services delivered as agreed upon</li>
+                <li>Third-party fees (processing, legal, etc.)</li>
+                <li>Custom work that has been completed</li>
+                <li>Services cancelled outside the refund window</li>
+                <li>Educational materials that have been accessed or downloaded</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>5. Partial Refunds</h2>
+            <p>In some cases, partial refunds may be appropriate:</p>
+            
+            <h3>Prorated Refunds</h3>
+            <ul>
+                <li>Monthly or annual services cancelled mid-term</li>
+                <li>Unused portions of service packages</li>
+                <li>Services partially delivered due to circumstances beyond our control</li>
+            </ul>
+
+            <h3>Calculation Method</h3>
+            <p>Prorated refunds are calculated based on:</p>
+            <ul>
+                <li>Time remaining in the service period</li>
+                <li>Services not yet delivered or accessed</li>
+                <li>Applicable fees and costs already incurred</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>6. Special Circumstances</h2>
+            
+            <h3>Emergency Cancellations</h3>
+            <p>We understand that emergencies happen. In cases of documented emergencies (medical, family, etc.), we may offer refunds outside our normal policy at our discretion.</p>
+
+            <h3>Technical Issues</h3>
+            <p>If technical problems on our end prevent you from accessing paid services, we will:</p>
+            <ul>
+                <li>Resolve the issue as quickly as possible</li>
+                <li>Extend your service period to compensate for downtime</li>
+                <li>Offer a partial or full refund if issues cannot be resolved</li>
+            </ul>
+
+            <h3>Service Changes</h3>
+            <p>If we significantly change or discontinue a service you've paid for, you may be eligible for a refund or credit toward alternative services.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>7. Dispute Resolution</h2>
+            
+            <h3>Internal Review</h3>
+            <p>If your refund request is denied, you may request a review by our management team. Please provide additional context or documentation to support your request.</p>
+
+            <h3>Escalation Process</h3>
+            <ul>
+                <li>Initial request reviewed by customer service</li>
+                <li>Escalation to management for complex cases</li>
+                <li>Final decision communicated within 10 business days</li>
+            </ul>
+
+            <h3>External Dispute Resolution</h3>
+            <p>If you remain unsatisfied after our internal review, you may pursue dispute resolution through your payment provider or as outlined in our <a href="terms.html" style="color: var(--gold);">Terms & Conditions</a>.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>8. Contact for Refund Requests</h2>
+            <p>To initiate a refund request or ask questions about our refund policy:</p>
+            
+            <div class="contact-info">
+                <h3>Refund Support</h3>
+                <p><strong>Email:</strong> <a href="mailto:refunds@the99sports.com">refunds@the99sports.com</a></p>
+                <p><strong>Subject Line:</strong> Include "Refund Request" and your order number</p>
+                <p><strong>Response Time:</strong> We respond to refund requests within 24 hours</p>
+                <p><strong>General Contact:</strong> <a href="https://the99sports.typeform.com/contact" target="_blank">Contact Form</a></p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>9. Policy Updates</h2>
+            <p>We may update this refund policy from time to time to reflect changes in our services or legal requirements. Significant changes will be communicated via:</p>
+            <ul>
+                <li>Email notification to existing customers</li>
+                <li>Website announcement</li>
+                <li>Updated "Last Updated" date on this page</li>
+            </ul>
+            <p>Changes will not affect refund requests made before the policy update.</p>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>Questions?</strong> Our customer service team is here to help. We're committed to resolving any issues and ensuring your satisfaction with our services. Please don't hesitate to reach out with any refund-related questions.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/font-logos.png" alt="The 99">
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="refund-policy.html">Refund Policy</a>
+                <a href="do-not-sell.html">Do Not Sell</a>
+                <a href="targeted-ads.html">Ad Preferences</a>
+            </div>
+            <div class="footer-socials" style="display: flex; gap: 16px; align-items: center;">
+                <a href="https://www.instagram.com/the99sports/" target="_blank" rel="noopener noreferrer" style="color: var(--gray); transition: color 0.3s ease;">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copy">© 2025 The 99. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            if (navLinks && mobileBtn && !navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile scroll hide/show navbar
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        
+        function updateNavbar() {
+            const navbar = document.querySelector('.navbar');
+            if (!navbar) return;
+            
+            if (window.innerWidth <= 768) {
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                    navbar.classList.add('hidden');
+                } else {
+                    navbar.classList.remove('hidden');
+                }
+            }
+            lastScrollY = window.scrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
