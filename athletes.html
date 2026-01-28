@@ -31,6 +31,26 @@
             --gray-darker: #111111;
         }
 
+        /* Remove all button backgrounds */
+        button {
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .playbook-toggle {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+        
+        .playbook-toggle h3 {
+            background: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+        
         /* Gold Glow Icons - Lucide */
         .gold-icon {
             color: var(--gold);
@@ -888,6 +908,19 @@
             .playbook-item .playbook-toggle {
                 cursor: default !important;
                 pointer-events: none !important;
+                background: none !important;
+                border: none !important;
+            }
+            
+            .playbook-item .playbook-toggle h3 {
+                background: none !important;
+                padding: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            
+            .playbook-header {
+                background: none !important;
             }
             
             .playbook-item .playbook-arrow {
@@ -1027,7 +1060,7 @@
                 
                 <!-- Horizontal LSU photo to fill more width -->
                 <div style="width: 100%; margin-bottom: 20px;">
-                    <img src="assets/images/trace-lsu-basketball.jpg" alt="Trace Young at LSU Basketball Practice" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; box-shadow: 0 0 20px rgba(212,175,55,0.3);">
+                    <img src="assets/images/trace-lsu-basketball.jpg" alt="Trace Young at LSU Basketball Practice" style="width: 100%; height: 200px; object-fit: contain; background: var(--black); border-radius: 12px; box-shadow: 0 0 20px rgba(212,175,55,0.3);">
                 </div>
             </div>
             
