@@ -8,58 +8,8 @@
     { "source": "/brands", "destination": "/brands.html" },
     { "source": "/universities", "destination": "/universities.html" },
     { "source": "/contact", "destination": "/contact.html" },
-    { 
-      "source": "/application/(.*)", 
-      "destination": "https://agency-hub-bos-projects-31c27b7d.vercel.app/application.html"
-    },
-    { 
-      "source": "/application", 
-      "destination": "https://agency-hub-bos-projects-31c27b7d.vercel.app/application.html"
-    },
-    { 
-      "source": "/postcallbooking", 
-      "destination": "https://agency-hub-bos-projects-31c27b7d.vercel.app/thank-you.html"
-    },
-    { 
-      "source": "/thankyoudq", 
-      "destination": "https://agency-hub-bos-projects-31c27b7d.vercel.app/thank-you-waitlist.html"
-    },
-    {
-      "source": "/assets/images/:path*",
-      "destination": "https://agency-hub-bos-projects-31c27b7d.vercel.app/assets/images/:path*"
-    },
-    {
-      "source": "/assets/:path*",
-      "destination": "https://agency-hub-bos-projects-31c27b7d.vercel.app/assets/:path*"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/application",
-      "headers": [
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        }
-      ]
-    },
-    {
-      "source": "/postcallbooking",
-      "headers": [
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        }
-      ]
-    },
-    {
-      "source": "/thankyoudq",
-      "headers": [
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        }
-      ]
-    }
+    { "source": "/application", "destination": "/application.html" },
+    { "source": "/postcallbooking", "destination": "/postcallbooking.html" },
+    { "source": "/thankyoudq", "destination": "/thankyoudq.html" }
   ]
 }
